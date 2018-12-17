@@ -1,0 +1,55 @@
+{
+    "name": "File",
+    "fields": [
+        {
+            "fieldName": "fileURL",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "updatedDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "mimeType",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "FileType",
+            "fieldValues": "IDPROOF,TRAVELPROOF,PACKAGEPICTURE,PROFILEPICTURE"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "travel",
+            "otherEntityName": "travel",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "klavUser",
+            "otherEntityName": "klavUser",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "travelPackage",
+            "otherEntityName": "travelPackage",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20181217172443",
+    "entityTableName": "file",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,33 @@
+{
+    "name": "Chat",
+    "fields": [
+        {
+            "fieldName": "creationDate",
+            "fieldType": "Instant"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "messages",
+            "otherEntityName": "message",
+            "otherEntityRelationshipName": "chat"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "klavUser",
+            "otherEntityName": "klavUser",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "chat"
+        }
+    ],
+    "changelogDate": "20181217172447",
+    "entityTableName": "chat",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

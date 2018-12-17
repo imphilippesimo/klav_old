@@ -1,0 +1,73 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="travelPackage">
+            <h2><span jhiTranslate="klavApp.travelPackage.detail.title">Travel Package</span> {{travelPackage.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="klavApp.travelPackage.title">Title</span></dt>
+                <dd>
+                    <span>{{travelPackage.title}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.travelPackage.weight">Weight</span></dt>
+                <dd>
+                    <span>{{travelPackage.weight}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.travelPackage.accessCode">Access Code</span></dt>
+                <dd>
+                    <span>{{travelPackage.accessCode}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.travelPackage.deleveryCode">Delevery Code</span></dt>
+                <dd>
+                    <span>{{travelPackage.deleveryCode}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.travelPackage.desiredDeleveryMode">Desired Delevery Mode</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'klavApp.DeliveryMode.' + travelPackage.desiredDeleveryMode}}">{{travelPackage.desiredDeleveryMode}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.travelPackage.description">Description</span></dt>
+                <dd>
+                    <span>{{travelPackage.description}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.travelPackage.pricePerKG">Price Per KG</span></dt>
+                <dd>
+                    <span>{{travelPackage.pricePerKG}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.travelPackage.fragile">Fragile</span></dt>
+                <dd>
+                    <span>{{travelPackage.fragile}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.travelPackage.klavUser">Klav User</span></dt>
+                <dd>
+                    <div *ngIf="travelPackage.klavUser">
+                        <a [routerLink]="['/klav-user', travelPackage.klavUser?.id, 'view']">{{travelPackage.klavUser?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="klavApp.travelPackage.receiver">Receiver</span></dt>
+                <dd>
+                    <div *ngIf="travelPackage.receiver">
+                        <a [routerLink]="['/klav-user', travelPackage.receiver?.id, 'view']">{{travelPackage.receiver?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="klavApp.travelPackage.booking">Booking</span></dt>
+                <dd>
+                    <div *ngIf="travelPackage.booking">
+                        <a [routerLink]="['/booking', travelPackage.booking?.id, 'view']">{{travelPackage.booking?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/travel-package', travelPackage.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

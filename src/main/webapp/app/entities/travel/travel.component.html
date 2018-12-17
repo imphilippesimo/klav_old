@@ -1,0 +1,82 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="klavApp.travel.home.title">Travels</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-travel" [routerLink]="['/travel/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="klavApp.travel.home.createLabel">
+            Create new Travel
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="travels">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="klavApp.travel.departureDate">Departure Date</span></th>
+            <th><span jhiTranslate="klavApp.travel.arrivalDate">Arrival Date</span></th>
+            <th><span jhiTranslate="klavApp.travel.departureCity">Departure City</span></th>
+            <th><span jhiTranslate="klavApp.travel.arrivalCity">Arrival City</span></th>
+            <th><span jhiTranslate="klavApp.travel.availableKGs">Available K Gs</span></th>
+            <th><span jhiTranslate="klavApp.travel.pricePerKG">Price Per KG</span></th>
+            <th><span jhiTranslate="klavApp.travel.travelMode">Travel Mode</span></th>
+            <th><span jhiTranslate="klavApp.travel.deleveryMode">Delevery Mode</span></th>
+            <th><span jhiTranslate="klavApp.travel.howToContactDescription">How To Contact Description</span></th>
+            <th><span jhiTranslate="klavApp.travel.complementaryRules">Complementary Rules</span></th>
+            <th><span jhiTranslate="klavApp.travel.bookable">Bookable</span></th>
+            <th><span jhiTranslate="klavApp.travel.accessCode">Access Code</span></th>
+            <th><span jhiTranslate="klavApp.travel.destinationAddress">Destination Address</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let travel of travels ;trackBy: trackId">
+                <td><a [routerLink]="['/travel', travel.id, 'view' ]">{{travel.id}}</a></td>
+                <td>{{travel.departureDate | date:'medium'}}</td>
+                <td>{{travel.arrivalDate | date:'medium'}}</td>
+                <td>{{travel.departureCity}}</td>
+                <td>{{travel.arrivalCity}}</td>
+                <td>{{travel.availableKGs}}</td>
+                <td>{{travel.pricePerKG}}</td>
+                <td>{{travel.travelMode}}</td>
+                <td jhiTranslate="{{'klavApp.DeliveryMode.' + travel.deleveryMode}}">{{travel.deleveryMode}}</td>
+                <td>{{travel.howToContactDescription}}</td>
+                <td>{{travel.complementaryRules}}</td>
+                <td>{{travel.bookable}}</td>
+                <td>{{travel.accessCode}}</td>
+                <td>
+                    <div *ngIf="travel.destinationAddress">
+                        <a [routerLink]="['../address', travel.destinationAddress?.id, 'view' ]" >{{travel.destinationAddress?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/travel', travel.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/travel', travel.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'travel/'+ travel.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

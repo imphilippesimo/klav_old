@@ -1,0 +1,11 @@
+{
+    "klavApp": {
+        "FileType" : {
+            "null": "",
+            "IDPROOF": "IDPROOF",
+            "TRAVELPROOF": "TRAVELPROOF",
+            "PACKAGEPICTURE": "PACKAGEPICTURE",
+            "PROFILEPICTURE": "PROFILEPICTURE"
+        }
+    }
+}

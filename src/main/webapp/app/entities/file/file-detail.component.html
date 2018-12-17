@@ -1,0 +1,61 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="file">
+            <h2><span jhiTranslate="klavApp.file.detail.title">File</span> {{file.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="klavApp.file.fileURL">File URL</span></dt>
+                <dd>
+                    <span>{{file.fileURL}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.file.name">Name</span></dt>
+                <dd>
+                    <span>{{file.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.file.updatedDate">Updated Date</span></dt>
+                <dd>
+                    <span>{{file.updatedDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.file.mimeType">Mime Type</span></dt>
+                <dd>
+                    <span>{{file.mimeType}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.file.type">Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'klavApp.FileType.' + file.type}}">{{file.type}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.file.travel">Travel</span></dt>
+                <dd>
+                    <div *ngIf="file.travel">
+                        <a [routerLink]="['/travel', file.travel?.id, 'view']">{{file.travel?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="klavApp.file.klavUser">Klav User</span></dt>
+                <dd>
+                    <div *ngIf="file.klavUser">
+                        <a [routerLink]="['/klav-user', file.klavUser?.id, 'view']">{{file.klavUser?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="klavApp.file.travelPackage">Travel Package</span></dt>
+                <dd>
+                    <div *ngIf="file.travelPackage">
+                        <a [routerLink]="['/travel-package', file.travelPackage?.id, 'view']">{{file.travelPackage?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/file', file.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,87 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-travel-package-heading" jhiTranslate="klavApp.travelPackage.home.createOrEditLabel">Create or edit a Travel Package</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!travelPackage.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="travelPackage.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.travelPackage.title" for="field_title">Title</label>
+                    <input type="text" class="form-control" name="title" id="field_title"
+                        [(ngModel)]="travelPackage.title" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.travelPackage.weight" for="field_weight">Weight</label>
+                    <input type="number" class="form-control" name="weight" id="field_weight"
+                        [(ngModel)]="travelPackage.weight" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.travelPackage.accessCode" for="field_accessCode">Access Code</label>
+                    <input type="text" class="form-control" name="accessCode" id="field_accessCode"
+                        [(ngModel)]="travelPackage.accessCode" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.travelPackage.deleveryCode" for="field_deleveryCode">Delevery Code</label>
+                    <input type="text" class="form-control" name="deleveryCode" id="field_deleveryCode"
+                        [(ngModel)]="travelPackage.deleveryCode" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.travelPackage.desiredDeleveryMode" for="field_desiredDeleveryMode">Desired Delevery Mode</label>
+                    <select class="form-control" name="desiredDeleveryMode" [(ngModel)]="travelPackage.desiredDeleveryMode" id="field_desiredDeleveryMode" >
+                        <option value="HOMEDELEVERY">{{'klavApp.DeliveryMode.HOMEDELEVERY' | translate}}</option>
+                        <option value="HOMEWITHDRAWAL">{{'klavApp.DeliveryMode.HOMEWITHDRAWAL' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.travelPackage.description" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                        [(ngModel)]="travelPackage.description" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.travelPackage.pricePerKG" for="field_pricePerKG">Price Per KG</label>
+                    <input type="number" class="form-control" name="pricePerKG" id="field_pricePerKG"
+                        [(ngModel)]="travelPackage.pricePerKG" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.travelPackage.fragile" for="field_fragile">Fragile</label>
+                    <input type="checkbox" class="form-control" name="fragile" id="field_fragile"
+                        [(ngModel)]="travelPackage.fragile" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.travelPackage.klavUser" for="field_klavUser">Klav User</label>
+                    <select class="form-control" id="field_klavUser" name="klavUser" [(ngModel)]="travelPackage.klavUser" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="klavUserOption.id === travelPackage.klavUser?.id ? travelPackage.klavUser : klavUserOption" *ngFor="let klavUserOption of klavusers; trackBy: trackKlavUserById">{{klavUserOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.travelPackage.receiver" for="field_receiver">Receiver</label>
+                    <select class="form-control" id="field_receiver" name="receiver" [(ngModel)]="travelPackage.receiver">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="klavUserOption.id === travelPackage.receiver?.id ? travelPackage.receiver : klavUserOption" *ngFor="let klavUserOption of receivers; trackBy: trackKlavUserById">{{klavUserOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.travelPackage.booking" for="field_booking">Booking</label>
+                    <select class="form-control" id="field_booking" name="booking" [(ngModel)]="travelPackage.booking" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="bookingOption.id === travelPackage.booking?.id ? travelPackage.booking : bookingOption" *ngFor="let bookingOption of bookings; trackBy: trackBookingById">{{bookingOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

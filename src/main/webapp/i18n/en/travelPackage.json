@@ -1,0 +1,33 @@
+
+{
+    "klavApp": {
+        "travelPackage" : {
+            "home": {
+                "title": "Travel Packages",
+                "createLabel": "Create a new Travel Package",
+                "createOrEditLabel": "Create or edit a Travel Package"
+            },
+            "created": "A new Travel Package is created with identifier {{ param }}",
+            "updated": "A Travel Package is updated with identifier {{ param }}",
+            "deleted": "A Travel Package is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Travel Package {{ id }}?"
+            },
+            "detail": {
+                "title": "Travel Package"
+            },
+            "title": "Title",
+            "weight": "Weight",
+            "accessCode": "Access Code",
+            "deleveryCode": "Delevery Code",
+            "desiredDeleveryMode": "Desired Delevery Mode",
+            "description": "Description",
+            "pricePerKG": "Price Per KG",
+            "fragile": "Fragile",
+            "klavUser": "Klav User",
+            "receiver": "Receiver",
+            "pictures": "Pictures",
+            "booking": "Booking"
+        }
+    }
+}

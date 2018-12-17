@@ -1,0 +1,74 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="klavApp.klavUser.home.title">Klav Users</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-klav-user" [routerLink]="['/klav-user/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="klavApp.klavUser.home.createLabel">
+            Create new Klav User
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="klavUsers">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="klavApp.klavUser.phoneNumber">Phone Number</span></th>
+            <th><span jhiTranslate="klavApp.klavUser.birthdate">Birthdate</span></th>
+            <th><span jhiTranslate="klavApp.klavUser.selfDescription">Self Description</span></th>
+            <th><span jhiTranslate="klavApp.klavUser.gender">Gender</span></th>
+            <th><span jhiTranslate="klavApp.klavUser.nationality">Nationality</span></th>
+            <th><span jhiTranslate="klavApp.klavUser.livesAt">Lives At</span></th>
+            <th><span jhiTranslate="klavApp.klavUser.chat">Chat</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let klavUser of klavUsers ;trackBy: trackId">
+                <td><a [routerLink]="['/klav-user', klavUser.id, 'view' ]">{{klavUser.id}}</a></td>
+                <td>{{klavUser.phoneNumber}}</td>
+                <td>{{klavUser.birthdate | date:'medium'}}</td>
+                <td>{{klavUser.selfDescription}}</td>
+                <td>{{klavUser.gender}}</td>
+                <td>{{klavUser.nationality}}</td>
+                <td>
+                    <div *ngIf="klavUser.livesAt">
+                        <a [routerLink]="['../address', klavUser.livesAt?.id, 'view' ]" >{{klavUser.livesAt?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <span *ngFor="let chat of klavUser.chats; let last = last">
+                            <a class="form-control-static" [routerLink]="['../chat', chat?.id, 'view' ]">{{chat.id}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/klav-user', klavUser.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/klav-user', klavUser.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'klav-user/'+ klavUser.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

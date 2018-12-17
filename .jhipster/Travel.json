@@ -1,0 +1,79 @@
+{
+    "name": "Travel",
+    "fields": [
+        {
+            "fieldName": "departureDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "arrivalDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "departureCity",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "arrivalCity",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "availableKGs",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "pricePerKG",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "travelMode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "deleveryMode",
+            "fieldType": "DeliveryMode",
+            "fieldValues": "HOMEDELEVERY,HOMEWITHDRAWAL"
+        },
+        {
+            "fieldName": "howToContactDescription",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "complementaryRules",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "bookable",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "accessCode",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "destinationAddress",
+            "otherEntityName": "address",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "travel"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "travelProofs",
+            "otherEntityName": "file",
+            "otherEntityRelationshipName": "travel"
+        }
+    ],
+    "changelogDate": "20181217172441",
+    "entityTableName": "travel",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

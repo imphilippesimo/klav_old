@@ -1,0 +1,76 @@
+{
+    "name": "KlavUser",
+    "fields": [
+        {
+            "fieldName": "phoneNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "birthdate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "selfDescription",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "gender",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nationality",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "livesAt",
+            "otherEntityName": "address",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "klavUser"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "profilePictures",
+            "otherEntityName": "file",
+            "otherEntityRelationshipName": "klavUser"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "bookings",
+            "otherEntityName": "booking",
+            "otherEntityRelationshipName": "klavUser"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "travels",
+            "otherEntityName": "travelPackage",
+            "otherEntityRelationshipName": "klavUser"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "reviews",
+            "otherEntityName": "review",
+            "otherEntityRelationshipName": "klavUser"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "klavUser",
+            "relationshipName": "chat",
+            "otherEntityName": "chat",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20181217172442",
+    "entityTableName": "klav_user",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

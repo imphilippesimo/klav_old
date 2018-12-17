@@ -1,0 +1,39 @@
+{
+    "name": "Booking",
+    "fields": [],
+    "relationships": [
+        {
+            "relationshipName": "klavUser",
+            "otherEntityName": "klavUser",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "packages",
+            "otherEntityName": "travelPackage",
+            "otherEntityRelationshipName": "booking"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "status",
+            "otherEntityName": "status",
+            "otherEntityRelationshipName": "booking"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "trustIndex",
+            "otherEntityName": "trustIndex",
+            "otherEntityRelationshipName": "booking"
+        }
+    ],
+    "changelogDate": "20181217172451",
+    "entityTableName": "booking",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

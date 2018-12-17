@@ -1,0 +1,30 @@
+{
+    "name": "TrustIndex",
+    "fields": [
+        {
+            "fieldName": "value",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "date",
+            "fieldType": "Instant"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "booking",
+            "otherEntityName": "booking",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20181217172449",
+    "entityTableName": "trust_index",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

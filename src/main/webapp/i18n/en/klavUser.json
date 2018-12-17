@@ -1,0 +1,32 @@
+
+{
+    "klavApp": {
+        "klavUser" : {
+            "home": {
+                "title": "Klav Users",
+                "createLabel": "Create a new Klav User",
+                "createOrEditLabel": "Create or edit a Klav User"
+            },
+            "created": "A new Klav User is created with identifier {{ param }}",
+            "updated": "A Klav User is updated with identifier {{ param }}",
+            "deleted": "A Klav User is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Klav User {{ id }}?"
+            },
+            "detail": {
+                "title": "Klav User"
+            },
+            "phoneNumber": "Phone Number",
+            "birthdate": "Birthdate",
+            "selfDescription": "Self Description",
+            "gender": "Gender",
+            "nationality": "Nationality",
+            "livesAt": "Lives At",
+            "profilePictures": "Profile Pictures",
+            "bookings": "Bookings",
+            "travels": "Travels",
+            "reviews": "Reviews",
+            "chat": "Chat"
+        }
+    }
+}

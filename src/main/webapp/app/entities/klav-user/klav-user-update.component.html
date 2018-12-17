@@ -1,0 +1,64 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-klav-user-heading" jhiTranslate="klavApp.klavUser.home.createOrEditLabel">Create or edit a Klav User</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!klavUser.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="klavUser.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.klavUser.phoneNumber" for="field_phoneNumber">Phone Number</label>
+                    <input type="text" class="form-control" name="phoneNumber" id="field_phoneNumber"
+                        [(ngModel)]="klavUser.phoneNumber" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.klavUser.birthdate" for="field_birthdate">Birthdate</label>
+                    <div class="d-flex">
+                        <input id="field_birthdate" type="datetime-local" class="form-control" name="birthdate" [(ngModel)]="birthdate"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.klavUser.selfDescription" for="field_selfDescription">Self Description</label>
+                    <input type="text" class="form-control" name="selfDescription" id="field_selfDescription"
+                        [(ngModel)]="klavUser.selfDescription" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.klavUser.gender" for="field_gender">Gender</label>
+                    <input type="text" class="form-control" name="gender" id="field_gender"
+                        [(ngModel)]="klavUser.gender" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.klavUser.nationality" for="field_nationality">Nationality</label>
+                    <input type="text" class="form-control" name="nationality" id="field_nationality"
+                        [(ngModel)]="klavUser.nationality" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.klavUser.livesAt" for="field_livesAt">Lives At</label>
+                    <select class="form-control" id="field_livesAt" name="livesAt" [(ngModel)]="klavUser.livesAt">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="addressOption.id === klavUser.livesAt?.id ? klavUser.livesAt : addressOption" *ngFor="let addressOption of livesats; trackBy: trackAddressById">{{addressOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label jhiTranslate="klavApp.klavUser.chat" for="field_chat">Chat</label>
+                    <select class="form-control" id="field_chat" multiple name="chat" [(ngModel)]="klavUser.chats">
+                        <option [ngValue]="getSelected(klavUser.chats, chatOption)" *ngFor="let chatOption of chats; trackBy: trackChatById">{{chatOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

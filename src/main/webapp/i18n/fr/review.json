@@ -1,0 +1,25 @@
+
+{
+    "klavApp": {
+        "review" : {
+            "home": {
+                "title": "Reviews",
+                "createLabel": "Créer un nouveau Review",
+                "createOrEditLabel": "Créer ou éditer un Review"
+            },
+            "created": "Un nouveau Review a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Review avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Review avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Review {{ id }} ?"
+            },
+            "detail": {
+                "title": "Review"
+            },
+            "note": "Note",
+            "date": "Date",
+            "comment": "Comment",
+            "klavUser": "Klav User"
+        }
+    }
+}

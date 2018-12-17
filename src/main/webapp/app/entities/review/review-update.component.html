@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-review-heading" jhiTranslate="klavApp.review.home.createOrEditLabel">Create or edit a Review</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!review.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="review.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.review.note" for="field_note">Note</label>
+                    <input type="number" class="form-control" name="note" id="field_note"
+                        [(ngModel)]="review.note" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.review.date" for="field_date">Date</label>
+                    <div class="d-flex">
+                        <input id="field_date" type="datetime-local" class="form-control" name="date" [(ngModel)]="date"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.review.comment" for="field_comment">Comment</label>
+                    <input type="text" class="form-control" name="comment" id="field_comment"
+                        [(ngModel)]="review.comment" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.review.klavUser" for="field_klavUser">Klav User</label>
+                    <select class="form-control" id="field_klavUser" name="klavUser" [(ngModel)]="review.klavUser" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="klavUserOption.id === review.klavUser?.id ? review.klavUser : klavUserOption" *ngFor="let klavUserOption of klavusers; trackBy: trackKlavUserById">{{klavUserOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

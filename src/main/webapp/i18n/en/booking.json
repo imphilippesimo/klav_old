@@ -1,0 +1,25 @@
+
+{
+    "klavApp": {
+        "booking" : {
+            "home": {
+                "title": "Bookings",
+                "createLabel": "Create a new Booking",
+                "createOrEditLabel": "Create or edit a Booking"
+            },
+            "created": "A new Booking is created with identifier {{ param }}",
+            "updated": "A Booking is updated with identifier {{ param }}",
+            "deleted": "A Booking is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Booking {{ id }}?"
+            },
+            "detail": {
+                "title": "Booking"
+            },
+            "klavUser": "Klav User",
+            "packages": "Packages",
+            "status": "Status",
+            "trustIndex": "Trust Index"
+        }
+    }
+}

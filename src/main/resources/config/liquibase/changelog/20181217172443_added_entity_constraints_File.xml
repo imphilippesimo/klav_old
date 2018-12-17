@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity File.
+    -->
+    <changeSet id="20181217172443-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="travel_id"
+                                 baseTableName="file"
+                                 constraintName="fk_file_travel_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="travel"/>
+
+        <addForeignKeyConstraint baseColumnNames="klav_user_id"
+                                 baseTableName="file"
+                                 constraintName="fk_file_klav_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="klav_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="travel_package_id"
+                                 baseTableName="file"
+                                 constraintName="fk_file_travel_package_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="travel_package"/>
+
+    </changeSet>
+</databaseChangeLog>

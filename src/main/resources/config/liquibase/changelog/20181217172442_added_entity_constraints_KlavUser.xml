@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity KlavUser.
+    -->
+    <changeSet id="20181217172442-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="lives_at_id"
+                                 baseTableName="klav_user"
+                                 constraintName="fk_klav_user_lives_at_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="address"/>
+
+        <addForeignKeyConstraint baseColumnNames="klav_users_id"
+                                 baseTableName="klav_user_chat"
+                                 constraintName="fk_klav_user_chat_klav_users_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="klav_user"/>
+        <addForeignKeyConstraint baseColumnNames="chats_id"
+                                 baseTableName="klav_user_chat"
+                                 constraintName="fk_klav_user_chat_chats_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="chat"/>
+        
+    </changeSet>
+</databaseChangeLog>

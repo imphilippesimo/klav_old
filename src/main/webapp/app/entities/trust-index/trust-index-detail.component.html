@@ -1,0 +1,37 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="trustIndex">
+            <h2><span jhiTranslate="klavApp.trustIndex.detail.title">Trust Index</span> {{trustIndex.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="klavApp.trustIndex.value">Value</span></dt>
+                <dd>
+                    <span>{{trustIndex.value}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.trustIndex.date">Date</span></dt>
+                <dd>
+                    <span>{{trustIndex.date}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.trustIndex.booking">Booking</span></dt>
+                <dd>
+                    <div *ngIf="trustIndex.booking">
+                        <a [routerLink]="['/booking', trustIndex.booking?.id, 'view']">{{trustIndex.booking?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/trust-index', trustIndex.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

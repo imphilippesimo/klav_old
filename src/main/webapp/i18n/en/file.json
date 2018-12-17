@@ -1,0 +1,29 @@
+
+{
+    "klavApp": {
+        "file" : {
+            "home": {
+                "title": "Files",
+                "createLabel": "Create a new File",
+                "createOrEditLabel": "Create or edit a File"
+            },
+            "created": "A new File is created with identifier {{ param }}",
+            "updated": "A File is updated with identifier {{ param }}",
+            "deleted": "A File is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete File {{ id }}?"
+            },
+            "detail": {
+                "title": "File"
+            },
+            "fileURL": "File URL",
+            "name": "Name",
+            "updatedDate": "Updated Date",
+            "mimeType": "Mime Type",
+            "type": "Type",
+            "travel": "Travel",
+            "klavUser": "Klav User",
+            "travelPackage": "Travel Package"
+        }
+    }
+}

@@ -1,0 +1,35 @@
+
+{
+    "klavApp": {
+        "travel" : {
+            "home": {
+                "title": "Travels",
+                "createLabel": "Create a new Travel",
+                "createOrEditLabel": "Create or edit a Travel"
+            },
+            "created": "A new Travel is created with identifier {{ param }}",
+            "updated": "A Travel is updated with identifier {{ param }}",
+            "deleted": "A Travel is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Travel {{ id }}?"
+            },
+            "detail": {
+                "title": "Travel"
+            },
+            "departureDate": "Departure Date",
+            "arrivalDate": "Arrival Date",
+            "departureCity": "Departure City",
+            "arrivalCity": "Arrival City",
+            "availableKGs": "Available K Gs",
+            "pricePerKG": "Price Per KG",
+            "travelMode": "Travel Mode",
+            "deleveryMode": "Delevery Mode",
+            "howToContactDescription": "How To Contact Description",
+            "complementaryRules": "Complementary Rules",
+            "bookable": "Bookable",
+            "accessCode": "Access Code",
+            "destinationAddress": "Destination Address",
+            "travelProofs": "Travel Proofs"
+        }
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "klavApp": {
+        "DeliveryMode" : {
+            "null": "",
+            "HOMEDELEVERY": "HOMEDELEVERY",
+            "HOMEWITHDRAWAL": "HOMEWITHDRAWAL"
+        }
+    }
+}

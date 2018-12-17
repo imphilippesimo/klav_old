@@ -1,0 +1,75 @@
+{
+    "name": "TravelPackage",
+    "fields": [
+        {
+            "fieldName": "title",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "weight",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "accessCode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "deleveryCode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "desiredDeleveryMode",
+            "fieldType": "DeliveryMode",
+            "fieldValues": "HOMEDELEVERY,HOMEWITHDRAWAL"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "pricePerKG",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "fragile",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "klavUser",
+            "otherEntityName": "klavUser",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "receiver",
+            "otherEntityName": "klavUser",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "travelPackage"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "pictures",
+            "otherEntityName": "file",
+            "otherEntityRelationshipName": "travelPackage"
+        },
+        {
+            "relationshipName": "booking",
+            "otherEntityName": "booking",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20181217172445",
+    "entityTableName": "travel_package",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

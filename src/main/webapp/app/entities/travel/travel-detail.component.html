@@ -1,0 +1,77 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="travel">
+            <h2><span jhiTranslate="klavApp.travel.detail.title">Travel</span> {{travel.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="klavApp.travel.departureDate">Departure Date</span></dt>
+                <dd>
+                    <span>{{travel.departureDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.travel.arrivalDate">Arrival Date</span></dt>
+                <dd>
+                    <span>{{travel.arrivalDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.travel.departureCity">Departure City</span></dt>
+                <dd>
+                    <span>{{travel.departureCity}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.travel.arrivalCity">Arrival City</span></dt>
+                <dd>
+                    <span>{{travel.arrivalCity}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.travel.availableKGs">Available K Gs</span></dt>
+                <dd>
+                    <span>{{travel.availableKGs}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.travel.pricePerKG">Price Per KG</span></dt>
+                <dd>
+                    <span>{{travel.pricePerKG}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.travel.travelMode">Travel Mode</span></dt>
+                <dd>
+                    <span>{{travel.travelMode}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.travel.deleveryMode">Delevery Mode</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'klavApp.DeliveryMode.' + travel.deleveryMode}}">{{travel.deleveryMode}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.travel.howToContactDescription">How To Contact Description</span></dt>
+                <dd>
+                    <span>{{travel.howToContactDescription}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.travel.complementaryRules">Complementary Rules</span></dt>
+                <dd>
+                    <span>{{travel.complementaryRules}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.travel.bookable">Bookable</span></dt>
+                <dd>
+                    <span>{{travel.bookable}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.travel.accessCode">Access Code</span></dt>
+                <dd>
+                    <span>{{travel.accessCode}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.travel.destinationAddress">Destination Address</span></dt>
+                <dd>
+                    <div *ngIf="travel.destinationAddress">
+                        <a [routerLink]="['/address', travel.destinationAddress?.id, 'view']">{{travel.destinationAddress?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/travel', travel.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

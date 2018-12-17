@@ -1,0 +1,24 @@
+
+{
+    "klavApp": {
+        "trustIndex" : {
+            "home": {
+                "title": "TrustIndices",
+                "createLabel": "Créer un nouveau Trust Index",
+                "createOrEditLabel": "Créer ou éditer un Trust Index"
+            },
+            "created": "Un nouveau Trust Index a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Trust Index avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Trust Index avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Trust Index {{ id }} ?"
+            },
+            "detail": {
+                "title": "Trust Index"
+            },
+            "value": "Value",
+            "date": "Date",
+            "booking": "Booking"
+        }
+    }
+}

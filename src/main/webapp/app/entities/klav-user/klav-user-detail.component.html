@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="klavUser">
+            <h2><span jhiTranslate="klavApp.klavUser.detail.title">Klav User</span> {{klavUser.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="klavApp.klavUser.phoneNumber">Phone Number</span></dt>
+                <dd>
+                    <span>{{klavUser.phoneNumber}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.klavUser.birthdate">Birthdate</span></dt>
+                <dd>
+                    <span>{{klavUser.birthdate}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.klavUser.selfDescription">Self Description</span></dt>
+                <dd>
+                    <span>{{klavUser.selfDescription}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.klavUser.gender">Gender</span></dt>
+                <dd>
+                    <span>{{klavUser.gender}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.klavUser.nationality">Nationality</span></dt>
+                <dd>
+                    <span>{{klavUser.nationality}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.klavUser.livesAt">Lives At</span></dt>
+                <dd>
+                    <div *ngIf="klavUser.livesAt">
+                        <a [routerLink]="['/address', klavUser.livesAt?.id, 'view']">{{klavUser.livesAt?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="klavApp.klavUser.chat">Chat</span></dt>
+                <dd>
+                    <span *ngFor="let chat of klavUser.chats; let last = last">
+                        <a [routerLink]="['/chat', chat?.id, 'view' ]">{{chat.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/klav-user', klavUser.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

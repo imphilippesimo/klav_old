@@ -1,0 +1,40 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.klav",
+      "nativeLanguage": "fr"
+    },
+    "jhipsterVersion": "5.5.0",
+    "applicationType": "monolith",
+    "baseName": "klav",
+    "packageName": "com.klav",
+    "packageFolder": "com/klav",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "OGEwNDQ4OTNlYjVlNzBhNDNmYzNkZjNjMmZjMDdhYmQ4ODMwNDRhYjU4ZGQ3MzdiZDk0YTJmYThmMzM0OWM1NjNkZDg3NmMyMGE0MGJkM2QxMjZkNzJhOTEyZDY0NjMxNzc3MTYwZGM4NjAxYTA5YjQ2NTdiYjE5NDgxNGMyOTE=",
+    "clientFramework": "angularX",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "testFrameworks": [
+      "cucumber"
+    ],
+    "jhiPrefix": "jhi",
+    "enableTranslation": true,
+    "nativeLanguage": "fr",
+    "languages": [
+      "fr",
+      "en"
+    ]
+  }
+}
