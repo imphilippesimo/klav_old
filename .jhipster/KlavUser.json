@@ -15,7 +15,8 @@
         },
         {
             "fieldName": "gender",
-            "fieldType": "String"
+            "fieldType": "Gender",
+            "fieldValues": "MALE,FEMALE"
         },
         {
             "fieldName": "nationality",

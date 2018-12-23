@@ -3,40 +3,89 @@
     "fields": [
         {
             "fieldName": "departureDate",
-            "fieldType": "Instant"
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
             "fieldName": "arrivalDate",
-            "fieldType": "Instant"
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "departureCountry",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
             "fieldName": "departureCity",
-            "fieldType": "String"
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "arrivalCountry",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
             "fieldName": "arrivalCity",
-            "fieldType": "String"
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
             "fieldName": "availableKGs",
-            "fieldType": "Double"
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
             "fieldName": "pricePerKG",
-            "fieldType": "Float"
+            "fieldType": "Float",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
             "fieldName": "travelMode",
-            "fieldType": "String"
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "isFreeOfCharge",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "isAcceptingFragilePackages",
+            "fieldType": "Boolean"
         },
         {
             "fieldName": "deleveryMode",
             "fieldType": "DeliveryMode",
-            "fieldValues": "HOMEDELEVERY,HOMEWITHDRAWAL"
+            "fieldValues": "HOMEDELEVERY,HOMEWITHDRAWAL",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
             "fieldName": "howToContactDescription",
-            "fieldType": "String"
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
             "fieldName": "complementaryRules",
@@ -44,7 +93,10 @@
         },
         {
             "fieldName": "bookable",
-            "fieldType": "Boolean"
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
             "fieldName": "accessCode",
@@ -64,6 +116,12 @@
             "relationshipType": "one-to-many",
             "relationshipName": "travelProofs",
             "otherEntityName": "file",
+            "otherEntityRelationshipName": "travel"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "acceptedPackageType",
+            "otherEntityName": "packageType",
             "otherEntityRelationshipName": "travel"
         }
     ],

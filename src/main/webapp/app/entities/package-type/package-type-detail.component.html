@@ -1,0 +1,33 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="packageType">
+            <h2><span jhiTranslate="klavApp.packageType.detail.title">Package Type</span> {{packageType.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="klavApp.packageType.name">Name</span></dt>
+                <dd>
+                    <span>{{packageType.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.packageType.travel">Travel</span></dt>
+                <dd>
+                    <div *ngIf="packageType.travel">
+                        <a [routerLink]="['/travel', packageType.travel?.id, 'view']">{{packageType.travel?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/package-type', packageType.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

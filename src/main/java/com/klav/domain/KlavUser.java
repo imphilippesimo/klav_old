@@ -10,6 +10,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
 
+import com.klav.domain.enumeration.Gender;
+
 /**
  * A KlavUser.
  */
@@ -32,8 +34,9 @@ public class KlavUser implements Serializable {
     @Column(name = "self_description")
     private String selfDescription;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "gender")
-    private String gender;
+    private Gender gender;
 
     @Column(name = "nationality")
     private String nationality;
@@ -106,16 +109,16 @@ public class KlavUser implements Serializable {
         this.selfDescription = selfDescription;
     }
 
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public KlavUser gender(String gender) {
+    public KlavUser gender(Gender gender) {
         this.gender = gender;
         return this;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 

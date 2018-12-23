@@ -28,8 +28,10 @@
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="klavApp.klavUser.gender" for="field_gender">Gender</label>
-                    <input type="text" class="form-control" name="gender" id="field_gender"
-                        [(ngModel)]="klavUser.gender" />
+                    <select class="form-control" name="gender" [(ngModel)]="klavUser.gender" id="field_gender" >
+                        <option value="MALE">{{'klavApp.Gender.MALE' | translate}}</option>
+                        <option value="FEMALE">{{'klavApp.Gender.FEMALE' | translate}}</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="klavApp.klavUser.nationality" for="field_nationality">Nationality</label>

@@ -13,52 +13,154 @@
                     <label class="form-control-label" jhiTranslate="klavApp.travel.departureDate" for="field_departureDate">Departure Date</label>
                     <div class="d-flex">
                         <input id="field_departureDate" type="datetime-local" class="form-control" name="departureDate" [(ngModel)]="departureDate"
-                        />
+                        required/>
+                    </div>
+                    <div [hidden]="!(editForm.controls.departureDate?.dirty && editForm.controls.departureDate?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.departureDate?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.departureDate?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="klavApp.travel.arrivalDate" for="field_arrivalDate">Arrival Date</label>
                     <div class="d-flex">
                         <input id="field_arrivalDate" type="datetime-local" class="form-control" name="arrivalDate" [(ngModel)]="arrivalDate"
-                        />
+                        required/>
+                    </div>
+                    <div [hidden]="!(editForm.controls.arrivalDate?.dirty && editForm.controls.arrivalDate?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.arrivalDate?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.arrivalDate?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.travel.departureCountry" for="field_departureCountry">Departure Country</label>
+                    <input type="text" class="form-control" name="departureCountry" id="field_departureCountry"
+                        [(ngModel)]="travel.departureCountry" required/>
+                    <div [hidden]="!(editForm.controls.departureCountry?.dirty && editForm.controls.departureCountry?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.departureCountry?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="klavApp.travel.departureCity" for="field_departureCity">Departure City</label>
                     <input type="text" class="form-control" name="departureCity" id="field_departureCity"
-                        [(ngModel)]="travel.departureCity" />
+                        [(ngModel)]="travel.departureCity" required/>
+                    <div [hidden]="!(editForm.controls.departureCity?.dirty && editForm.controls.departureCity?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.departureCity?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.travel.arrivalCountry" for="field_arrivalCountry">Arrival Country</label>
+                    <input type="text" class="form-control" name="arrivalCountry" id="field_arrivalCountry"
+                        [(ngModel)]="travel.arrivalCountry" required/>
+                    <div [hidden]="!(editForm.controls.arrivalCountry?.dirty && editForm.controls.arrivalCountry?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.arrivalCountry?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="klavApp.travel.arrivalCity" for="field_arrivalCity">Arrival City</label>
                     <input type="text" class="form-control" name="arrivalCity" id="field_arrivalCity"
-                        [(ngModel)]="travel.arrivalCity" />
+                        [(ngModel)]="travel.arrivalCity" required/>
+                    <div [hidden]="!(editForm.controls.arrivalCity?.dirty && editForm.controls.arrivalCity?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.arrivalCity?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="klavApp.travel.availableKGs" for="field_availableKGs">Available K Gs</label>
                     <input type="number" class="form-control" name="availableKGs" id="field_availableKGs"
-                        [(ngModel)]="travel.availableKGs" />
+                        [(ngModel)]="travel.availableKGs" required/>
+                    <div [hidden]="!(editForm.controls.availableKGs?.dirty && editForm.controls.availableKGs?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.availableKGs?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.availableKGs?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="klavApp.travel.pricePerKG" for="field_pricePerKG">Price Per KG</label>
                     <input type="number" class="form-control" name="pricePerKG" id="field_pricePerKG"
-                        [(ngModel)]="travel.pricePerKG" />
+                        [(ngModel)]="travel.pricePerKG" required/>
+                    <div [hidden]="!(editForm.controls.pricePerKG?.dirty && editForm.controls.pricePerKG?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.pricePerKG?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.pricePerKG?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="klavApp.travel.travelMode" for="field_travelMode">Travel Mode</label>
                     <input type="text" class="form-control" name="travelMode" id="field_travelMode"
-                        [(ngModel)]="travel.travelMode" />
+                        [(ngModel)]="travel.travelMode" required/>
+                    <div [hidden]="!(editForm.controls.travelMode?.dirty && editForm.controls.travelMode?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.travelMode?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.travel.isFreeOfCharge" for="field_isFreeOfCharge">Is Free Of Charge</label>
+                    <input type="checkbox" class="form-control" name="isFreeOfCharge" id="field_isFreeOfCharge"
+                        [(ngModel)]="travel.isFreeOfCharge" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.travel.isAcceptingFragilePackages" for="field_isAcceptingFragilePackages">Is Accepting Fragile Packages</label>
+                    <input type="checkbox" class="form-control" name="isAcceptingFragilePackages" id="field_isAcceptingFragilePackages"
+                        [(ngModel)]="travel.isAcceptingFragilePackages" />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="klavApp.travel.deleveryMode" for="field_deleveryMode">Delevery Mode</label>
-                    <select class="form-control" name="deleveryMode" [(ngModel)]="travel.deleveryMode" id="field_deleveryMode" >
+                    <select class="form-control" name="deleveryMode" [(ngModel)]="travel.deleveryMode" id="field_deleveryMode"  required>
                         <option value="HOMEDELEVERY">{{'klavApp.DeliveryMode.HOMEDELEVERY' | translate}}</option>
                         <option value="HOMEWITHDRAWAL">{{'klavApp.DeliveryMode.HOMEWITHDRAWAL' | translate}}</option>
                     </select>
+                    <div [hidden]="!(editForm.controls.deleveryMode?.dirty && editForm.controls.deleveryMode?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.deleveryMode?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="klavApp.travel.howToContactDescription" for="field_howToContactDescription">How To Contact Description</label>
                     <input type="text" class="form-control" name="howToContactDescription" id="field_howToContactDescription"
-                        [(ngModel)]="travel.howToContactDescription" />
+                        [(ngModel)]="travel.howToContactDescription" required/>
+                    <div [hidden]="!(editForm.controls.howToContactDescription?.dirty && editForm.controls.howToContactDescription?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.howToContactDescription?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="klavApp.travel.complementaryRules" for="field_complementaryRules">Complementary Rules</label>
@@ -69,6 +171,12 @@
                     <label class="form-control-label" jhiTranslate="klavApp.travel.bookable" for="field_bookable">Bookable</label>
                     <input type="checkbox" class="form-control" name="bookable" id="field_bookable"
                         [(ngModel)]="travel.bookable" />
+                    <div [hidden]="!(editForm.controls.bookable?.dirty && editForm.controls.bookable?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.bookable?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="klavApp.travel.accessCode" for="field_accessCode">Access Code</label>

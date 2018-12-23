@@ -48,8 +48,14 @@ public class TravelResourceIntTest {
     private static final Instant DEFAULT_ARRIVAL_DATE = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_ARRIVAL_DATE = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
+    private static final String DEFAULT_DEPARTURE_COUNTRY = "AAAAAAAAAA";
+    private static final String UPDATED_DEPARTURE_COUNTRY = "BBBBBBBBBB";
+
     private static final String DEFAULT_DEPARTURE_CITY = "AAAAAAAAAA";
     private static final String UPDATED_DEPARTURE_CITY = "BBBBBBBBBB";
+
+    private static final String DEFAULT_ARRIVAL_COUNTRY = "AAAAAAAAAA";
+    private static final String UPDATED_ARRIVAL_COUNTRY = "BBBBBBBBBB";
 
     private static final String DEFAULT_ARRIVAL_CITY = "AAAAAAAAAA";
     private static final String UPDATED_ARRIVAL_CITY = "BBBBBBBBBB";
@@ -62,6 +68,12 @@ public class TravelResourceIntTest {
 
     private static final String DEFAULT_TRAVEL_MODE = "AAAAAAAAAA";
     private static final String UPDATED_TRAVEL_MODE = "BBBBBBBBBB";
+
+    private static final Boolean DEFAULT_IS_FREE_OF_CHARGE = false;
+    private static final Boolean UPDATED_IS_FREE_OF_CHARGE = true;
+
+    private static final Boolean DEFAULT_IS_ACCEPTING_FRAGILE_PACKAGES = false;
+    private static final Boolean UPDATED_IS_ACCEPTING_FRAGILE_PACKAGES = true;
 
     private static final DeliveryMode DEFAULT_DELEVERY_MODE = DeliveryMode.HOMEDELEVERY;
     private static final DeliveryMode UPDATED_DELEVERY_MODE = DeliveryMode.HOMEWITHDRAWAL;
@@ -118,11 +130,15 @@ public class TravelResourceIntTest {
         Travel travel = new Travel()
             .departureDate(DEFAULT_DEPARTURE_DATE)
             .arrivalDate(DEFAULT_ARRIVAL_DATE)
+            .departureCountry(DEFAULT_DEPARTURE_COUNTRY)
             .departureCity(DEFAULT_DEPARTURE_CITY)
+            .arrivalCountry(DEFAULT_ARRIVAL_COUNTRY)
             .arrivalCity(DEFAULT_ARRIVAL_CITY)
             .availableKGs(DEFAULT_AVAILABLE_K_GS)
             .pricePerKG(DEFAULT_PRICE_PER_KG)
             .travelMode(DEFAULT_TRAVEL_MODE)
+            .isFreeOfCharge(DEFAULT_IS_FREE_OF_CHARGE)
+            .isAcceptingFragilePackages(DEFAULT_IS_ACCEPTING_FRAGILE_PACKAGES)
             .deleveryMode(DEFAULT_DELEVERY_MODE)
             .howToContactDescription(DEFAULT_HOW_TO_CONTACT_DESCRIPTION)
             .complementaryRules(DEFAULT_COMPLEMENTARY_RULES)
@@ -153,11 +169,15 @@ public class TravelResourceIntTest {
         Travel testTravel = travelList.get(travelList.size() - 1);
         assertThat(testTravel.getDepartureDate()).isEqualTo(DEFAULT_DEPARTURE_DATE);
         assertThat(testTravel.getArrivalDate()).isEqualTo(DEFAULT_ARRIVAL_DATE);
+        assertThat(testTravel.getDepartureCountry()).isEqualTo(DEFAULT_DEPARTURE_COUNTRY);
         assertThat(testTravel.getDepartureCity()).isEqualTo(DEFAULT_DEPARTURE_CITY);
+        assertThat(testTravel.getArrivalCountry()).isEqualTo(DEFAULT_ARRIVAL_COUNTRY);
         assertThat(testTravel.getArrivalCity()).isEqualTo(DEFAULT_ARRIVAL_CITY);
         assertThat(testTravel.getAvailableKGs()).isEqualTo(DEFAULT_AVAILABLE_K_GS);
         assertThat(testTravel.getPricePerKG()).isEqualTo(DEFAULT_PRICE_PER_KG);
         assertThat(testTravel.getTravelMode()).isEqualTo(DEFAULT_TRAVEL_MODE);
+        assertThat(testTravel.isIsFreeOfCharge()).isEqualTo(DEFAULT_IS_FREE_OF_CHARGE);
+        assertThat(testTravel.isIsAcceptingFragilePackages()).isEqualTo(DEFAULT_IS_ACCEPTING_FRAGILE_PACKAGES);
         assertThat(testTravel.getDeleveryMode()).isEqualTo(DEFAULT_DELEVERY_MODE);
         assertThat(testTravel.getHowToContactDescription()).isEqualTo(DEFAULT_HOW_TO_CONTACT_DESCRIPTION);
         assertThat(testTravel.getComplementaryRules()).isEqualTo(DEFAULT_COMPLEMENTARY_RULES);
@@ -186,6 +206,222 @@ public class TravelResourceIntTest {
 
     @Test
     @Transactional
+    public void checkDepartureDateIsRequired() throws Exception {
+        int databaseSizeBeforeTest = travelRepository.findAll().size();
+        // set the field null
+        travel.setDepartureDate(null);
+
+        // Create the Travel, which fails.
+
+        restTravelMockMvc.perform(post("/api/travels")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(travel)))
+            .andExpect(status().isBadRequest());
+
+        List<Travel> travelList = travelRepository.findAll();
+        assertThat(travelList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkArrivalDateIsRequired() throws Exception {
+        int databaseSizeBeforeTest = travelRepository.findAll().size();
+        // set the field null
+        travel.setArrivalDate(null);
+
+        // Create the Travel, which fails.
+
+        restTravelMockMvc.perform(post("/api/travels")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(travel)))
+            .andExpect(status().isBadRequest());
+
+        List<Travel> travelList = travelRepository.findAll();
+        assertThat(travelList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkDepartureCountryIsRequired() throws Exception {
+        int databaseSizeBeforeTest = travelRepository.findAll().size();
+        // set the field null
+        travel.setDepartureCountry(null);
+
+        // Create the Travel, which fails.
+
+        restTravelMockMvc.perform(post("/api/travels")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(travel)))
+            .andExpect(status().isBadRequest());
+
+        List<Travel> travelList = travelRepository.findAll();
+        assertThat(travelList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkDepartureCityIsRequired() throws Exception {
+        int databaseSizeBeforeTest = travelRepository.findAll().size();
+        // set the field null
+        travel.setDepartureCity(null);
+
+        // Create the Travel, which fails.
+
+        restTravelMockMvc.perform(post("/api/travels")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(travel)))
+            .andExpect(status().isBadRequest());
+
+        List<Travel> travelList = travelRepository.findAll();
+        assertThat(travelList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkArrivalCountryIsRequired() throws Exception {
+        int databaseSizeBeforeTest = travelRepository.findAll().size();
+        // set the field null
+        travel.setArrivalCountry(null);
+
+        // Create the Travel, which fails.
+
+        restTravelMockMvc.perform(post("/api/travels")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(travel)))
+            .andExpect(status().isBadRequest());
+
+        List<Travel> travelList = travelRepository.findAll();
+        assertThat(travelList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkArrivalCityIsRequired() throws Exception {
+        int databaseSizeBeforeTest = travelRepository.findAll().size();
+        // set the field null
+        travel.setArrivalCity(null);
+
+        // Create the Travel, which fails.
+
+        restTravelMockMvc.perform(post("/api/travels")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(travel)))
+            .andExpect(status().isBadRequest());
+
+        List<Travel> travelList = travelRepository.findAll();
+        assertThat(travelList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkAvailableKGsIsRequired() throws Exception {
+        int databaseSizeBeforeTest = travelRepository.findAll().size();
+        // set the field null
+        travel.setAvailableKGs(null);
+
+        // Create the Travel, which fails.
+
+        restTravelMockMvc.perform(post("/api/travels")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(travel)))
+            .andExpect(status().isBadRequest());
+
+        List<Travel> travelList = travelRepository.findAll();
+        assertThat(travelList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkPricePerKGIsRequired() throws Exception {
+        int databaseSizeBeforeTest = travelRepository.findAll().size();
+        // set the field null
+        travel.setPricePerKG(null);
+
+        // Create the Travel, which fails.
+
+        restTravelMockMvc.perform(post("/api/travels")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(travel)))
+            .andExpect(status().isBadRequest());
+
+        List<Travel> travelList = travelRepository.findAll();
+        assertThat(travelList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkTravelModeIsRequired() throws Exception {
+        int databaseSizeBeforeTest = travelRepository.findAll().size();
+        // set the field null
+        travel.setTravelMode(null);
+
+        // Create the Travel, which fails.
+
+        restTravelMockMvc.perform(post("/api/travels")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(travel)))
+            .andExpect(status().isBadRequest());
+
+        List<Travel> travelList = travelRepository.findAll();
+        assertThat(travelList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkDeleveryModeIsRequired() throws Exception {
+        int databaseSizeBeforeTest = travelRepository.findAll().size();
+        // set the field null
+        travel.setDeleveryMode(null);
+
+        // Create the Travel, which fails.
+
+        restTravelMockMvc.perform(post("/api/travels")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(travel)))
+            .andExpect(status().isBadRequest());
+
+        List<Travel> travelList = travelRepository.findAll();
+        assertThat(travelList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkHowToContactDescriptionIsRequired() throws Exception {
+        int databaseSizeBeforeTest = travelRepository.findAll().size();
+        // set the field null
+        travel.setHowToContactDescription(null);
+
+        // Create the Travel, which fails.
+
+        restTravelMockMvc.perform(post("/api/travels")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(travel)))
+            .andExpect(status().isBadRequest());
+
+        List<Travel> travelList = travelRepository.findAll();
+        assertThat(travelList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkBookableIsRequired() throws Exception {
+        int databaseSizeBeforeTest = travelRepository.findAll().size();
+        // set the field null
+        travel.setBookable(null);
+
+        // Create the Travel, which fails.
+
+        restTravelMockMvc.perform(post("/api/travels")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(travel)))
+            .andExpect(status().isBadRequest());
+
+        List<Travel> travelList = travelRepository.findAll();
+        assertThat(travelList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllTravels() throws Exception {
         // Initialize the database
         travelRepository.saveAndFlush(travel);
@@ -197,11 +433,15 @@ public class TravelResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(travel.getId().intValue())))
             .andExpect(jsonPath("$.[*].departureDate").value(hasItem(DEFAULT_DEPARTURE_DATE.toString())))
             .andExpect(jsonPath("$.[*].arrivalDate").value(hasItem(DEFAULT_ARRIVAL_DATE.toString())))
+            .andExpect(jsonPath("$.[*].departureCountry").value(hasItem(DEFAULT_DEPARTURE_COUNTRY.toString())))
             .andExpect(jsonPath("$.[*].departureCity").value(hasItem(DEFAULT_DEPARTURE_CITY.toString())))
+            .andExpect(jsonPath("$.[*].arrivalCountry").value(hasItem(DEFAULT_ARRIVAL_COUNTRY.toString())))
             .andExpect(jsonPath("$.[*].arrivalCity").value(hasItem(DEFAULT_ARRIVAL_CITY.toString())))
             .andExpect(jsonPath("$.[*].availableKGs").value(hasItem(DEFAULT_AVAILABLE_K_GS.doubleValue())))
             .andExpect(jsonPath("$.[*].pricePerKG").value(hasItem(DEFAULT_PRICE_PER_KG.doubleValue())))
             .andExpect(jsonPath("$.[*].travelMode").value(hasItem(DEFAULT_TRAVEL_MODE.toString())))
+            .andExpect(jsonPath("$.[*].isFreeOfCharge").value(hasItem(DEFAULT_IS_FREE_OF_CHARGE.booleanValue())))
+            .andExpect(jsonPath("$.[*].isAcceptingFragilePackages").value(hasItem(DEFAULT_IS_ACCEPTING_FRAGILE_PACKAGES.booleanValue())))
             .andExpect(jsonPath("$.[*].deleveryMode").value(hasItem(DEFAULT_DELEVERY_MODE.toString())))
             .andExpect(jsonPath("$.[*].howToContactDescription").value(hasItem(DEFAULT_HOW_TO_CONTACT_DESCRIPTION.toString())))
             .andExpect(jsonPath("$.[*].complementaryRules").value(hasItem(DEFAULT_COMPLEMENTARY_RULES.toString())))
@@ -222,11 +462,15 @@ public class TravelResourceIntTest {
             .andExpect(jsonPath("$.id").value(travel.getId().intValue()))
             .andExpect(jsonPath("$.departureDate").value(DEFAULT_DEPARTURE_DATE.toString()))
             .andExpect(jsonPath("$.arrivalDate").value(DEFAULT_ARRIVAL_DATE.toString()))
+            .andExpect(jsonPath("$.departureCountry").value(DEFAULT_DEPARTURE_COUNTRY.toString()))
             .andExpect(jsonPath("$.departureCity").value(DEFAULT_DEPARTURE_CITY.toString()))
+            .andExpect(jsonPath("$.arrivalCountry").value(DEFAULT_ARRIVAL_COUNTRY.toString()))
             .andExpect(jsonPath("$.arrivalCity").value(DEFAULT_ARRIVAL_CITY.toString()))
             .andExpect(jsonPath("$.availableKGs").value(DEFAULT_AVAILABLE_K_GS.doubleValue()))
             .andExpect(jsonPath("$.pricePerKG").value(DEFAULT_PRICE_PER_KG.doubleValue()))
             .andExpect(jsonPath("$.travelMode").value(DEFAULT_TRAVEL_MODE.toString()))
+            .andExpect(jsonPath("$.isFreeOfCharge").value(DEFAULT_IS_FREE_OF_CHARGE.booleanValue()))
+            .andExpect(jsonPath("$.isAcceptingFragilePackages").value(DEFAULT_IS_ACCEPTING_FRAGILE_PACKAGES.booleanValue()))
             .andExpect(jsonPath("$.deleveryMode").value(DEFAULT_DELEVERY_MODE.toString()))
             .andExpect(jsonPath("$.howToContactDescription").value(DEFAULT_HOW_TO_CONTACT_DESCRIPTION.toString()))
             .andExpect(jsonPath("$.complementaryRules").value(DEFAULT_COMPLEMENTARY_RULES.toString()))
@@ -257,11 +501,15 @@ public class TravelResourceIntTest {
         updatedTravel
             .departureDate(UPDATED_DEPARTURE_DATE)
             .arrivalDate(UPDATED_ARRIVAL_DATE)
+            .departureCountry(UPDATED_DEPARTURE_COUNTRY)
             .departureCity(UPDATED_DEPARTURE_CITY)
+            .arrivalCountry(UPDATED_ARRIVAL_COUNTRY)
             .arrivalCity(UPDATED_ARRIVAL_CITY)
             .availableKGs(UPDATED_AVAILABLE_K_GS)
             .pricePerKG(UPDATED_PRICE_PER_KG)
             .travelMode(UPDATED_TRAVEL_MODE)
+            .isFreeOfCharge(UPDATED_IS_FREE_OF_CHARGE)
+            .isAcceptingFragilePackages(UPDATED_IS_ACCEPTING_FRAGILE_PACKAGES)
             .deleveryMode(UPDATED_DELEVERY_MODE)
             .howToContactDescription(UPDATED_HOW_TO_CONTACT_DESCRIPTION)
             .complementaryRules(UPDATED_COMPLEMENTARY_RULES)
@@ -279,11 +527,15 @@ public class TravelResourceIntTest {
         Travel testTravel = travelList.get(travelList.size() - 1);
         assertThat(testTravel.getDepartureDate()).isEqualTo(UPDATED_DEPARTURE_DATE);
         assertThat(testTravel.getArrivalDate()).isEqualTo(UPDATED_ARRIVAL_DATE);
+        assertThat(testTravel.getDepartureCountry()).isEqualTo(UPDATED_DEPARTURE_COUNTRY);
         assertThat(testTravel.getDepartureCity()).isEqualTo(UPDATED_DEPARTURE_CITY);
+        assertThat(testTravel.getArrivalCountry()).isEqualTo(UPDATED_ARRIVAL_COUNTRY);
         assertThat(testTravel.getArrivalCity()).isEqualTo(UPDATED_ARRIVAL_CITY);
         assertThat(testTravel.getAvailableKGs()).isEqualTo(UPDATED_AVAILABLE_K_GS);
         assertThat(testTravel.getPricePerKG()).isEqualTo(UPDATED_PRICE_PER_KG);
         assertThat(testTravel.getTravelMode()).isEqualTo(UPDATED_TRAVEL_MODE);
+        assertThat(testTravel.isIsFreeOfCharge()).isEqualTo(UPDATED_IS_FREE_OF_CHARGE);
+        assertThat(testTravel.isIsAcceptingFragilePackages()).isEqualTo(UPDATED_IS_ACCEPTING_FRAGILE_PACKAGES);
         assertThat(testTravel.getDeleveryMode()).isEqualTo(UPDATED_DELEVERY_MODE);
         assertThat(testTravel.getHowToContactDescription()).isEqualTo(UPDATED_HOW_TO_CONTACT_DESCRIPTION);
         assertThat(testTravel.getComplementaryRules()).isEqualTo(UPDATED_COMPLEMENTARY_RULES);

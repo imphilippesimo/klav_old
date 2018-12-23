@@ -18,18 +18,23 @@
             },
             "departureDate": "Departure Date",
             "arrivalDate": "Arrival Date",
+            "departureCountry": "Departure Country",
             "departureCity": "Departure City",
+            "arrivalCountry": "Arrival Country",
             "arrivalCity": "Arrival City",
             "availableKGs": "Available K Gs",
             "pricePerKG": "Price Per KG",
             "travelMode": "Travel Mode",
+            "isFreeOfCharge": "Is Free Of Charge",
+            "isAcceptingFragilePackages": "Is Accepting Fragile Packages",
             "deleveryMode": "Delevery Mode",
             "howToContactDescription": "How To Contact Description",
             "complementaryRules": "Complementary Rules",
             "bookable": "Bookable",
             "accessCode": "Access Code",
             "destinationAddress": "Destination Address",
-            "travelProofs": "Travel Proofs"
+            "travelProofs": "Travel Proofs",
+            "acceptedPackageType": "Accepted Package Type"
         }
     }
 }

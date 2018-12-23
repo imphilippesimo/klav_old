@@ -1,0 +1,57 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="philippe (generated)" id="1545601389979-1">
+        <addColumn tableName="travel">
+            <column name="arrival_country" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1545601389979-2">
+        <addColumn tableName="travel">
+            <column name="departure_country" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1545601389979-3">
+        <addColumn tableName="travel">
+            <column name="is_accepting_fragile_packages" type="bit"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1545601389979-4">
+        <addColumn tableName="travel">
+            <column name="is_free_of_charge" type="bit"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1545601389979-5">
+        <addNotNullConstraint columnDataType="varchar(255)" columnName="arrival_city" tableName="travel"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1545601389979-6">
+        <addNotNullConstraint columnDataType="blob" columnName="arrival_date" tableName="travel"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1545601389979-7">
+        <addNotNullConstraint columnDataType="double precision" columnName="available_k_gs" tableName="travel"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1545601389979-8">
+        <addNotNullConstraint columnDataType="boolean" columnName="bookable" tableName="travel"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1545601389979-9">
+        <addNotNullConstraint columnDataType="varchar(255)" columnName="delevery_mode" tableName="travel"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1545601389979-10">
+        <addNotNullConstraint columnDataType="varchar(255)" columnName="departure_city" tableName="travel"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1545601389979-11">
+        <addNotNullConstraint columnDataType="blob" columnName="departure_date" tableName="travel"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1545601389979-12">
+        <addNotNullConstraint columnDataType="varchar(255)" columnName="how_to_contact_description" tableName="travel"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1545601389979-13">
+        <addNotNullConstraint columnDataType="float" columnName="price_per_kg" tableName="travel"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1545601389979-14">
+        <addNotNullConstraint columnDataType="varchar(255)" columnName="travel_mode" tableName="travel"/>
+    </changeSet>
+</databaseChangeLog>

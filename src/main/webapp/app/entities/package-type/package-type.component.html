@@ -1,0 +1,60 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="klavApp.packageType.home.title">Package Types</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-package-type" [routerLink]="['/package-type/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="klavApp.packageType.home.createLabel">
+            Create new Package Type
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="packageTypes">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="klavApp.packageType.name">Name</span></th>
+            <th><span jhiTranslate="klavApp.packageType.travel">Travel</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let packageType of packageTypes ;trackBy: trackId">
+                <td><a [routerLink]="['/package-type', packageType.id, 'view' ]">{{packageType.id}}</a></td>
+                <td>{{packageType.name}}</td>
+                <td>
+                    <div *ngIf="packageType.travel">
+                        <a [routerLink]="['../travel', packageType.travel?.id, 'view' ]" >{{packageType.travel?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/package-type', packageType.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/package-type', packageType.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'package-type/'+ packageType.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

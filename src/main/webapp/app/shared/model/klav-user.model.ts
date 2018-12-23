@@ -7,12 +7,17 @@ import { ITravelPackage } from 'app/shared/model//travel-package.model';
 import { IReview } from 'app/shared/model//review.model';
 import { IChat } from 'app/shared/model//chat.model';
 
+export const enum Gender {
+    MALE = 'MALE',
+    FEMALE = 'FEMALE'
+}
+
 export interface IKlavUser {
     id?: number;
     phoneNumber?: string;
     birthdate?: Moment;
     selfDescription?: string;
-    gender?: string;
+    gender?: Gender;
     nationality?: string;
     livesAt?: IAddress;
     person?: IUser;
@@ -29,7 +34,7 @@ export class KlavUser implements IKlavUser {
         public phoneNumber?: string,
         public birthdate?: Moment,
         public selfDescription?: string,
-        public gender?: string,
+        public gender?: Gender,
         public nationality?: string,
         public livesAt?: IAddress,
         public person?: IUser,
