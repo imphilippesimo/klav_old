@@ -27,4 +27,5 @@
     <include file="config/liquibase/changelog/20181217172450_added_entity_constraints_Review.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20181217172451_added_entity_constraints_Booking.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+    <include file="config/liquibase/changelog/20181223173709_added_onetoone_relationship_klavuser_user.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>
