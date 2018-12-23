@@ -41,6 +41,9 @@ public class KlavUser implements Serializable {
     @OneToOne    @JoinColumn(unique = true)
     private Address livesAt;
 
+    @OneToOne    @JoinColumn(unique = true)
+    private User person;
+
     @OneToMany(mappedBy = "klavUser")
     private Set<File> profilePictures = new HashSet<>();
     @OneToMany(mappedBy = "klavUser")
@@ -140,6 +143,19 @@ public class KlavUser implements Serializable {
 
     public void setLivesAt(Address address) {
         this.livesAt = address;
+    }
+
+    public User getPerson() {
+        return person;
+    }
+
+    public KlavUser person(User user) {
+        this.person = user;
+        return this;
+    }
+
+    public void setPerson(User user) {
+        this.person = user;
     }
 
     public Set<File> getProfilePictures() {

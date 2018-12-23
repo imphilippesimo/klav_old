@@ -22,6 +22,7 @@
             "gender": "Gender",
             "nationality": "Nationality",
             "livesAt": "Lives At",
+            "person": "Person",
             "profilePictures": "Profile Pictures",
             "bookings": "Bookings",
             "travels": "Travels",

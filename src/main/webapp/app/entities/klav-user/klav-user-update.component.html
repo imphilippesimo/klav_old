@@ -45,6 +45,13 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.klavUser.person" for="field_person">Person</label>
+                    <select class="form-control" id="field_person" name="person" [(ngModel)]="klavUser.person" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id === klavUser.person?.id ? klavUser.person : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label jhiTranslate="klavApp.klavUser.chat" for="field_chat">Chat</label>
                     <select class="form-control" id="field_chat" multiple name="chat" [(ngModel)]="klavUser.chats">
                         <option [ngValue]="getSelected(klavUser.chats, chatOption)" *ngFor="let chatOption of chats; trackBy: trackChatById">{{chatOption.id}}</option>

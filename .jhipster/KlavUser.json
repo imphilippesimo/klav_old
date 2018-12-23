@@ -32,6 +32,14 @@
             "otherEntityRelationshipName": "klavUser"
         },
         {
+            "relationshipType": "one-to-one",
+            "relationshipName": "person",
+            "otherEntityName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "klavUser"
+        },
+        {
             "relationshipType": "one-to-many",
             "relationshipName": "profilePictures",
             "otherEntityName": "file",

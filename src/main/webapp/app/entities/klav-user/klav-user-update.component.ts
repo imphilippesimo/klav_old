@@ -10,6 +10,7 @@ import { IKlavUser } from 'app/shared/model/klav-user.model';
 import { KlavUserService } from './klav-user.service';
 import { IAddress } from 'app/shared/model/address.model';
 import { AddressService } from 'app/entities/address';
+import { IUser, UserService } from 'app/core';
 import { IChat } from 'app/shared/model/chat.model';
 import { ChatService } from 'app/entities/chat';
 
@@ -23,6 +24,8 @@ export class KlavUserUpdateComponent implements OnInit {
 
     livesats: IAddress[];
 
+    users: IUser[];
+
     chats: IChat[];
     birthdate: string;
 
@@ -30,6 +33,7 @@ export class KlavUserUpdateComponent implements OnInit {
         private jhiAlertService: JhiAlertService,
         private klavUserService: KlavUserService,
         private addressService: AddressService,
+        private userService: UserService,
         private chatService: ChatService,
         private activatedRoute: ActivatedRoute
     ) {}
@@ -52,6 +56,12 @@ export class KlavUserUpdateComponent implements OnInit {
                         (subRes: HttpErrorResponse) => this.onError(subRes.message)
                     );
                 }
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
+        this.userService.query().subscribe(
+            (res: HttpResponse<IUser[]>) => {
+                this.users = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
@@ -95,6 +105,10 @@ export class KlavUserUpdateComponent implements OnInit {
     }
 
     trackAddressById(index: number, item: IAddress) {
+        return item.id;
+    }
+
+    trackUserById(index: number, item: IUser) {
         return item.id;
     }
 
