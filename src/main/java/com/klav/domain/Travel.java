@@ -63,7 +63,7 @@ public class Travel implements Serializable {
     private String travelMode;
 
     @Column(name = "is_free_of_charge")
-    private Boolean isFreeOfCharge;
+    private Boolean isFreeOfCharge = true;
 
     @Column(name = "is_accepting_fragile_packages")
     private Boolean isAcceptingFragilePackages;
