@@ -15,8 +15,7 @@
         },
         {
             "fieldName": "gender",
-            "fieldType": "Gender",
-            "fieldValues": "MALE,FEMALE"
+            "fieldType": "String"
         },
         {
             "fieldName": "nationality",
@@ -50,12 +49,6 @@
             "relationshipType": "one-to-many",
             "relationshipName": "bookings",
             "otherEntityName": "booking",
-            "otherEntityRelationshipName": "klavUser"
-        },
-        {
-            "relationshipType": "one-to-many",
-            "relationshipName": "travels",
-            "otherEntityName": "travelPackage",
             "otherEntityRelationshipName": "klavUser"
         },
         {

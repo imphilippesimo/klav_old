@@ -10,8 +10,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
 
-import com.klav.domain.enumeration.Gender;
-
 /**
  * A KlavUser.
  */
@@ -34,9 +32,8 @@ public class KlavUser implements Serializable {
     @Column(name = "self_description")
     private String selfDescription;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "gender")
-    private Gender gender;
+    private String gender;
 
     @Column(name = "nationality")
     private String nationality;
@@ -51,8 +48,6 @@ public class KlavUser implements Serializable {
     private Set<File> profilePictures = new HashSet<>();
     @OneToMany(mappedBy = "klavUser")
     private Set<Booking> bookings = new HashSet<>();
-    @OneToMany(mappedBy = "klavUser")
-    private Set<TravelPackage> travels = new HashSet<>();
     @OneToMany(mappedBy = "klavUser")
     private Set<Review> reviews = new HashSet<>();
     @ManyToMany
@@ -109,16 +104,16 @@ public class KlavUser implements Serializable {
         this.selfDescription = selfDescription;
     }
 
-    public Gender getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public KlavUser gender(Gender gender) {
+    public KlavUser gender(String gender) {
         this.gender = gender;
         return this;
     }
 
-    public void setGender(Gender gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
@@ -209,31 +204,6 @@ public class KlavUser implements Serializable {
 
     public void setBookings(Set<Booking> bookings) {
         this.bookings = bookings;
-    }
-
-    public Set<TravelPackage> getTravels() {
-        return travels;
-    }
-
-    public KlavUser travels(Set<TravelPackage> travelPackages) {
-        this.travels = travelPackages;
-        return this;
-    }
-
-    public KlavUser addTravels(TravelPackage travelPackage) {
-        this.travels.add(travelPackage);
-        travelPackage.setKlavUser(this);
-        return this;
-    }
-
-    public KlavUser removeTravels(TravelPackage travelPackage) {
-        this.travels.remove(travelPackage);
-        travelPackage.setKlavUser(null);
-        return this;
-    }
-
-    public void setTravels(Set<TravelPackage> travelPackages) {
-        this.travels = travelPackages;
     }
 
     public Set<Review> getReviews() {

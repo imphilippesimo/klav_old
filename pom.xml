@@ -560,8 +560,8 @@
                     <driver>com.mysql.jdbc.Driver</driver>
                     <url>jdbc:mysql://localhost:3306/klav</url>
                     <defaultSchemaName>klav</defaultSchemaName>
-                    <username>root</username>
-                    <password></password>
+                    <username>klav</username>
+                    <password>klav</password>
                     <referenceUrl>hibernate:spring:com.klav.domain?dialect=org.hibernate.dialect.MySQL5InnoDBDialect&amp;hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&amp;hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy</referenceUrl>
                     <verbose>true</verbose>
                     <logging>debug</logging>

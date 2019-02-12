@@ -4,6 +4,7 @@ import com.klav.domain.enumeration.DeliveryMode;
 
 import javax.validation.constraints.*;
 import java.time.Instant;
+import java.util.List;
 
 public class TravelDTO {
 
@@ -47,10 +48,10 @@ public class TravelDTO {
     private String travelMode;
 
     @NotNull
-    private Boolean isFreeOfCharge;
+    private Boolean isFreeOfCharge = false;
 
     @NotNull
-    private Boolean isAcceptingFragilePackages;
+    private Boolean isAcceptingFragilePackages = true;
 
     @NotNull
     private DeliveryMode deleveryMode;
@@ -67,12 +68,25 @@ public class TravelDTO {
     @NotNull
     private Long destinationAddress;
 
+    //Must be unique in DB tables
+    @NotBlank
+    private List<PackageTypeDTO> acceptedPackageTypes;
+
+
     public TravelDTO() {
     }
 
 
     public Long getId() {
         return id;
+    }
+
+    public List<PackageTypeDTO> getAcceptedPackageTypes() {
+        return acceptedPackageTypes;
+    }
+
+    public void setAcceptedPackageTypes(List<PackageTypeDTO> acceptedPackageTypes) {
+        this.acceptedPackageTypes = acceptedPackageTypes;
     }
 
     public void setId(Long id) {
@@ -191,7 +205,7 @@ public class TravelDTO {
         this.complementaryRules = complementaryRules;
     }
 
-    public Boolean getBookable() {
+    public Boolean isBookable() {
         return bookable;
     }
 
@@ -207,4 +221,6 @@ public class TravelDTO {
     public void setDestinationAddress(Long destinationAddress) {
         this.destinationAddress = destinationAddress;
     }
+
+
 }

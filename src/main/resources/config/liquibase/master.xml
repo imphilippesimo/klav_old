@@ -16,7 +16,7 @@
     <include file="config/liquibase/changelog/20181217172449_added_entity_TrustIndex.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20181217172450_added_entity_Review.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20181217172451_added_entity_Booking.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20181223183448_added_entity_PackageType.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181223222242_added_entity_PackageType.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20181217172441_added_entity_constraints_Travel.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20181217172442_added_entity_constraints_KlavUser.xml" relativeToChangelogFile="false"/>
@@ -27,8 +27,12 @@
     <include file="config/liquibase/changelog/20181217172449_added_entity_constraints_TrustIndex.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20181217172450_added_entity_constraints_Review.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20181217172451_added_entity_constraints_Booking.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20181223183448_added_entity_constraints_PackageType.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181223222242_added_entity_constraints_PackageType.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <include file="config/liquibase/changelog/20181223173709_added_onetoone_relationship_klavuser_user.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20181223190624_new_fields_to_travel_according_to_the_R-001_KLAV-0001_feature_definition_of_done_changelog.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190212214744_added_necessary_relationships_between_travel_and_reltives_changelog.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190212230852__added_onetoone_relationship_klavuser_user_changelog.xml" relativeToChangelogFile="false"/>
+
+
 </databaseChangeLog>

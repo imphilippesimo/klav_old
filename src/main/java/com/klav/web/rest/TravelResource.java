@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -44,7 +43,7 @@ public class TravelResource {
      */
     @PostMapping("/travels")
     @Timed
-    public ResponseEntity<Travel> createTravel(@Valid @RequestBody Travel travel) throws URISyntaxException {
+    public ResponseEntity<Travel> createTravel(@RequestBody Travel travel) throws URISyntaxException {
         log.debug("REST request to save Travel : {}", travel);
         if (travel.getId() != null) {
             throw new BadRequestAlertException("A new travel cannot already have an ID", ENTITY_NAME, "idexists");
@@ -66,7 +65,7 @@ public class TravelResource {
      */
     @PutMapping("/travels")
     @Timed
-    public ResponseEntity<Travel> updateTravel(@Valid @RequestBody Travel travel) throws URISyntaxException {
+    public ResponseEntity<Travel> updateTravel(@RequestBody Travel travel) throws URISyntaxException {
         log.debug("REST request to update Travel : {}", travel);
         if (travel.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");

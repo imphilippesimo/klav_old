@@ -7,7 +7,7 @@ import { take, map } from 'rxjs/operators';
 import * as moment from 'moment';
 import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 import { TravelService } from 'app/entities/travel/travel.service';
-import { ITravel, Travel, DeliveryMode } from 'app/shared/model/travel.model';
+import { ITravel, Travel, TravelMode, DeliveryMode } from 'app/shared/model/travel.model';
 
 describe('Service Tests', () => {
     describe('Travel Service', () => {
@@ -35,9 +35,7 @@ describe('Service Tests', () => {
                 'AAAAAAA',
                 0,
                 0,
-                'AAAAAAA',
-                false,
-                false,
+                TravelMode.PLANE,
                 DeliveryMode.HOMEDELEVERY,
                 'AAAAAAA',
                 'AAAAAAA',
@@ -94,14 +92,12 @@ describe('Service Tests', () => {
                         departureDate: currentDate.format(DATE_TIME_FORMAT),
                         arrivalDate: currentDate.format(DATE_TIME_FORMAT),
                         departureCountry: 'BBBBBB',
-                        departureCity: 'BBBBBB',
                         arrivalCountry: 'BBBBBB',
+                        departureCity: 'BBBBBB',
                         arrivalCity: 'BBBBBB',
                         availableKGs: 1,
                         pricePerKG: 1,
                         travelMode: 'BBBBBB',
-                        isFreeOfCharge: true,
-                        isAcceptingFragilePackages: true,
                         deleveryMode: 'BBBBBB',
                         howToContactDescription: 'BBBBBB',
                         complementaryRules: 'BBBBBB',
@@ -132,14 +128,12 @@ describe('Service Tests', () => {
                         departureDate: currentDate.format(DATE_TIME_FORMAT),
                         arrivalDate: currentDate.format(DATE_TIME_FORMAT),
                         departureCountry: 'BBBBBB',
-                        departureCity: 'BBBBBB',
                         arrivalCountry: 'BBBBBB',
+                        departureCity: 'BBBBBB',
                         arrivalCity: 'BBBBBB',
                         availableKGs: 1,
                         pricePerKG: 1,
                         travelMode: 'BBBBBB',
-                        isFreeOfCharge: true,
-                        isAcceptingFragilePackages: true,
                         deleveryMode: 'BBBBBB',
                         howToContactDescription: 'BBBBBB',
                         complementaryRules: 'BBBBBB',

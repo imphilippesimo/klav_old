@@ -37,7 +37,6 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import com.klav.domain.enumeration.Gender;
 /**
  * Test class for the KlavUserResource REST controller.
  *
@@ -56,8 +55,8 @@ public class KlavUserResourceIntTest {
     private static final String DEFAULT_SELF_DESCRIPTION = "AAAAAAAAAA";
     private static final String UPDATED_SELF_DESCRIPTION = "BBBBBBBBBB";
 
-    private static final Gender DEFAULT_GENDER = Gender.MALE;
-    private static final Gender UPDATED_GENDER = Gender.FEMALE;
+    private static final String DEFAULT_GENDER = "AAAAAAAAAA";
+    private static final String UPDATED_GENDER = "BBBBBBBBBB";
 
     private static final String DEFAULT_NATIONALITY = "AAAAAAAAAA";
     private static final String UPDATED_NATIONALITY = "BBBBBBBBBB";

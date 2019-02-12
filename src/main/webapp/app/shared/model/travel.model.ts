@@ -1,7 +1,13 @@
 import { Moment } from 'moment';
-import { IAddress } from 'app/shared/model//address.model';
-import { IFile } from 'app/shared/model//file.model';
+import { IKlavUser } from 'app/shared/model//klav-user.model';
 import { IPackageType } from 'app/shared/model//package-type.model';
+import { IFile } from 'app/shared/model//file.model';
+import { IBooking } from 'app/shared/model//booking.model';
+
+export const enum TravelMode {
+    PLANE = 'PLANE',
+    BOAT = 'BOAT'
+}
 
 export const enum DeliveryMode {
     HOMEDELEVERY = 'HOMEDELEVERY',
@@ -13,22 +19,21 @@ export interface ITravel {
     departureDate?: Moment;
     arrivalDate?: Moment;
     departureCountry?: string;
-    departureCity?: string;
     arrivalCountry?: string;
+    departureCity?: string;
     arrivalCity?: string;
     availableKGs?: number;
     pricePerKG?: number;
-    travelMode?: string;
-    isFreeOfCharge?: boolean;
-    isAcceptingFragilePackages?: boolean;
+    travelMode?: TravelMode;
     deleveryMode?: DeliveryMode;
     howToContactDescription?: string;
     complementaryRules?: string;
     bookable?: boolean;
     accessCode?: string;
-    destinationAddress?: IAddress;
-    travelProofs?: IFile[];
+    traveller?: IKlavUser;
     acceptedPackageTypes?: IPackageType[];
+    travelProofs?: IFile[];
+    bookings?: IBooking[];
 }
 
 export class Travel implements ITravel {
@@ -37,25 +42,22 @@ export class Travel implements ITravel {
         public departureDate?: Moment,
         public arrivalDate?: Moment,
         public departureCountry?: string,
-        public departureCity?: string,
         public arrivalCountry?: string,
+        public departureCity?: string,
         public arrivalCity?: string,
         public availableKGs?: number,
         public pricePerKG?: number,
-        public travelMode?: string,
-        public isFreeOfCharge?: boolean,
-        public isAcceptingFragilePackages?: boolean,
+        public travelMode?: TravelMode,
         public deleveryMode?: DeliveryMode,
         public howToContactDescription?: string,
         public complementaryRules?: string,
         public bookable?: boolean,
         public accessCode?: string,
-        public destinationAddress?: IAddress,
+        public traveller?: IKlavUser,
+        public acceptedPackageTypes?: IPackageType[],
         public travelProofs?: IFile[],
-        public acceptedPackageTypes?: IPackageType[]
+        public bookings?: IBooking[]
     ) {
-        this.isFreeOfCharge = this.isFreeOfCharge || false;
-        this.isAcceptingFragilePackages = this.isAcceptingFragilePackages || false;
         this.bookable = this.bookable || false;
     }
 }

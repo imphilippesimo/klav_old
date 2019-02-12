@@ -53,17 +53,24 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="klavApp.travelPackage.klavUser" for="field_klavUser">Klav User</label>
-                    <select class="form-control" id="field_klavUser" name="klavUser" [(ngModel)]="travelPackage.klavUser" >
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="klavUserOption.id === travelPackage.klavUser?.id ? travelPackage.klavUser : klavUserOption" *ngFor="let klavUserOption of klavusers; trackBy: trackKlavUserById">{{klavUserOption.id}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="klavApp.travelPackage.receiver" for="field_receiver">Receiver</label>
                     <select class="form-control" id="field_receiver" name="receiver" [(ngModel)]="travelPackage.receiver">
                         <option [ngValue]="null"></option>
                         <option [ngValue]="klavUserOption.id === travelPackage.receiver?.id ? travelPackage.receiver : klavUserOption" *ngFor="let klavUserOption of receivers; trackBy: trackKlavUserById">{{klavUserOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.travelPackage.destinationAddress" for="field_destinationAddress">Destination Address</label>
+                    <select class="form-control" id="field_destinationAddress" name="destinationAddress" [(ngModel)]="travelPackage.destinationAddress">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="addressOption.id === travelPackage.destinationAddress?.id ? travelPackage.destinationAddress : addressOption" *ngFor="let addressOption of destinationaddresses; trackBy: trackAddressById">{{addressOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.travelPackage.type" for="field_type">Type</label>
+                    <select class="form-control" id="field_type" name="type" [(ngModel)]="travelPackage.type">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="packageTypeOption.id === travelPackage.type?.id ? travelPackage.type : packageTypeOption" *ngFor="let packageTypeOption of types; trackBy: trackPackageTypeById">{{packageTypeOption.id}}</option>
                     </select>
                 </div>
                 <div class="form-group">

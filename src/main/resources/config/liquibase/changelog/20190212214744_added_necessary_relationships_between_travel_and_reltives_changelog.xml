@@ -1,0 +1,110 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="philippe (generated)" id="1550008078854-1">
+        <addColumn tableName="travel_package">
+            <column name="destination_address_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1550008078854-2">
+        <addColumn tableName="booking">
+            <column name="travel_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1550008078854-3">
+        <addColumn tableName="travel">
+            <column name="traveller_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1550008078854-4">
+        <addColumn tableName="travel_package">
+            <column name="type_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1550008078854-5">
+        <addUniqueConstraint columnNames="traveller_id" constraintName="UC_TRAVELTRAVELLER_ID_COL" tableName="travel"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1550008078854-6">
+        <addUniqueConstraint columnNames="destination_address_id" constraintName="UC_TRAVEL_PACKAGEDESTINATION_ADDRESS_ID_COL" tableName="travel_package"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1550008078854-7">
+        <addUniqueConstraint columnNames="type_id" constraintName="UC_TRAVEL_PACKAGETYPE_ID_COL" tableName="travel_package"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1550008078854-8">
+        <addForeignKeyConstraint baseColumnNames="destination_address_id" baseTableName="travel_package" constraintName="FK1ja5fgoex5349x1dbh690fhip" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="address"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1550008078854-9">
+        <addForeignKeyConstraint baseColumnNames="travel_id" baseTableName="booking" constraintName="FK8tgquiu7gcxiqil6v16ey5wo" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="travel"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1550008078854-10">
+        <addForeignKeyConstraint baseColumnNames="type_id" baseTableName="travel_package" constraintName="FKgmgia67uxqd74abe47sui4gou" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="package_type"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1550008078854-11">
+        <addForeignKeyConstraint baseColumnNames="traveller_id" baseTableName="travel" constraintName="FKj5uyb7sk8d58silxa7bb0sxdd" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="klav_user"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1550008078854-12">
+        <dropForeignKeyConstraint baseTableName="klav_user" constraintName="FK51pcd56789epn7olbn5jrpsyj"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1550008078854-13">
+        <dropForeignKeyConstraint baseTableName="travel" constraintName="fk_travel_destination_address_id"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1550008078854-14">
+        <dropForeignKeyConstraint baseTableName="travel_package" constraintName="fk_travel_package_klav_user_id"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1550008078854-15">
+        <dropUniqueConstraint constraintName="UC_KLAV_USERPERSON_ID_COL" tableName="klav_user"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1550008078854-16">
+        <dropUniqueConstraint constraintName="ux_travel_destination_address_id" tableName="travel"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1550008078854-17">
+        <dropColumn columnName="destination_address_id" tableName="travel"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1550008078854-18">
+        <dropColumn columnName="is_accepting_fragile_packages" tableName="travel"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1550008078854-19">
+        <dropColumn columnName="is_free_of_charge" tableName="travel"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1550008078854-20">
+        <dropColumn columnName="klav_user_id" tableName="travel_package"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1550008078854-21">
+        <dropColumn columnName="person_id" tableName="klav_user"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1550008078854-22">
+        <dropNotNullConstraint columnDataType="varchar(255)" columnName="arrival_city" tableName="travel"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1550008078854-23">
+        <dropNotNullConstraint columnDataType="varchar(255)" columnName="arrival_country" tableName="travel"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1550008078854-24">
+        <dropNotNullConstraint columnDataType="blob" columnName="arrival_date" tableName="travel"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1550008078854-25">
+        <dropNotNullConstraint columnDataType="double precision" columnName="available_k_gs" tableName="travel"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1550008078854-26">
+        <dropNotNullConstraint columnDataType="boolean" columnName="bookable" tableName="travel"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1550008078854-27">
+        <dropNotNullConstraint columnDataType="varchar(255)" columnName="delevery_mode" tableName="travel"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1550008078854-28">
+        <dropNotNullConstraint columnDataType="varchar(255)" columnName="departure_city" tableName="travel"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1550008078854-29">
+        <dropNotNullConstraint columnDataType="varchar(255)" columnName="departure_country" tableName="travel"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1550008078854-30">
+        <dropNotNullConstraint columnDataType="blob" columnName="departure_date" tableName="travel"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1550008078854-31">
+        <dropNotNullConstraint columnDataType="varchar(255)" columnName="how_to_contact_description" tableName="travel"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1550008078854-32">
+        <dropNotNullConstraint columnDataType="float" columnName="price_per_kg" tableName="travel"/>
+    </changeSet>
+    <changeSet author="philippe (generated)" id="1550008078854-33">
+        <dropNotNullConstraint columnDataType="varchar(255)" columnName="travel_mode" tableName="travel"/>
+    </changeSet>
+</databaseChangeLog>

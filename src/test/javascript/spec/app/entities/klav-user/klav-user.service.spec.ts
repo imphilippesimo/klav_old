@@ -7,7 +7,7 @@ import { take, map } from 'rxjs/operators';
 import * as moment from 'moment';
 import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 import { KlavUserService } from 'app/entities/klav-user/klav-user.service';
-import { IKlavUser, KlavUser, Gender } from 'app/shared/model/klav-user.model';
+import { IKlavUser, KlavUser } from 'app/shared/model/klav-user.model';
 
 describe('Service Tests', () => {
     describe('KlavUser Service', () => {
@@ -25,7 +25,7 @@ describe('Service Tests', () => {
             httpMock = injector.get(HttpTestingController);
             currentDate = moment();
 
-            elemDefault = new KlavUser(0, 'AAAAAAA', currentDate, 'AAAAAAA', Gender.MALE, 'AAAAAAA');
+            elemDefault = new KlavUser(0, 'AAAAAAA', currentDate, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
         });
 
         describe('Service methods', async () => {

@@ -18,20 +18,18 @@
             <th><span jhiTranslate="klavApp.travel.departureDate">Departure Date</span></th>
             <th><span jhiTranslate="klavApp.travel.arrivalDate">Arrival Date</span></th>
             <th><span jhiTranslate="klavApp.travel.departureCountry">Departure Country</span></th>
-            <th><span jhiTranslate="klavApp.travel.departureCity">Departure City</span></th>
             <th><span jhiTranslate="klavApp.travel.arrivalCountry">Arrival Country</span></th>
+            <th><span jhiTranslate="klavApp.travel.departureCity">Departure City</span></th>
             <th><span jhiTranslate="klavApp.travel.arrivalCity">Arrival City</span></th>
             <th><span jhiTranslate="klavApp.travel.availableKGs">Available K Gs</span></th>
             <th><span jhiTranslate="klavApp.travel.pricePerKG">Price Per KG</span></th>
             <th><span jhiTranslate="klavApp.travel.travelMode">Travel Mode</span></th>
-            <th><span jhiTranslate="klavApp.travel.isFreeOfCharge">Is Free Of Charge</span></th>
-            <th><span jhiTranslate="klavApp.travel.isAcceptingFragilePackages">Is Accepting Fragile Packages</span></th>
             <th><span jhiTranslate="klavApp.travel.deleveryMode">Delevery Mode</span></th>
             <th><span jhiTranslate="klavApp.travel.howToContactDescription">How To Contact Description</span></th>
             <th><span jhiTranslate="klavApp.travel.complementaryRules">Complementary Rules</span></th>
             <th><span jhiTranslate="klavApp.travel.bookable">Bookable</span></th>
             <th><span jhiTranslate="klavApp.travel.accessCode">Access Code</span></th>
-            <th><span jhiTranslate="klavApp.travel.destinationAddress">Destination Address</span></th>
+            <th><span jhiTranslate="klavApp.travel.traveller">Traveller</span></th>
             <th></th>
             </tr>
             </thead>
@@ -41,22 +39,20 @@
                 <td>{{travel.departureDate | date:'medium'}}</td>
                 <td>{{travel.arrivalDate | date:'medium'}}</td>
                 <td>{{travel.departureCountry}}</td>
-                <td>{{travel.departureCity}}</td>
                 <td>{{travel.arrivalCountry}}</td>
+                <td>{{travel.departureCity}}</td>
                 <td>{{travel.arrivalCity}}</td>
                 <td>{{travel.availableKGs}}</td>
                 <td>{{travel.pricePerKG}}</td>
-                <td>{{travel.travelMode}}</td>
-                <td>{{travel.isFreeOfCharge}}</td>
-                <td>{{travel.isAcceptingFragilePackages}}</td>
+                <td jhiTranslate="{{'klavApp.TravelMode.' + travel.travelMode}}">{{travel.travelMode}}</td>
                 <td jhiTranslate="{{'klavApp.DeliveryMode.' + travel.deleveryMode}}">{{travel.deleveryMode}}</td>
                 <td>{{travel.howToContactDescription}}</td>
                 <td>{{travel.complementaryRules}}</td>
                 <td>{{travel.bookable}}</td>
                 <td>{{travel.accessCode}}</td>
                 <td>
-                    <div *ngIf="travel.destinationAddress">
-                        <a [routerLink]="['../address', travel.destinationAddress?.id, 'view' ]" >{{travel.destinationAddress?.id}}</a>
+                    <div *ngIf="travel.traveller">
+                        <a [routerLink]="['../klav-user', travel.traveller?.id, 'view' ]" >{{travel.traveller?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">

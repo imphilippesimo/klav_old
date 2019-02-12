@@ -3,89 +3,49 @@
     "fields": [
         {
             "fieldName": "departureDate",
-            "fieldType": "Instant",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldType": "Instant"
         },
         {
             "fieldName": "arrivalDate",
-            "fieldType": "Instant",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldType": "Instant"
         },
         {
             "fieldName": "departureCountry",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "departureCity",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldType": "String"
         },
         {
             "fieldName": "arrivalCountry",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "departureCity",
+            "fieldType": "String"
         },
         {
             "fieldName": "arrivalCity",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldType": "String"
         },
         {
             "fieldName": "availableKGs",
-            "fieldType": "Double",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldType": "Double"
         },
         {
             "fieldName": "pricePerKG",
-            "fieldType": "Float",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldType": "Float"
         },
         {
             "fieldName": "travelMode",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "isFreeOfCharge",
-            "fieldType": "Boolean"
-        },
-        {
-            "fieldName": "isAcceptingFragilePackages",
-            "fieldType": "Boolean"
+            "fieldType": "TravelMode",
+            "fieldValues": "PLANE,BOAT"
         },
         {
             "fieldName": "deleveryMode",
             "fieldType": "DeliveryMode",
-            "fieldValues": "HOMEDELEVERY,HOMEWITHDRAWAL",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldValues": "HOMEDELEVERY,HOMEWITHDRAWAL"
         },
         {
             "fieldName": "howToContactDescription",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldType": "String"
         },
         {
             "fieldName": "complementaryRules",
@@ -93,10 +53,7 @@
         },
         {
             "fieldName": "bookable",
-            "fieldType": "Boolean",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldType": "Boolean"
         },
         {
             "fieldName": "accessCode",
@@ -106,10 +63,16 @@
     "relationships": [
         {
             "relationshipType": "one-to-one",
-            "relationshipName": "destinationAddress",
-            "otherEntityName": "address",
+            "relationshipName": "traveller",
+            "otherEntityName": "klavUser",
             "otherEntityField": "id",
             "ownerSide": true,
+            "otherEntityRelationshipName": "travel"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "acceptedPackageTypes",
+            "otherEntityName": "packageType",
             "otherEntityRelationshipName": "travel"
         },
         {
@@ -120,8 +83,8 @@
         },
         {
             "relationshipType": "one-to-many",
-            "relationshipName": "acceptedPackageType",
-            "otherEntityName": "packageType",
+            "relationshipName": "bookings",
+            "otherEntityName": "booking",
             "otherEntityRelationshipName": "travel"
         }
     ],

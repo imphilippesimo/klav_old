@@ -23,8 +23,9 @@
             <th><span jhiTranslate="klavApp.travelPackage.description">Description</span></th>
             <th><span jhiTranslate="klavApp.travelPackage.pricePerKG">Price Per KG</span></th>
             <th><span jhiTranslate="klavApp.travelPackage.fragile">Fragile</span></th>
-            <th><span jhiTranslate="klavApp.travelPackage.klavUser">Klav User</span></th>
             <th><span jhiTranslate="klavApp.travelPackage.receiver">Receiver</span></th>
+            <th><span jhiTranslate="klavApp.travelPackage.destinationAddress">Destination Address</span></th>
+            <th><span jhiTranslate="klavApp.travelPackage.type">Type</span></th>
             <th><span jhiTranslate="klavApp.travelPackage.booking">Booking</span></th>
             <th></th>
             </tr>
@@ -41,13 +42,18 @@
                 <td>{{travelPackage.pricePerKG}}</td>
                 <td>{{travelPackage.fragile}}</td>
                 <td>
-                    <div *ngIf="travelPackage.klavUser">
-                        <a [routerLink]="['../klav-user', travelPackage.klavUser?.id, 'view' ]" >{{travelPackage.klavUser?.id}}</a>
+                    <div *ngIf="travelPackage.receiver">
+                        <a [routerLink]="['../klav-user', travelPackage.receiver?.id, 'view' ]" >{{travelPackage.receiver?.id}}</a>
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="travelPackage.receiver">
-                        <a [routerLink]="['../klav-user', travelPackage.receiver?.id, 'view' ]" >{{travelPackage.receiver?.id}}</a>
+                    <div *ngIf="travelPackage.destinationAddress">
+                        <a [routerLink]="['../address', travelPackage.destinationAddress?.id, 'view' ]" >{{travelPackage.destinationAddress?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="travelPackage.type">
+                        <a [routerLink]="['../package-type', travelPackage.type?.id, 'view' ]" >{{travelPackage.type?.id}}</a>
                     </div>
                 </td>
                 <td>

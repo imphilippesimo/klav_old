@@ -8,8 +8,8 @@ import { JhiAlertService } from 'ng-jhipster';
 
 import { ITravel } from 'app/shared/model/travel.model';
 import { TravelService } from './travel.service';
-import { IAddress } from 'app/shared/model/address.model';
-import { AddressService } from 'app/entities/address';
+import { IKlavUser } from 'app/shared/model/klav-user.model';
+import { KlavUserService } from 'app/entities/klav-user';
 
 @Component({
     selector: 'jhi-travel-update',
@@ -19,14 +19,14 @@ export class TravelUpdateComponent implements OnInit {
     travel: ITravel;
     isSaving: boolean;
 
-    destinationaddresses: IAddress[];
+    travellers: IKlavUser[];
     departureDate: string;
     arrivalDate: string;
 
     constructor(
         private jhiAlertService: JhiAlertService,
         private travelService: TravelService,
-        private addressService: AddressService,
+        private klavUserService: KlavUserService,
         private activatedRoute: ActivatedRoute
     ) {}
 
@@ -37,14 +37,14 @@ export class TravelUpdateComponent implements OnInit {
             this.departureDate = this.travel.departureDate != null ? this.travel.departureDate.format(DATE_TIME_FORMAT) : null;
             this.arrivalDate = this.travel.arrivalDate != null ? this.travel.arrivalDate.format(DATE_TIME_FORMAT) : null;
         });
-        this.addressService.query({ filter: 'travel-is-null' }).subscribe(
-            (res: HttpResponse<IAddress[]>) => {
-                if (!this.travel.destinationAddress || !this.travel.destinationAddress.id) {
-                    this.destinationaddresses = res.body;
+        this.klavUserService.query({ filter: 'travel-is-null' }).subscribe(
+            (res: HttpResponse<IKlavUser[]>) => {
+                if (!this.travel.traveller || !this.travel.traveller.id) {
+                    this.travellers = res.body;
                 } else {
-                    this.addressService.find(this.travel.destinationAddress.id).subscribe(
-                        (subRes: HttpResponse<IAddress>) => {
-                            this.destinationaddresses = [subRes.body].concat(res.body);
+                    this.klavUserService.find(this.travel.traveller.id).subscribe(
+                        (subRes: HttpResponse<IKlavUser>) => {
+                            this.travellers = [subRes.body].concat(res.body);
                         },
                         (subRes: HttpErrorResponse) => this.onError(subRes.message)
                     );
@@ -86,7 +86,7 @@ export class TravelUpdateComponent implements OnInit {
         this.jhiAlertService.error(errorMessage, null, null);
     }
 
-    trackAddressById(index: number, item: IAddress) {
+    trackKlavUserById(index: number, item: IKlavUser) {
         return item.id;
     }
 }

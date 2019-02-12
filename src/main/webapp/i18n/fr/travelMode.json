@@ -1,0 +1,9 @@
+{
+    "klavApp": {
+        "TravelMode" : {
+            "null": "",
+            "PLANE": "PLANE",
+            "BOAT": "BOAT"
+        }
+    }
+}

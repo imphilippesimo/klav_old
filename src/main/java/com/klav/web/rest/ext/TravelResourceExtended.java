@@ -3,6 +3,7 @@ package com.klav.web.rest.ext;
 import com.codahale.metrics.annotation.Timed;
 import com.klav.service.dto.TravelDTO;
 import com.klav.service.ext.TravelServiceExtended;
+import com.klav.web.rest.TravelResource;
 import com.klav.web.rest.errors.BadRequestAlertException;
 import com.klav.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,7 +26,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/extended")
 public class TravelResourceExtended {
-
 
 
     private final Logger log = LoggerFactory.getLogger(TravelResourceExtended.class);
@@ -51,12 +52,17 @@ public class TravelResourceExtended {
         if (travelDTO.getId() != null) {
             throw new BadRequestAlertException("A new travel cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        if(!travelDTO.getDepartureDate().isBefore(travelDTO.getArrivalDate())){
-            throw new BadRequestAlertException("The arrival date cannot be before de departure date", ENTITY_NAME, "noncoherentdates");
+        if (!travelDTO.getArrivalDate().isBefore(travelDTO.getDepartureDate())) {
+            throw new BadRequestAlertException("The arrival date cannot be before the departure date", ENTITY_NAME, "noncoherentdates");
+
 
         }
+
+        if (!travelDTO.getDepartureDate().isBefore(Instant.now()))
+            throw new BadRequestAlertException("The departure date cannot be before today", ENTITY_NAME, "noncoherentdates");
+
         TravelDTO result = travelService.createOrUpdateTravel(travelDTO);
-        return ResponseEntity.created(new URI("/api/travels/" + result.getId()))
+        return ResponseEntity.created(new URI("/api/extended/travels/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
@@ -72,7 +78,8 @@ public class TravelResourceExtended {
      */
     @PutMapping("/travels")
     @Timed
-    public ResponseEntity<TravelDTO> updateTravel(@Valid @RequestBody TravelDTO travelDTO) throws URISyntaxException {
+    public ResponseEntity<TravelDTO> updateTravel(@Valid @RequestBody TravelDTO travelDTO) throws
+        URISyntaxException {
         log.debug("REST request to update Travel : {}", travelDTO);
         if (travelDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
