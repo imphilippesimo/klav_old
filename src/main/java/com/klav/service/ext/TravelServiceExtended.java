@@ -3,12 +3,14 @@ package com.klav.service.ext;
 import com.klav.domain.KlavUser;
 import com.klav.domain.PackageType;
 import com.klav.domain.Travel;
+import com.klav.repository.ext.KlavUserRepositoryExtended;
 import com.klav.repository.ext.PackageTypeRepositoryExtended;
 import com.klav.repository.ext.TravelRepositoryExtended;
+import com.klav.security.SecurityUtils;
 import com.klav.service.TravelService;
-import com.klav.service.dto.PackageTypeDTO;
 import com.klav.service.dto.TravelDTO;
 import com.klav.service.mapper.TravelMapper;
+import com.klav.service.util.RandomUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,13 +23,15 @@ public class TravelServiceExtended extends TravelService {
 
     private final TravelRepositoryExtended travelRepository;
     private final PackageTypeRepositoryExtended packageTypeRepository;
+    private final KlavUserRepositoryExtended klavRepository;
 
 
     TravelMapper mapper;
 
-    public TravelServiceExtended(TravelRepositoryExtended travelRepository, PackageTypeRepositoryExtended packageTypeRepository, TravelMapper mapper) {
+    public TravelServiceExtended(TravelRepositoryExtended travelRepository, PackageTypeRepositoryExtended packageTypeRepository, KlavUserRepositoryExtended klavRepository, TravelMapper mapper) {
         this.travelRepository = travelRepository;
         this.packageTypeRepository = packageTypeRepository;
+        this.klavRepository = klavRepository;
         this.mapper = mapper;
     }
 
@@ -40,15 +44,10 @@ public class TravelServiceExtended extends TravelService {
             if (packageType.getId() == null)
                 packageTypeRepository.save(packageType);
         }
-
-
-        //TODO: Extend the UserService  :UserServiceExtended to create/update/read/delete and Co. while doing these OPS on a User
-        //TODO: get the current logged user from UserServiceExtended and add it to the travel
-        KlavUser traveller;
-
-
+        KlavUser traveller = klavRepository.findDistinctByPersonLogin(SecurityUtils.getCurrentUserLogin().get()).get();
+        travel.setTraveller(traveller);
+        travel.setAccessCode(RandomUtil.generateActivationKey());
         travel = travelRepository.save(travel);
-
         return mapper.travelToTravelDTO(travel);
 
 

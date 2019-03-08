@@ -33,6 +33,8 @@
     <include file="config/liquibase/changelog/20181223190624_new_fields_to_travel_according_to_the_R-001_KLAV-0001_feature_definition_of_done_changelog.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190212214744_added_necessary_relationships_between_travel_and_reltives_changelog.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190212230852__added_onetoone_relationship_klavuser_user_changelog.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190225085830_added_foreign_key_between_user_and_klavuser_changelog.xml" relativeToChangelogFile="false"/>
+
 
 
 </databaseChangeLog>

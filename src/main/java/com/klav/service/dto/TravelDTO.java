@@ -68,6 +68,9 @@ public class TravelDTO {
     @NotNull
     private Long destinationAddress;
 
+    @NotNull
+    private KlavUserDTO traveller;
+
     //Must be unique in DB tables
     @NotBlank
     private List<PackageTypeDTO> acceptedPackageTypes;
@@ -99,6 +102,14 @@ public class TravelDTO {
 
     public void setDepartureDate(Instant departureDate) {
         this.departureDate = departureDate;
+    }
+
+    public KlavUserDTO getTraveller() {
+        return traveller;
+    }
+
+    public void setTraveller(KlavUserDTO traveller) {
+        this.traveller = traveller;
     }
 
     public Instant getArrivalDate() {
