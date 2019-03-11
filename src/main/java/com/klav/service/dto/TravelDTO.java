@@ -1,10 +1,14 @@
 package com.klav.service.dto;
 
+import com.klav.domain.Booking;
+import com.klav.domain.File;
 import com.klav.domain.enumeration.DeliveryMode;
 
 import javax.validation.constraints.*;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class TravelDTO {
 
@@ -71,6 +75,10 @@ public class TravelDTO {
     @NotNull
     private KlavUserDTO traveller;
 
+    private Set<File> travelProofs = new HashSet<>();
+
+    private Set<Booking> bookings = new HashSet<>();
+
     //Must be unique in DB tables
     @NotBlank
     private List<PackageTypeDTO> acceptedPackageTypes;
@@ -82,6 +90,22 @@ public class TravelDTO {
 
     public Long getId() {
         return id;
+    }
+
+    public Set<File> getTravelProofs() {
+        return travelProofs;
+    }
+
+    public void setTravelProofs(Set<File> travelProofs) {
+        this.travelProofs = travelProofs;
+    }
+
+    public Set<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(Set<Booking> bookings) {
+        this.bookings = bookings;
     }
 
     public List<PackageTypeDTO> getAcceptedPackageTypes() {

@@ -2,7 +2,6 @@ package com.klav.service.ext;
 
 import com.klav.config.Constants;
 import com.klav.domain.Address;
-import com.klav.domain.Authority;
 import com.klav.domain.KlavUser;
 import com.klav.domain.User;
 import com.klav.repository.AuthorityRepository;
@@ -11,7 +10,6 @@ import com.klav.repository.ext.KlavUserRepositoryExtended;
 import com.klav.security.SecurityUtils;
 import com.klav.service.UserService;
 import com.klav.service.dto.KlavUserDTO;
-import com.klav.service.dto.UserDTO;
 import com.klav.service.mapper.KlavUserMapper;
 import org.mapstruct.factory.Mappers;
 import org.slf4j.Logger;
@@ -28,7 +26,6 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 @Transactional
@@ -144,7 +141,7 @@ public class KlavUserServiceExtended extends UserService {
     @Scheduled(cron = "0 0 1 * * ?")
     public void removeNotActivatedUsers() {
         klavUserRepositoryExtended
-            .findAllByPersonActivatedIsFalseAndCreatedDateBefore(Instant.now().minus(3, ChronoUnit.DAYS))
+            .findAllByPersonActivatedIsFalseAndPersonCreatedDateBefore(Instant.now().minus(3, ChronoUnit.DAYS))
             .forEach(klavUser -> {
                 log.debug("Deleting not activated user {}", klavUser.getPerson().getLogin());
                 klavUserRepositoryExtended.delete(klavUser);

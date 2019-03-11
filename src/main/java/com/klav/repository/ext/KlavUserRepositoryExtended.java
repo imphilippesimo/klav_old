@@ -21,7 +21,7 @@ public interface KlavUserRepositoryExtended extends KlavUserRepository {
     Page<KlavUser> findAllByPersonLoginNot(Pageable pageable, String login);
 
 
-    List<KlavUser> findAllByPersonActivatedIsFalseAndCreatedDateBefore(Instant datetime);
+    List<KlavUser> findAllByPersonActivatedIsFalseAndPersonCreatedDateBefore(Instant datetime);
 }
 
 
