@@ -54,8 +54,6 @@ public class TravelDTO {
     @NotNull
     private Boolean isFreeOfCharge = false;
 
-    @NotNull
-    private Boolean isAcceptingFragilePackages = true;
 
     @NotNull
     private DeliveryMode deleveryMode;
@@ -69,8 +67,6 @@ public class TravelDTO {
     @NotNull
     private Boolean bookable;
 
-    @NotNull
-    private Long destinationAddress;
 
     @NotNull
     private KlavUserDTO traveller;
@@ -200,22 +196,6 @@ public class TravelDTO {
         this.travelMode = travelMode;
     }
 
-    public Boolean getFreeOfCharge() {
-        return isFreeOfCharge;
-    }
-
-    public void setFreeOfCharge(Boolean freeOfCharge) {
-        isFreeOfCharge = freeOfCharge;
-    }
-
-    public Boolean getAcceptingFragilePackages() {
-        return isAcceptingFragilePackages;
-    }
-
-    public void setAcceptingFragilePackages(Boolean acceptingFragilePackages) {
-        isAcceptingFragilePackages = acceptingFragilePackages;
-    }
-
     public DeliveryMode getDeleveryMode() {
         return deleveryMode;
     }
@@ -246,15 +226,6 @@ public class TravelDTO {
 
     public void setBookable(Boolean bookable) {
         this.bookable = bookable;
-    }
-
-
-    public Long getDestinationAddress() {
-        return destinationAddress;
-    }
-
-    public void setDestinationAddress(Long destinationAddress) {
-        this.destinationAddress = destinationAddress;
     }
 
 

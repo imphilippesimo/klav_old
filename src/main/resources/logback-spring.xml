@@ -4,28 +4,47 @@
 <configuration scan="true">
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
 
-<!-- The FILE and ASYNC appenders are here as examples for a production configuration -->
-<!--
-    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logFile.%d{yyyy-MM-dd}.log</fileNamePattern>
-            <maxHistory>90</maxHistory>
-        </rollingPolicy>
-        <encoder>
-            <charset>utf-8</charset>
-            <Pattern>%d %-5level [%thread] %logger{0}: %msg%n</Pattern>
+    <property name="LOGS" value="./logs"/>
+
+    <appender name="CONSOLE"
+              class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                %black(%d{ISO8601}) %highlight(%-5level) [%blue(%t)] %yellow(%C{1.}): %msg%n%throwable
+            </Pattern>
+        </layout>
+    </appender>
+
+
+    <appender name="RollingFile"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOGS}/klav-log.log</file>
+        <encoder
+            class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d %p %C{1.} [%t] %m%n</Pattern>
         </encoder>
+
+        <rollingPolicy
+            class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily and when the file reaches 10 MegaBytes -->
+            <fileNamePattern>${LOGS}/archived/klav-log-%d{yyyy-MM-dd}.%i.log
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
     </appender>
 
-    <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
-        <queueSize>512</queueSize>
-        <appender-ref ref="FILE"/>
-    </appender>
+    <!-- The ASYNC appenders are here as examples for a production configuration -->
+    <!--  <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+          <queueSize>512</queueSize>
+          <appender-ref ref="FILE"/>
+      </appender>-->
 
-    <root level="${logging.level.root}">
+    <!--<root level="${logging.level.root}">
         <appender-ref ref="ASYNC"/>
-    </root>
--->
+    </root>-->
 
     <logger name="javax.activation" level="WARN"/>
     <logger name="javax.mail" level="WARN"/>
@@ -57,6 +76,12 @@
     <logger name="LiquibaseSchemaResolver" level="INFO"/>
     <logger name="sun.net.www" level="INFO"/>
     <logger name="sun.rmi.transport" level="WARN"/>
+
+    <!-- LOG "com.klav*" at TRACE level -->
+    <logger name="com.klav" level="trace" additivity="false">
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
 
     <!-- https://logback.qos.ch/manual/configuration.html#shutdownHook and https://jira.qos.ch/browse/LOGBACK-1090 -->
     <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook"/>
