@@ -6,13 +6,28 @@
             "name": "klavback",
             "image": "155084925036.dkr.ecr.us-east-1.amazonaws.com/klav-back:latest",
             "cpu": 256,
-            "memory": 256,
-            "memoryReservation": 256,
+            "memory": 512,
+            "memoryReservation": 512,
             "essential": true,
+            "links": [
+              "klav-mysql"
+            ],
             "environment": [
                 {
-                    "name": "TIER",
-                    "value": "test"
+                    "name": "_JAVA_OPTIONS",
+                    "value": "-Xmx512m -Xms512m"
+                },
+                {
+                    "name": "SPRING_PROFILES_ACTIVE",
+                    "value": "prod,swagger"
+                },
+                {
+                    "name": "SPRING_DATASOURCE_URL",
+                    "value": "jdbc:mysql://klav-mysql:3306/klav?useUnicode=true&characterEncoding=utf8&useSSL=false"
+                },
+                {
+                    "name": "JHIPSTER_SLEEP",
+                    "value": "10"
                 }
             ],
             "portMappings": [
@@ -29,7 +44,7 @@
             "interactive": true
         },
         {
-            "name": "mysql",
+            "name": "klav-mysql",
             "image": "mysql:5.7.20",
             "cpu": 256,
             "memory": 256,
@@ -50,7 +65,7 @@
                 }
             ],
             "command": [
-              "mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp"
+              "mysqld", "--lower_case_table_names=1", "--skip-ssl", "--character_set_server=utf8mb4", "--explicit_defaults_for_timestamp"
             ],
             "portMappings": [
                 {
@@ -74,8 +89,8 @@
     "requiresCompatibilities": [
         "EC2"
     ],
-    "cpu": "256",
-    "memory": "256",
+    "cpu": "512",
+    "memory": "800",
     "tags": [
         {
             "key": "env",
