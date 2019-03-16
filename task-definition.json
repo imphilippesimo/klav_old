@@ -1,0 +1,55 @@
+{
+    "family": "klavback",
+    "networkMode": "bridge",
+    "containerDefinitions": [
+        {
+            "name": "klavback",
+            "image": "155084925036.dkr.ecr.us-east-1.amazonaws.com/klav-back:1.0.0",
+            "cpu": 256,
+            "memory": 256,
+            "memoryReservation": 256,
+            "essential": true,
+            "environment": [
+                {
+                    "name": "TIER",
+                    "value": "test"
+                }
+            ],
+            "portMappings": [
+                {
+                    "containerPort": 8080,
+                    "hostPort": 80,
+                    "protocol": "tcp"
+                }
+            ],
+            "hostname": "klavback.test",
+            "user": "jhipster",
+            "privileged": false,
+            "readonlyRootFilesystem": true,
+            "interactive": true
+        }
+    ],
+    "placementConstraints": [
+        {
+            "type": "memberOf",
+            "expression": "attribute:tier == backend "
+        }
+    ],
+    "requiresCompatibilities": [
+        "EC2"
+    ],
+    "cpu": "256",
+    "memory": "256",
+    "tags": [
+        {
+            "key": "env",
+            "value": "rec"
+        },
+        {
+            "key": "tier",
+            "value": "backend"
+        }
+    ],
+    "pidMode": "task",
+    "ipcMode": "none"
+}
