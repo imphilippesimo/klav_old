@@ -4,7 +4,7 @@
     "containerDefinitions": [
         {
             "name": "klavback",
-            "image": "155084925036.dkr.ecr.us-east-1.amazonaws.com/klav-back:1.0.0",
+            "image": "155084925036.dkr.ecr.us-east-1.amazonaws.com/klav-back:latest",
             "cpu": 256,
             "memory": 256,
             "memoryReservation": 256,
