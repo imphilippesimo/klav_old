@@ -138,12 +138,10 @@ docker_release_image:
 
   only:
     - tags
-#    - master
-#    - develop
   except:
     - /^[^v][^0-9]+.*$/
 
-deploy_ecs:
+.deploy_ecs:
   image: docker:latest
   artifacts:
     paths:
@@ -159,13 +157,32 @@ deploy_ecs:
   services:
     - docker:dind
   script:
-    - sed -e "s;latest;${IMAGE_TAG};g" task-definition.json > task-definition-${CI_COMMIT_SHA}.json
+    - sed -e "s;latest;${IMAGE_TAG};g" task-definition-${env}.json > task-definition-${CI_COMMIT_SHA}.json
     - aws ecs register-task-definition --family "${family}" --cli-input-json "file://task-definition-${CI_COMMIT_SHA}.json"
     - aws ecs update-service  --cluster "${cluster}" --service "${service}" --task-definition "${task}"
+
+deploy_ecs_rec:
+  extends: .deploy_ecs
+  variables:
+    env : "rec"
+  environment:
+    name: rec
+    url: http://ec2-3-91-28-47.compute-1.amazonaws.com
   only:
     - tags
-#    - master
-#    - develop
-#    - develop
   except:
-    - /^[^v][^0-9]+.*$/
+    - master@klav/klav-back
+
+deploy_ecs_prod:
+  extends: .deploy_ecs
+  variables:
+    env : "prod"
+    cluster: "klav-prod"
+  environment:
+    name: prod
+    url: http://ec2-3-91-28-47.compute-1.amazonaws.com
+  only:
+    - tags
+  except:
+    - feature/R-001_INFRA_0005
+  #  - /^(?!master).+@/
