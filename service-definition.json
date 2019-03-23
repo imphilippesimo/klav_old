@@ -1,0 +1,23 @@
+{
+    "cluster": "klav",
+    "service": "klavback",
+    "taskDefinition": "klavback",
+    "desiredCount": 3,
+    "deploymentConfiguration": {
+        "maximumPercent": 200,
+        "minimumHealthyPercent": 100
+    },
+    "networkConfiguration": {
+        "awsvpcConfiguration": {
+            "subnets": [
+                "subnet-10bfd54c"
+            ],
+            "securityGroups": [
+                "sg-0daca81928da165a0"
+            ],
+            "assignPublicIp": "DISABLED"
+        }
+    },
+    "platformVersion": "",
+    "forceNewDeployment": true
+}
