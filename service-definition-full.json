@@ -1,0 +1,40 @@
+{
+    "cluster": "klav",
+    "serviceName": "klavback",
+    "taskDefinition": "klavback",
+    "desiredCount": 3,
+    "serviceRegistries": [
+      {
+        "registryArn": "arn:aws:servicediscovery:us-east-1:301517625970:service/srv-3gqvxvy7diw4swpb",
+        "containerName": "klavback"
+      }
+    ],
+    "launchType": "EC2",
+    "deploymentConfiguration": {
+        "maximumPercent": 200,
+        "minimumHealthyPercent": 100
+    },
+    "placementConstraints": [
+        {
+            "type": "distinctInstance"
+        }
+    ],
+    "placementStrategy": [
+        {
+            "type": "spread",
+            "field": "instanceId"
+        }
+    ],
+    "schedulingStrategy": "REPLICA",
+    "deploymentController": {
+        "type": "ECS"
+    },
+    "networkConfiguration": {
+       "awsvpcConfiguration": {
+          "assignPublicIp": "DISABLED",
+          "securityGroups": [ "sg-0daca81928da165a0" ],
+          "subnets": [ "subnet-10bfd54c" ]
+       }
+    },
+    "enableECSManagedTags": false
+}
