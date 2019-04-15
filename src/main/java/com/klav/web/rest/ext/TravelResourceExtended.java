@@ -52,13 +52,13 @@ public class TravelResourceExtended {
         if (travelDTO.getId() != null) {
             throw new BadRequestAlertException("A new travel cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        if (!travelDTO.getArrivalDate().isBefore(travelDTO.getDepartureDate())) {
+        if (travelDTO.getArrivalDate().isBefore(travelDTO.getDepartureDate())) {
             throw new BadRequestAlertException("The arrival date cannot be before the departure date", ENTITY_NAME, "noncoherentdates");
 
 
         }
 
-        if (!travelDTO.getDepartureDate().isBefore(Instant.now()))
+        if (travelDTO.getDepartureDate().isBefore(Instant.now()))
             throw new BadRequestAlertException("The departure date cannot be before today", ENTITY_NAME, "noncoherentdates");
 
         TravelDTO result = travelService.createOrUpdateTravel(travelDTO);

@@ -68,7 +68,7 @@ public class TravelDTO {
     private Boolean bookable;
 
 
-    @NotNull
+    //@NotNull
     private KlavUserDTO traveller;
 
     private Set<File> travelProofs = new HashSet<>();
@@ -76,7 +76,7 @@ public class TravelDTO {
     private Set<Booking> bookings = new HashSet<>();
 
     //Must be unique in DB tables
-    @NotBlank
+    //@NotBlank
     private List<PackageTypeDTO> acceptedPackageTypes;
 
 
