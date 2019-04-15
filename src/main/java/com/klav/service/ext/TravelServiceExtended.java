@@ -39,13 +39,13 @@ public class TravelServiceExtended extends TravelService {
 
         Travel travel = mapper.travelDTOToTravel(travelDTO);
 
-        //if the package type doesnt yet exist (i.e dont have an existing id), we simply create it as a new one
-        for (PackageType packageType : travel.getAcceptedPackageTypes()) {
-            if (packageType.getId() == null)
-                packageTypeRepository.save(packageType);
-        }
-        KlavUser traveller = klavRepository.findDistinctByPersonLogin(SecurityUtils.getCurrentUserLogin().get()).get();
-        travel.setTraveller(traveller);
+        //if the package type doesn't yet exist (i.e don't have an existing id), we simply create it as a new one
+//        for (PackageType packageType : travel.getAcceptedPackageTypes()) {
+//            if (packageType.getId() == null)
+//                packageTypeRepository.save(packageType);
+//        }
+//        KlavUser traveller = klavRepository.findDistinctByPersonLogin(SecurityUtils.getCurrentUserLogin().get()).get();
+//        travel.setTraveller(traveller);
         travel.setAccessCode(RandomUtil.generateActivationKey());
         travel = travelRepository.save(travel);
         return mapper.travelToTravelDTO(travel);
