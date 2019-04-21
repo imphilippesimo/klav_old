@@ -6,6 +6,8 @@ import { JhiAlertService } from 'ng-jhipster';
 
 import { IBooking } from 'app/shared/model/booking.model';
 import { BookingService } from './booking.service';
+import { ITravel } from 'app/shared/model/travel.model';
+import { TravelService } from 'app/entities/travel';
 import { IKlavUser } from 'app/shared/model/klav-user.model';
 import { KlavUserService } from 'app/entities/klav-user';
 
@@ -17,11 +19,14 @@ export class BookingUpdateComponent implements OnInit {
     booking: IBooking;
     isSaving: boolean;
 
+    travels: ITravel[];
+
     klavusers: IKlavUser[];
 
     constructor(
         private jhiAlertService: JhiAlertService,
         private bookingService: BookingService,
+        private travelService: TravelService,
         private klavUserService: KlavUserService,
         private activatedRoute: ActivatedRoute
     ) {}
@@ -31,6 +36,12 @@ export class BookingUpdateComponent implements OnInit {
         this.activatedRoute.data.subscribe(({ booking }) => {
             this.booking = booking;
         });
+        this.travelService.query().subscribe(
+            (res: HttpResponse<ITravel[]>) => {
+                this.travels = res.body;
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
         this.klavUserService.query().subscribe(
             (res: HttpResponse<IKlavUser[]>) => {
                 this.klavusers = res.body;
@@ -67,6 +78,10 @@ export class BookingUpdateComponent implements OnInit {
 
     private onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
+    }
+
+    trackTravelById(index: number, item: ITravel) {
+        return item.id;
     }
 
     trackKlavUserById(index: number, item: IKlavUser) {

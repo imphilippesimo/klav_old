@@ -1,0 +1,23 @@
+
+{
+    "klavApp": {
+        "packageType" : {
+            "home": {
+                "title": "Package Types",
+                "createLabel": "Create a new Package Type",
+                "createOrEditLabel": "Create or edit a Package Type"
+            },
+            "created": "A new Package Type is created with identifier {{ param }}",
+            "updated": "A Package Type is updated with identifier {{ param }}",
+            "deleted": "A Package Type is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Package Type {{ id }}?"
+            },
+            "detail": {
+                "title": "Package Type"
+            },
+            "name": "Name",
+            "travel": "Travel"
+        }
+    }
+}

@@ -21,6 +21,7 @@
             <th><span jhiTranslate="klavApp.klavUser.gender">Gender</span></th>
             <th><span jhiTranslate="klavApp.klavUser.nationality">Nationality</span></th>
             <th><span jhiTranslate="klavApp.klavUser.livesAt">Lives At</span></th>
+            <th><span jhiTranslate="klavApp.klavUser.person">Person</span></th>
             <th><span jhiTranslate="klavApp.klavUser.chat">Chat</span></th>
             <th></th>
             </tr>
@@ -37,6 +38,9 @@
                     <div *ngIf="klavUser.livesAt">
                         <a [routerLink]="['../address', klavUser.livesAt?.id, 'view' ]" >{{klavUser.livesAt?.id}}</a>
                     </div>
+                </td>
+                <td>
+                    {{klavUser.person?.id}}
                 </td>
                 <td>
                     <span *ngFor="let chat of klavUser.chats; let last = last">

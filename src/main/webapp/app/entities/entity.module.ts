@@ -11,6 +11,7 @@ import { KlavStatusModule } from './status/status.module';
 import { KlavTrustIndexModule } from './trust-index/trust-index.module';
 import { KlavReviewModule } from './review/review.module';
 import { KlavBookingModule } from './booking/booking.module';
+import { KlavPackageTypeModule } from './package-type/package-type.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -27,6 +28,7 @@ import { KlavBookingModule } from './booking/booking.module';
         KlavTrustIndexModule,
         KlavReviewModule,
         KlavBookingModule,
+        KlavPackageTypeModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

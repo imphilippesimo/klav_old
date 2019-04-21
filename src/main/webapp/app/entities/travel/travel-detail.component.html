@@ -13,6 +13,14 @@
                 <dd>
                     <span>{{travel.arrivalDate}}</span>
                 </dd>
+                <dt><span jhiTranslate="klavApp.travel.departureCountry">Departure Country</span></dt>
+                <dd>
+                    <span>{{travel.departureCountry}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.travel.arrivalCountry">Arrival Country</span></dt>
+                <dd>
+                    <span>{{travel.arrivalCountry}}</span>
+                </dd>
                 <dt><span jhiTranslate="klavApp.travel.departureCity">Departure City</span></dt>
                 <dd>
                     <span>{{travel.departureCity}}</span>
@@ -31,7 +39,7 @@
                 </dd>
                 <dt><span jhiTranslate="klavApp.travel.travelMode">Travel Mode</span></dt>
                 <dd>
-                    <span>{{travel.travelMode}}</span>
+                    <span jhiTranslate="{{'klavApp.TravelMode.' + travel.travelMode}}">{{travel.travelMode}}</span>
                 </dd>
                 <dt><span jhiTranslate="klavApp.travel.deleveryMode">Delevery Mode</span></dt>
                 <dd>
@@ -53,10 +61,10 @@
                 <dd>
                     <span>{{travel.accessCode}}</span>
                 </dd>
-                <dt><span jhiTranslate="klavApp.travel.destinationAddress">Destination Address</span></dt>
+                <dt><span jhiTranslate="klavApp.travel.traveller">Traveller</span></dt>
                 <dd>
-                    <div *ngIf="travel.destinationAddress">
-                        <a [routerLink]="['/address', travel.destinationAddress?.id, 'view']">{{travel.destinationAddress?.id}}</a>
+                    <div *ngIf="travel.traveller">
+                        <a [routerLink]="['/klav-user', travel.traveller?.id, 'view']">{{travel.traveller?.id}}</a>
                     </div>
                 </dd>
             </dl>

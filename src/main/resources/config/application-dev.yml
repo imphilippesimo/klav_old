@@ -35,9 +35,9 @@ spring:
         serialization.indent_output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:mysql://localhost:3306/klav?useUnicode=true&characterEncoding=utf8&useSSL=false
-        username: root
-        password:
+        url: jdbc:mysql://localhost:3306/klav?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true
+        username: klav
+        password: klav
         hikari:
             auto-commit: false
             data-source-properties:
@@ -68,7 +68,7 @@ spring:
         cache: false
 
 server:
-    port: 8080
+    port: 8087
 
 # ===================================================================
 # JHipster specific properties
@@ -109,7 +109,7 @@ jhipster:
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx:
             enabled: true
-        prometheus: 
+        prometheus:
             enabled: false #expose metrics via prometheus 
         logs: # Reports Dropwizard metrics in the logs
             enabled: false

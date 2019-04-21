@@ -3,6 +3,12 @@
     "fields": [],
     "relationships": [
         {
+            "relationshipName": "travel",
+            "otherEntityName": "travel",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
             "relationshipName": "klavUser",
             "otherEntityName": "klavUser",
             "relationshipType": "many-to-one",

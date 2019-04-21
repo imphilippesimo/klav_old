@@ -37,15 +37,27 @@
     ],
     "relationships": [
         {
-            "relationshipName": "klavUser",
+            "relationshipType": "one-to-one",
+            "javadoc": "Optional parameter, the receiver of a package may potentially be a user of the platform",
+            "relationshipName": "receiver",
             "otherEntityName": "klavUser",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "travelPackage"
         },
         {
             "relationshipType": "one-to-one",
-            "relationshipName": "receiver",
-            "otherEntityName": "klavUser",
+            "javadoc": "A travel package should have a destination address",
+            "relationshipName": "destinationAddress",
+            "otherEntityName": "address",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "travelPackage"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "type",
+            "otherEntityName": "packageType",
             "otherEntityField": "id",
             "ownerSide": true,
             "otherEntityRelationshipName": "travelPackage"

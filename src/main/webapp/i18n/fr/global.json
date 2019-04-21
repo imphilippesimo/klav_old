@@ -18,6 +18,7 @@
                 "trustIndex": "Trust Index",
                 "review": "Review",
                 "booking": "Booking",
+                "packageType": "Package Type",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

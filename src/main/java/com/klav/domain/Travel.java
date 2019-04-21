@@ -10,6 +10,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
 
+import com.klav.domain.enumeration.TravelMode;
+
 import com.klav.domain.enumeration.DeliveryMode;
 
 /**
@@ -31,6 +33,12 @@ public class Travel implements Serializable {
     @Column(name = "arrival_date")
     private Instant arrivalDate;
 
+    @Column(name = "departure_country")
+    private String departureCountry;
+
+    @Column(name = "arrival_country")
+    private String arrivalCountry;
+
     @Column(name = "departure_city")
     private String departureCity;
 
@@ -43,8 +51,9 @@ public class Travel implements Serializable {
     @Column(name = "price_per_kg")
     private Float pricePerKG;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "travel_mode")
-    private String travelMode;
+    private TravelMode travelMode;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "delevery_mode")
@@ -63,10 +72,14 @@ public class Travel implements Serializable {
     private String accessCode;
 
     @OneToOne    @JoinColumn(unique = true)
-    private Address destinationAddress;
+    private KlavUser traveller;
 
     @OneToMany(mappedBy = "travel")
+    private Set<PackageType> acceptedPackageTypes = new HashSet<>();
+    @OneToMany(mappedBy = "travel")
     private Set<File> travelProofs = new HashSet<>();
+    @OneToMany(mappedBy = "travel")
+    private Set<Booking> bookings = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -100,6 +113,32 @@ public class Travel implements Serializable {
 
     public void setArrivalDate(Instant arrivalDate) {
         this.arrivalDate = arrivalDate;
+    }
+
+    public String getDepartureCountry() {
+        return departureCountry;
+    }
+
+    public Travel departureCountry(String departureCountry) {
+        this.departureCountry = departureCountry;
+        return this;
+    }
+
+    public void setDepartureCountry(String departureCountry) {
+        this.departureCountry = departureCountry;
+    }
+
+    public String getArrivalCountry() {
+        return arrivalCountry;
+    }
+
+    public Travel arrivalCountry(String arrivalCountry) {
+        this.arrivalCountry = arrivalCountry;
+        return this;
+    }
+
+    public void setArrivalCountry(String arrivalCountry) {
+        this.arrivalCountry = arrivalCountry;
     }
 
     public String getDepartureCity() {
@@ -154,16 +193,16 @@ public class Travel implements Serializable {
         this.pricePerKG = pricePerKG;
     }
 
-    public String getTravelMode() {
+    public TravelMode getTravelMode() {
         return travelMode;
     }
 
-    public Travel travelMode(String travelMode) {
+    public Travel travelMode(TravelMode travelMode) {
         this.travelMode = travelMode;
         return this;
     }
 
-    public void setTravelMode(String travelMode) {
+    public void setTravelMode(TravelMode travelMode) {
         this.travelMode = travelMode;
     }
 
@@ -232,17 +271,42 @@ public class Travel implements Serializable {
         this.accessCode = accessCode;
     }
 
-    public Address getDestinationAddress() {
-        return destinationAddress;
+    public KlavUser getTraveller() {
+        return traveller;
     }
 
-    public Travel destinationAddress(Address address) {
-        this.destinationAddress = address;
+    public Travel traveller(KlavUser klavUser) {
+        this.traveller = klavUser;
         return this;
     }
 
-    public void setDestinationAddress(Address address) {
-        this.destinationAddress = address;
+    public void setTraveller(KlavUser klavUser) {
+        this.traveller = klavUser;
+    }
+
+    public Set<PackageType> getAcceptedPackageTypes() {
+        return acceptedPackageTypes;
+    }
+
+    public Travel acceptedPackageTypes(Set<PackageType> packageTypes) {
+        this.acceptedPackageTypes = packageTypes;
+        return this;
+    }
+
+    public Travel addAcceptedPackageTypes(PackageType packageType) {
+        this.acceptedPackageTypes.add(packageType);
+        packageType.setTravel(this);
+        return this;
+    }
+
+    public Travel removeAcceptedPackageTypes(PackageType packageType) {
+        this.acceptedPackageTypes.remove(packageType);
+        packageType.setTravel(null);
+        return this;
+    }
+
+    public void setAcceptedPackageTypes(Set<PackageType> packageTypes) {
+        this.acceptedPackageTypes = packageTypes;
     }
 
     public Set<File> getTravelProofs() {
@@ -268,6 +332,31 @@ public class Travel implements Serializable {
 
     public void setTravelProofs(Set<File> files) {
         this.travelProofs = files;
+    }
+
+    public Set<Booking> getBookings() {
+        return bookings;
+    }
+
+    public Travel bookings(Set<Booking> bookings) {
+        this.bookings = bookings;
+        return this;
+    }
+
+    public Travel addBookings(Booking booking) {
+        this.bookings.add(booking);
+        booking.setTravel(this);
+        return this;
+    }
+
+    public Travel removeBookings(Booking booking) {
+        this.bookings.remove(booking);
+        booking.setTravel(null);
+        return this;
+    }
+
+    public void setBookings(Set<Booking> bookings) {
+        this.bookings = bookings;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -297,6 +386,8 @@ public class Travel implements Serializable {
             "id=" + getId() +
             ", departureDate='" + getDepartureDate() + "'" +
             ", arrivalDate='" + getArrivalDate() + "'" +
+            ", departureCountry='" + getDepartureCountry() + "'" +
+            ", arrivalCountry='" + getArrivalCountry() + "'" +
             ", departureCity='" + getDepartureCity() + "'" +
             ", arrivalCity='" + getArrivalCity() + "'" +
             ", availableKGs=" + getAvailableKGs() +

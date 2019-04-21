@@ -24,8 +24,9 @@
             "description": "Description",
             "pricePerKG": "Price Per KG",
             "fragile": "Fragile",
-            "klavUser": "Klav User",
             "receiver": "Receiver",
+            "destinationAddress": "Destination Address",
+            "type": "Type",
             "pictures": "Pictures",
             "booking": "Booking"
         }

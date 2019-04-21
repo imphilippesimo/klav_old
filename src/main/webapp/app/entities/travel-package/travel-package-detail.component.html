@@ -37,16 +37,22 @@
                 <dd>
                     <span>{{travelPackage.fragile}}</span>
                 </dd>
-                <dt><span jhiTranslate="klavApp.travelPackage.klavUser">Klav User</span></dt>
-                <dd>
-                    <div *ngIf="travelPackage.klavUser">
-                        <a [routerLink]="['/klav-user', travelPackage.klavUser?.id, 'view']">{{travelPackage.klavUser?.id}}</a>
-                    </div>
-                </dd>
                 <dt><span jhiTranslate="klavApp.travelPackage.receiver">Receiver</span></dt>
                 <dd>
                     <div *ngIf="travelPackage.receiver">
                         <a [routerLink]="['/klav-user', travelPackage.receiver?.id, 'view']">{{travelPackage.receiver?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="klavApp.travelPackage.destinationAddress">Destination Address</span></dt>
+                <dd>
+                    <div *ngIf="travelPackage.destinationAddress">
+                        <a [routerLink]="['/address', travelPackage.destinationAddress?.id, 'view']">{{travelPackage.destinationAddress?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="klavApp.travelPackage.type">Type</span></dt>
+                <dd>
+                    <div *ngIf="travelPackage.type">
+                        <a [routerLink]="['/package-type', travelPackage.type?.id, 'view']">{{travelPackage.type?.id}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="klavApp.travelPackage.booking">Booking</span></dt>

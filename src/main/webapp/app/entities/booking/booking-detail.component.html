@@ -5,6 +5,12 @@
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="klavApp.booking.travel">Travel</span></dt>
+                <dd>
+                    <div *ngIf="booking.travel">
+                        <a [routerLink]="['/travel', booking.travel?.id, 'view']">{{booking.travel?.id}}</a>
+                    </div>
+                </dd>
                 <dt><span jhiTranslate="klavApp.booking.klavUser">Klav User</span></dt>
                 <dd>
                     <div *ngIf="booking.klavUser">

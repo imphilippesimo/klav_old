@@ -10,6 +10,14 @@
             "fieldType": "Instant"
         },
         {
+            "fieldName": "departureCountry",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "arrivalCountry",
+            "fieldType": "String"
+        },
+        {
             "fieldName": "departureCity",
             "fieldType": "String"
         },
@@ -27,7 +35,8 @@
         },
         {
             "fieldName": "travelMode",
-            "fieldType": "String"
+            "fieldType": "TravelMode",
+            "fieldValues": "PLANE,BOAT"
         },
         {
             "fieldName": "deleveryMode",
@@ -54,16 +63,28 @@
     "relationships": [
         {
             "relationshipType": "one-to-one",
-            "relationshipName": "destinationAddress",
-            "otherEntityName": "address",
+            "relationshipName": "traveller",
+            "otherEntityName": "klavUser",
             "otherEntityField": "id",
             "ownerSide": true,
             "otherEntityRelationshipName": "travel"
         },
         {
             "relationshipType": "one-to-many",
+            "relationshipName": "acceptedPackageTypes",
+            "otherEntityName": "packageType",
+            "otherEntityRelationshipName": "travel"
+        },
+        {
+            "relationshipType": "one-to-many",
             "relationshipName": "travelProofs",
             "otherEntityName": "file",
+            "otherEntityRelationshipName": "travel"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "bookings",
+            "otherEntityName": "booking",
             "otherEntityRelationshipName": "travel"
         }
     ],

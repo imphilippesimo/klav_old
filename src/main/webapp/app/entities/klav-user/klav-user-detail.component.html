@@ -31,6 +31,10 @@
                         <a [routerLink]="['/address', klavUser.livesAt?.id, 'view']">{{klavUser.livesAt?.id}}</a>
                     </div>
                 </dd>
+                <dt><span jhiTranslate="klavApp.klavUser.person">Person</span></dt>
+                <dd>
+                    {{klavUser.person?.id}}
+                </dd>
                 <dt><span jhiTranslate="klavApp.klavUser.chat">Chat</span></dt>
                 <dd>
                     <span *ngFor="let chat of klavUser.chats; let last = last">

@@ -2,6 +2,7 @@ package com.klav.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 
@@ -50,12 +51,22 @@ public class TravelPackage implements Serializable {
     @Column(name = "fragile")
     private Boolean fragile;
 
-    @ManyToOne
-    @JsonIgnoreProperties("travels")
-    private KlavUser klavUser;
-
+    /**
+     * Optional parameter, the receiver of a package may potentially be a user of the platform
+     */
+    @ApiModelProperty(value = "Optional parameter, the receiver of a package may potentially be a user of the platform")
     @OneToOne    @JoinColumn(unique = true)
     private KlavUser receiver;
+
+    /**
+     * A travel package should have a destination address
+     */
+    @ApiModelProperty(value = "A travel package should have a destination address")
+    @OneToOne    @JoinColumn(unique = true)
+    private Address destinationAddress;
+
+    @OneToOne    @JoinColumn(unique = true)
+    private PackageType type;
 
     @OneToMany(mappedBy = "travelPackage")
     private Set<File> pictures = new HashSet<>();
@@ -176,19 +187,6 @@ public class TravelPackage implements Serializable {
         this.fragile = fragile;
     }
 
-    public KlavUser getKlavUser() {
-        return klavUser;
-    }
-
-    public TravelPackage klavUser(KlavUser klavUser) {
-        this.klavUser = klavUser;
-        return this;
-    }
-
-    public void setKlavUser(KlavUser klavUser) {
-        this.klavUser = klavUser;
-    }
-
     public KlavUser getReceiver() {
         return receiver;
     }
@@ -200,6 +198,32 @@ public class TravelPackage implements Serializable {
 
     public void setReceiver(KlavUser klavUser) {
         this.receiver = klavUser;
+    }
+
+    public Address getDestinationAddress() {
+        return destinationAddress;
+    }
+
+    public TravelPackage destinationAddress(Address address) {
+        this.destinationAddress = address;
+        return this;
+    }
+
+    public void setDestinationAddress(Address address) {
+        this.destinationAddress = address;
+    }
+
+    public PackageType getType() {
+        return type;
+    }
+
+    public TravelPackage type(PackageType packageType) {
+        this.type = packageType;
+        return this;
+    }
+
+    public void setType(PackageType packageType) {
+        this.type = packageType;
     }
 
     public Set<File> getPictures() {

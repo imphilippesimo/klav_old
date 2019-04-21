@@ -15,6 +15,7 @@
             <thead>
             <tr>
             <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="klavApp.booking.travel">Travel</span></th>
             <th><span jhiTranslate="klavApp.booking.klavUser">Klav User</span></th>
             <th></th>
             </tr>
@@ -22,6 +23,11 @@
             <tbody>
             <tr *ngFor="let booking of bookings ;trackBy: trackId">
                 <td><a [routerLink]="['/booking', booking.id, 'view' ]">{{booking.id}}</a></td>
+                <td>
+                    <div *ngIf="booking.travel">
+                        <a [routerLink]="['../travel', booking.travel?.id, 'view' ]" >{{booking.travel?.id}}</a>
+                    </div>
+                </td>
                 <td>
                     <div *ngIf="booking.klavUser">
                         <a [routerLink]="['../klav-user', booking.klavUser?.id, 'view' ]" >{{booking.klavUser?.id}}</a>

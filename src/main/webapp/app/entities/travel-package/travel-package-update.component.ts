@@ -8,6 +8,10 @@ import { ITravelPackage } from 'app/shared/model/travel-package.model';
 import { TravelPackageService } from './travel-package.service';
 import { IKlavUser } from 'app/shared/model/klav-user.model';
 import { KlavUserService } from 'app/entities/klav-user';
+import { IAddress } from 'app/shared/model/address.model';
+import { AddressService } from 'app/entities/address';
+import { IPackageType } from 'app/shared/model/package-type.model';
+import { PackageTypeService } from 'app/entities/package-type';
 import { IBooking } from 'app/shared/model/booking.model';
 import { BookingService } from 'app/entities/booking';
 
@@ -19,9 +23,11 @@ export class TravelPackageUpdateComponent implements OnInit {
     travelPackage: ITravelPackage;
     isSaving: boolean;
 
-    klavusers: IKlavUser[];
-
     receivers: IKlavUser[];
+
+    destinationaddresses: IAddress[];
+
+    types: IPackageType[];
 
     bookings: IBooking[];
 
@@ -29,6 +35,8 @@ export class TravelPackageUpdateComponent implements OnInit {
         private jhiAlertService: JhiAlertService,
         private travelPackageService: TravelPackageService,
         private klavUserService: KlavUserService,
+        private addressService: AddressService,
+        private packageTypeService: PackageTypeService,
         private bookingService: BookingService,
         private activatedRoute: ActivatedRoute
     ) {}
@@ -38,12 +46,6 @@ export class TravelPackageUpdateComponent implements OnInit {
         this.activatedRoute.data.subscribe(({ travelPackage }) => {
             this.travelPackage = travelPackage;
         });
-        this.klavUserService.query().subscribe(
-            (res: HttpResponse<IKlavUser[]>) => {
-                this.klavusers = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
         this.klavUserService.query({ filter: 'travelpackage-is-null' }).subscribe(
             (res: HttpResponse<IKlavUser[]>) => {
                 if (!this.travelPackage.receiver || !this.travelPackage.receiver.id) {
@@ -52,6 +54,36 @@ export class TravelPackageUpdateComponent implements OnInit {
                     this.klavUserService.find(this.travelPackage.receiver.id).subscribe(
                         (subRes: HttpResponse<IKlavUser>) => {
                             this.receivers = [subRes.body].concat(res.body);
+                        },
+                        (subRes: HttpErrorResponse) => this.onError(subRes.message)
+                    );
+                }
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
+        this.addressService.query({ filter: 'travelpackage-is-null' }).subscribe(
+            (res: HttpResponse<IAddress[]>) => {
+                if (!this.travelPackage.destinationAddress || !this.travelPackage.destinationAddress.id) {
+                    this.destinationaddresses = res.body;
+                } else {
+                    this.addressService.find(this.travelPackage.destinationAddress.id).subscribe(
+                        (subRes: HttpResponse<IAddress>) => {
+                            this.destinationaddresses = [subRes.body].concat(res.body);
+                        },
+                        (subRes: HttpErrorResponse) => this.onError(subRes.message)
+                    );
+                }
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
+        this.packageTypeService.query({ filter: 'travelpackage-is-null' }).subscribe(
+            (res: HttpResponse<IPackageType[]>) => {
+                if (!this.travelPackage.type || !this.travelPackage.type.id) {
+                    this.types = res.body;
+                } else {
+                    this.packageTypeService.find(this.travelPackage.type.id).subscribe(
+                        (subRes: HttpResponse<IPackageType>) => {
+                            this.types = [subRes.body].concat(res.body);
                         },
                         (subRes: HttpErrorResponse) => this.onError(subRes.message)
                     );
@@ -98,6 +130,14 @@ export class TravelPackageUpdateComponent implements OnInit {
     }
 
     trackKlavUserById(index: number, item: IKlavUser) {
+        return item.id;
+    }
+
+    trackAddressById(index: number, item: IAddress) {
+        return item.id;
+    }
+
+    trackPackageTypeById(index: number, item: IPackageType) {
         return item.id;
     }
 

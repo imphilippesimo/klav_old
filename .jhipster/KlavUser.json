@@ -32,6 +32,14 @@
             "otherEntityRelationshipName": "klavUser"
         },
         {
+            "relationshipType": "one-to-one",
+            "relationshipName": "person",
+            "otherEntityName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "klavUser"
+        },
+        {
             "relationshipType": "one-to-many",
             "relationshipName": "profilePictures",
             "otherEntityName": "file",
@@ -41,12 +49,6 @@
             "relationshipType": "one-to-many",
             "relationshipName": "bookings",
             "otherEntityName": "booking",
-            "otherEntityRelationshipName": "klavUser"
-        },
-        {
-            "relationshipType": "one-to-many",
-            "relationshipName": "travels",
-            "otherEntityName": "travelPackage",
             "otherEntityRelationshipName": "klavUser"
         },
         {

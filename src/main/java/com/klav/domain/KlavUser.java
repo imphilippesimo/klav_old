@@ -41,12 +41,13 @@ public class KlavUser implements Serializable {
     @OneToOne    @JoinColumn(unique = true)
     private Address livesAt;
 
+    @OneToOne    @JoinColumn(unique = true)
+    private User person;
+
     @OneToMany(mappedBy = "klavUser")
     private Set<File> profilePictures = new HashSet<>();
     @OneToMany(mappedBy = "klavUser")
     private Set<Booking> bookings = new HashSet<>();
-    @OneToMany(mappedBy = "klavUser")
-    private Set<TravelPackage> travels = new HashSet<>();
     @OneToMany(mappedBy = "klavUser")
     private Set<Review> reviews = new HashSet<>();
     @ManyToMany
@@ -142,6 +143,19 @@ public class KlavUser implements Serializable {
         this.livesAt = address;
     }
 
+    public User getPerson() {
+        return person;
+    }
+
+    public KlavUser person(User user) {
+        this.person = user;
+        return this;
+    }
+
+    public void setPerson(User user) {
+        this.person = user;
+    }
+
     public Set<File> getProfilePictures() {
         return profilePictures;
     }
@@ -190,31 +204,6 @@ public class KlavUser implements Serializable {
 
     public void setBookings(Set<Booking> bookings) {
         this.bookings = bookings;
-    }
-
-    public Set<TravelPackage> getTravels() {
-        return travels;
-    }
-
-    public KlavUser travels(Set<TravelPackage> travelPackages) {
-        this.travels = travelPackages;
-        return this;
-    }
-
-    public KlavUser addTravels(TravelPackage travelPackage) {
-        this.travels.add(travelPackage);
-        travelPackage.setKlavUser(this);
-        return this;
-    }
-
-    public KlavUser removeTravels(TravelPackage travelPackage) {
-        this.travels.remove(travelPackage);
-        travelPackage.setKlavUser(null);
-        return this;
-    }
-
-    public void setTravels(Set<TravelPackage> travelPackages) {
-        this.travels = travelPackages;
     }
 
     public Set<Review> getReviews() {

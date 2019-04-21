@@ -1,0 +1,109 @@
+{
+    "family": "klavback",
+    "networkMode": "bridge",
+    "containerDefinitions": [
+        {
+            "name": "klavback",
+            "image": "155084925036.dkr.ecr.us-east-1.amazonaws.com/klav-back:latest",
+            "cpu": 256,
+            "memory": 512,
+            "memoryReservation": 512,
+            "essential": true,
+            "links": [
+              "klav-mysql"
+            ],
+            "environment": [
+                {
+                    "name": "_JAVA_OPTIONS",
+                    "value": "-Xmx512m -Xms512m"
+                },
+                {
+                    "name": "SPRING_PROFILES_ACTIVE",
+                    "value": "prod,swagger"
+                },
+                {
+                    "name": "SPRING_DATASOURCE_URL",
+                    "value": "jdbc:mysql://klav-mysql:3306/klav?useUnicode=true&characterEncoding=utf8&useSSL=false"
+                },
+                {
+                    "name": "JHIPSTER_SLEEP",
+                    "value": "10"
+                }
+            ],
+            "portMappings": [
+                {
+                    "containerPort": 8080,
+                    "hostPort": 80,
+                    "protocol": "tcp"
+                }
+            ],
+            "hostname": "klavback.test",
+            "user": "jhipster",
+            "privileged": false,
+            "readonlyRootFilesystem": false,
+            "interactive": true
+        },
+        {
+            "name": "klav-mysql",
+            "image": "mysql:5.7.20",
+            "cpu": 256,
+            "memory": 256,
+            "memoryReservation": 256,
+            "essential": true,
+            "environment": [
+                {
+                    "name": "MYSQL_USER",
+                    "value": "root"
+                },
+                {
+                    "name": "MYSQL_ALLOW_EMPTY_PASSWORD",
+                    "value": "yes"
+                },
+                {
+                    "name": "MYSQL_DATABASE",
+                    "value": "klav"
+                }
+            ],
+            "command": [
+              "mysqld", "--lower_case_table_names=1",
+              "--skip-ssl",
+              "--character_set_server=utf8mb4",
+              "--explicit_defaults_for_timestamp"
+            ],
+            "portMappings": [
+                {
+                    "containerPort": 3306,
+                    "hostPort": 3306,
+                    "protocol": "tcp"
+                }
+            ],
+            "hostname": "klavback.mysql.test",
+            "privileged": false,
+            "readonlyRootFilesystem": false,
+            "interactive": true
+        }
+    ],
+    "placementConstraints": [
+        {
+            "type": "memberOf",
+            "expression": "attribute:tier == backend "
+        }
+    ],
+    "requiresCompatibilities": [
+        "EC2"
+    ],
+    "cpu": "512",
+    "memory": "800",
+    "tags": [
+        {
+            "key": "env",
+            "value": "rec"
+        },
+        {
+            "key": "tier",
+            "value": "backend"
+        }
+    ],
+    "pidMode": "task",
+    "ipcMode": "none"
+}

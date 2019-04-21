@@ -25,6 +25,10 @@ public class Booking implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties("bookings")
+    private Travel travel;
+
+    @ManyToOne
+    @JsonIgnoreProperties("bookings")
     private KlavUser klavUser;
 
     @OneToMany(mappedBy = "booking")
@@ -40,6 +44,19 @@ public class Booking implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Travel getTravel() {
+        return travel;
+    }
+
+    public Booking travel(Travel travel) {
+        this.travel = travel;
+        return this;
+    }
+
+    public void setTravel(Travel travel) {
+        this.travel = travel;
     }
 
     public KlavUser getKlavUser() {

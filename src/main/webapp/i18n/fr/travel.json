@@ -18,6 +18,8 @@
             },
             "departureDate": "Departure Date",
             "arrivalDate": "Arrival Date",
+            "departureCountry": "Departure Country",
+            "arrivalCountry": "Arrival Country",
             "departureCity": "Departure City",
             "arrivalCity": "Arrival City",
             "availableKGs": "Available K Gs",
@@ -28,8 +30,10 @@
             "complementaryRules": "Complementary Rules",
             "bookable": "Bookable",
             "accessCode": "Access Code",
-            "destinationAddress": "Destination Address",
-            "travelProofs": "Travel Proofs"
+            "traveller": "Traveller",
+            "acceptedPackageTypes": "Accepted Package Types",
+            "travelProofs": "Travel Proofs",
+            "bookings": "Bookings"
         }
     }
 }

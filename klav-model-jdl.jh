@@ -1,0 +1,146 @@
+entity Travel{
+	departureDate Instant,
+    arrivalDate Instant,
+    departureCountry String,
+    arrivalCountry String,
+    departureCity String,
+    arrivalCity String,
+    availableKGs Double,
+    pricePerKG Float,
+    travelMode TravelMode,
+    deleveryMode DeliveryMode,
+    howToContactDescription String,
+    complementaryRules String,
+    bookable Boolean,
+    accessCode String
+    
+}
+
+entity KlavUser{
+	phoneNumber String,
+    birthdate Instant,
+    selfDescription String,
+    gender String,
+    nationality String
+
+}
+
+entity File{
+	fileURL String,
+    name String,
+    updatedDate Instant,
+    mimeType String,
+    type FileType
+
+}
+
+entity Address {
+	country String,
+    city String,
+    stateProvince String,
+    postalCode String,
+    streetNumber String,
+    streetName String,    
+    description String
+}
+
+entity TravelPackage{
+	title String,
+    weight Double,
+    accessCode String,
+    deleveryCode String,
+    desiredDeleveryMode DeliveryMode,
+    description String,
+    pricePerKG Float,
+    fragile Boolean   
+
+}
+
+entity PackageType{
+	name String
+}
+
+entity Message{
+	content String,
+    sentDate Instant
+}
+
+entity Chat{
+	creationDate Instant
+}
+
+entity Status{
+	value String,
+    date Instant,
+    reason String,
+    comment String
+}
+
+entity TrustIndex{
+	value Float,
+    date Instant
+}
+
+entity Review{
+	note Float,
+    date Instant,
+    comment String
+}
+
+entity Booking{
+	
+}
+
+enum FileType {
+    IDPROOF, TRAVELPROOF, PACKAGEPICTURE, PROFILEPICTURE
+}
+
+enum DeliveryMode {
+    HOMEDELEVERY, HOMEWITHDRAWAL
+}
+
+enum TravelMode {
+    PLANE, BOAT
+}
+
+relationship OneToOne {
+	//A travel should have a traveller
+	Travel{traveller} to KlavUser,
+    KlavUser{livesAt} to Address,
+    /**
+     * Optional parameter, the receiver of a package may potentially be a user of the platform
+    **/
+    TravelPackage{receiver} to KlavUser,
+     /**
+      * A travel package should have a destination address
+     **/
+    TravelPackage{destinationAddress} to Address
+    TravelPackage{type} to PackageType
+    KlavUser{person} to User
+}
+
+relationship ManyToMany {
+    KlavUser{chat} to Chat{KlavUser}
+}
+
+relationship OneToMany {
+	Travel{acceptedPackageTypes} to PackageType
+    KlavUser{profilePictures} to File,
+    Travel{travelProofs} to File,
+    Travel{bookings} to Booking,
+    TravelPackage{pictures} to File,
+    Booking{packages} to TravelPackage,
+    KlavUser{bookings} to Booking,
+    Booking{status} to Status,
+    Booking{trustIndex} to TrustIndex,
+    KlavUser{reviews} to Review,
+    Chat{messages} to Message
+	
+}
+
+relationship ManyToOne {
+    Message{sender} to KlavUser
+}
+
+
+

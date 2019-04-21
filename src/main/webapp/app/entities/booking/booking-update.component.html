@@ -11,6 +11,13 @@
                 </div>
 
                 <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.booking.travel" for="field_travel">Travel</label>
+                    <select class="form-control" id="field_travel" name="travel" [(ngModel)]="booking.travel" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="travelOption.id === booking.travel?.id ? booking.travel : travelOption" *ngFor="let travelOption of travels; trackBy: trackTravelById">{{travelOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="klavApp.booking.klavUser" for="field_klavUser">Klav User</label>
                     <select class="form-control" id="field_klavUser" name="klavUser" [(ngModel)]="booking.klavUser" >
                         <option [ngValue]="null"></option>

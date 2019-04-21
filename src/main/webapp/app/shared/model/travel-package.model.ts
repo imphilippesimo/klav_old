@@ -1,4 +1,6 @@
 import { IKlavUser } from 'app/shared/model//klav-user.model';
+import { IAddress } from 'app/shared/model//address.model';
+import { IPackageType } from 'app/shared/model//package-type.model';
 import { IFile } from 'app/shared/model//file.model';
 import { IBooking } from 'app/shared/model//booking.model';
 
@@ -17,8 +19,9 @@ export interface ITravelPackage {
     description?: string;
     pricePerKG?: number;
     fragile?: boolean;
-    klavUser?: IKlavUser;
     receiver?: IKlavUser;
+    destinationAddress?: IAddress;
+    type?: IPackageType;
     pictures?: IFile[];
     booking?: IBooking;
 }
@@ -34,8 +37,9 @@ export class TravelPackage implements ITravelPackage {
         public description?: string,
         public pricePerKG?: number,
         public fragile?: boolean,
-        public klavUser?: IKlavUser,
         public receiver?: IKlavUser,
+        public destinationAddress?: IAddress,
+        public type?: IPackageType,
         public pictures?: IFile[],
         public booking?: IBooking
     ) {

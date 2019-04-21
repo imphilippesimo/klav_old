@@ -16,6 +16,7 @@
             "detail": {
                 "title": "Booking"
             },
+            "travel": "Travel",
             "klavUser": "Klav User",
             "packages": "Packages",
             "status": "Status",

@@ -32,6 +32,7 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.klav.domain.enumeration.TravelMode;
 import com.klav.domain.enumeration.DeliveryMode;
 /**
  * Test class for the TravelResource REST controller.
@@ -48,6 +49,12 @@ public class TravelResourceIntTest {
     private static final Instant DEFAULT_ARRIVAL_DATE = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_ARRIVAL_DATE = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
+    private static final String DEFAULT_DEPARTURE_COUNTRY = "AAAAAAAAAA";
+    private static final String UPDATED_DEPARTURE_COUNTRY = "BBBBBBBBBB";
+
+    private static final String DEFAULT_ARRIVAL_COUNTRY = "AAAAAAAAAA";
+    private static final String UPDATED_ARRIVAL_COUNTRY = "BBBBBBBBBB";
+
     private static final String DEFAULT_DEPARTURE_CITY = "AAAAAAAAAA";
     private static final String UPDATED_DEPARTURE_CITY = "BBBBBBBBBB";
 
@@ -60,8 +67,8 @@ public class TravelResourceIntTest {
     private static final Float DEFAULT_PRICE_PER_KG = 1F;
     private static final Float UPDATED_PRICE_PER_KG = 2F;
 
-    private static final String DEFAULT_TRAVEL_MODE = "AAAAAAAAAA";
-    private static final String UPDATED_TRAVEL_MODE = "BBBBBBBBBB";
+    private static final TravelMode DEFAULT_TRAVEL_MODE = TravelMode.PLANE;
+    private static final TravelMode UPDATED_TRAVEL_MODE = TravelMode.BOAT;
 
     private static final DeliveryMode DEFAULT_DELEVERY_MODE = DeliveryMode.HOMEDELEVERY;
     private static final DeliveryMode UPDATED_DELEVERY_MODE = DeliveryMode.HOMEWITHDRAWAL;
@@ -118,6 +125,8 @@ public class TravelResourceIntTest {
         Travel travel = new Travel()
             .departureDate(DEFAULT_DEPARTURE_DATE)
             .arrivalDate(DEFAULT_ARRIVAL_DATE)
+            .departureCountry(DEFAULT_DEPARTURE_COUNTRY)
+            .arrivalCountry(DEFAULT_ARRIVAL_COUNTRY)
             .departureCity(DEFAULT_DEPARTURE_CITY)
             .arrivalCity(DEFAULT_ARRIVAL_CITY)
             .availableKGs(DEFAULT_AVAILABLE_K_GS)
@@ -153,6 +162,8 @@ public class TravelResourceIntTest {
         Travel testTravel = travelList.get(travelList.size() - 1);
         assertThat(testTravel.getDepartureDate()).isEqualTo(DEFAULT_DEPARTURE_DATE);
         assertThat(testTravel.getArrivalDate()).isEqualTo(DEFAULT_ARRIVAL_DATE);
+        assertThat(testTravel.getDepartureCountry()).isEqualTo(DEFAULT_DEPARTURE_COUNTRY);
+        assertThat(testTravel.getArrivalCountry()).isEqualTo(DEFAULT_ARRIVAL_COUNTRY);
         assertThat(testTravel.getDepartureCity()).isEqualTo(DEFAULT_DEPARTURE_CITY);
         assertThat(testTravel.getArrivalCity()).isEqualTo(DEFAULT_ARRIVAL_CITY);
         assertThat(testTravel.getAvailableKGs()).isEqualTo(DEFAULT_AVAILABLE_K_GS);
@@ -197,6 +208,8 @@ public class TravelResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(travel.getId().intValue())))
             .andExpect(jsonPath("$.[*].departureDate").value(hasItem(DEFAULT_DEPARTURE_DATE.toString())))
             .andExpect(jsonPath("$.[*].arrivalDate").value(hasItem(DEFAULT_ARRIVAL_DATE.toString())))
+            .andExpect(jsonPath("$.[*].departureCountry").value(hasItem(DEFAULT_DEPARTURE_COUNTRY.toString())))
+            .andExpect(jsonPath("$.[*].arrivalCountry").value(hasItem(DEFAULT_ARRIVAL_COUNTRY.toString())))
             .andExpect(jsonPath("$.[*].departureCity").value(hasItem(DEFAULT_DEPARTURE_CITY.toString())))
             .andExpect(jsonPath("$.[*].arrivalCity").value(hasItem(DEFAULT_ARRIVAL_CITY.toString())))
             .andExpect(jsonPath("$.[*].availableKGs").value(hasItem(DEFAULT_AVAILABLE_K_GS.doubleValue())))
@@ -222,6 +235,8 @@ public class TravelResourceIntTest {
             .andExpect(jsonPath("$.id").value(travel.getId().intValue()))
             .andExpect(jsonPath("$.departureDate").value(DEFAULT_DEPARTURE_DATE.toString()))
             .andExpect(jsonPath("$.arrivalDate").value(DEFAULT_ARRIVAL_DATE.toString()))
+            .andExpect(jsonPath("$.departureCountry").value(DEFAULT_DEPARTURE_COUNTRY.toString()))
+            .andExpect(jsonPath("$.arrivalCountry").value(DEFAULT_ARRIVAL_COUNTRY.toString()))
             .andExpect(jsonPath("$.departureCity").value(DEFAULT_DEPARTURE_CITY.toString()))
             .andExpect(jsonPath("$.arrivalCity").value(DEFAULT_ARRIVAL_CITY.toString()))
             .andExpect(jsonPath("$.availableKGs").value(DEFAULT_AVAILABLE_K_GS.doubleValue()))
@@ -257,6 +272,8 @@ public class TravelResourceIntTest {
         updatedTravel
             .departureDate(UPDATED_DEPARTURE_DATE)
             .arrivalDate(UPDATED_ARRIVAL_DATE)
+            .departureCountry(UPDATED_DEPARTURE_COUNTRY)
+            .arrivalCountry(UPDATED_ARRIVAL_COUNTRY)
             .departureCity(UPDATED_DEPARTURE_CITY)
             .arrivalCity(UPDATED_ARRIVAL_CITY)
             .availableKGs(UPDATED_AVAILABLE_K_GS)
@@ -279,6 +296,8 @@ public class TravelResourceIntTest {
         Travel testTravel = travelList.get(travelList.size() - 1);
         assertThat(testTravel.getDepartureDate()).isEqualTo(UPDATED_DEPARTURE_DATE);
         assertThat(testTravel.getArrivalDate()).isEqualTo(UPDATED_ARRIVAL_DATE);
+        assertThat(testTravel.getDepartureCountry()).isEqualTo(UPDATED_DEPARTURE_COUNTRY);
+        assertThat(testTravel.getArrivalCountry()).isEqualTo(UPDATED_ARRIVAL_COUNTRY);
         assertThat(testTravel.getDepartureCity()).isEqualTo(UPDATED_DEPARTURE_CITY);
         assertThat(testTravel.getArrivalCity()).isEqualTo(UPDATED_ARRIVAL_CITY);
         assertThat(testTravel.getAvailableKGs()).isEqualTo(UPDATED_AVAILABLE_K_GS);

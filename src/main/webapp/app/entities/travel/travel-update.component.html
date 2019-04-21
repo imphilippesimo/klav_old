@@ -24,6 +24,16 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.travel.departureCountry" for="field_departureCountry">Departure Country</label>
+                    <input type="text" class="form-control" name="departureCountry" id="field_departureCountry"
+                        [(ngModel)]="travel.departureCountry" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.travel.arrivalCountry" for="field_arrivalCountry">Arrival Country</label>
+                    <input type="text" class="form-control" name="arrivalCountry" id="field_arrivalCountry"
+                        [(ngModel)]="travel.arrivalCountry" />
+                </div>
+                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="klavApp.travel.departureCity" for="field_departureCity">Departure City</label>
                     <input type="text" class="form-control" name="departureCity" id="field_departureCity"
                         [(ngModel)]="travel.departureCity" />
@@ -45,8 +55,10 @@
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="klavApp.travel.travelMode" for="field_travelMode">Travel Mode</label>
-                    <input type="text" class="form-control" name="travelMode" id="field_travelMode"
-                        [(ngModel)]="travel.travelMode" />
+                    <select class="form-control" name="travelMode" [(ngModel)]="travel.travelMode" id="field_travelMode" >
+                        <option value="PLANE">{{'klavApp.TravelMode.PLANE' | translate}}</option>
+                        <option value="BOAT">{{'klavApp.TravelMode.BOAT' | translate}}</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="klavApp.travel.deleveryMode" for="field_deleveryMode">Delevery Mode</label>
@@ -77,10 +89,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="klavApp.travel.destinationAddress" for="field_destinationAddress">Destination Address</label>
-                    <select class="form-control" id="field_destinationAddress" name="destinationAddress" [(ngModel)]="travel.destinationAddress">
+                    <label class="form-control-label" jhiTranslate="klavApp.travel.traveller" for="field_traveller">Traveller</label>
+                    <select class="form-control" id="field_traveller" name="traveller" [(ngModel)]="travel.traveller">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="addressOption.id === travel.destinationAddress?.id ? travel.destinationAddress : addressOption" *ngFor="let addressOption of destinationaddresses; trackBy: trackAddressById">{{addressOption.id}}</option>
+                        <option [ngValue]="klavUserOption.id === travel.traveller?.id ? travel.traveller : klavUserOption" *ngFor="let klavUserOption of travellers; trackBy: trackKlavUserById">{{klavUserOption.id}}</option>
                     </select>
                 </div>
             </div>
