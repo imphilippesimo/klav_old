@@ -11,6 +11,7 @@ stages:
     - docker
     - delivery
     - deploy
+#    - expose
 
 variables:
   service: "klavback"
@@ -26,6 +27,7 @@ variables:
   registry_pass: "$CI_JOB_TOKEN"
   registry_url: "$CI_REGISTRY"
   registry_prod_url: "155084925036.dkr.ecr.us-east-1.amazonaws.com/klav-back"
+
 
 before_script:
     - export MAVEN_USER_HOME=`pwd`/.maven
@@ -182,13 +184,66 @@ docker_release_image:
     - aws ecs register-task-definition --family "${family}" --cli-input-json "file://task-definition-${CI_COMMIT_SHA}.json"
     - aws ecs update-service  --cluster "${cluster}" --service "${service}" --task-definition "${task}"
 
-deploy_ecs_rec:
-  extends: .deploy_ecs
+deploy_cloudformation_ecs:
+  stage: deploy
+  image: registry.gitlab.com/klav/klav-front/alpine
   variables:
-    env : "rec"
+    size: "test"
+#    stack_name: "klavTest"
+    s3_bucket: "s3://klav-cloudformation"
+    region: "us-east-1"
+  before_script:
+    - apk add --no-cache curl jq python py-pip
+    - pip install awscli
+    - aws configure set default.region ${region}
+    - IMAGE_TAG="$(echo ${CI_COMMIT_TAG/*v/})"
+  script:
+    - sed -i "s;latest;${IMAGE_TAG};g" service-back.yaml
+    - aws s3 cp service-back.yaml ${s3_bucket}
+    - ./build.sh review-${CI_COMMIT_SHORT_SHA} ${size}
   environment:
-    name: rec
-    url: http://ec2-3-91-28-47.compute-1.amazonaws.com
+    name: $CI_BUILD_REF_NAME
+    on_stop: stop_rec
+#  artifacts:
+#    expire_in: 1d
+#    paths:
+#      - tmp/
+  only:
+    - tags
+  except:
+    - master@klav/klav-back
+
+
+.deploy_ecs_rec:
+  stage: expose
+  variables:
+#    env : "rec"
+    service_url: $(cat tmp/serviceUrl)
+  environment:
+    name: $CI_BUILD_REF_NAME
+    url: ${service_url}
+    on_stop: stop_rec
+  before_script: []
+  script:
+    - echo "starting review instance on $service_url"
+  only:
+    - tags
+  except:
+    - master@klav/klav-back
+
+stop_rec:
+  image: registry.gitlab.com/klav/klav-front/alpine
+  stage: deploy
+  when: manual
+  before_script:
+    - apk add --no-cache curl jq python py-pip
+    - pip install awscli
+    - aws configure set default.region ${region}
+  environment:
+    name: $CI_BUILD_REF_NAME
+    action: stop
+  script:
+    - aws cloudformation delete-stack --stack-name review-${CI_COMMIT_SHORT_SHA}
   only:
     - tags
   except:
