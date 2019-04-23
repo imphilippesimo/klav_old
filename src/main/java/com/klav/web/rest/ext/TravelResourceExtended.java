@@ -24,7 +24,7 @@ import java.util.Optional;
  * REST controller for managing Travel.
  */
 @RestController
-@RequestMapping("/api/extended")
+@RequestMapping("/api/ext")
 public class TravelResourceExtended {
 
 

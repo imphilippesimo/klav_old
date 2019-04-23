@@ -137,7 +137,18 @@ jhipster:
             host: localhost
             port: 5000
             queue-size: 512
-
+    # Swagger configuration
+    swagger:
+        default-include-pattern: /api/ext/.*
+        version: 0.0.1
+        terms-of-service-url:
+        contact-name:
+        contact-url:
+        contact-email:
+        license: Klav Inc.
+        license-url:
+        host:
+        protocols:
 # ===================================================================
 # Application specific properties
 # Add your own application properties here, see the ApplicationProperties class

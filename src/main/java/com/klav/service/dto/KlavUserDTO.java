@@ -2,8 +2,6 @@ package com.klav.service.dto;
 
 import javax.validation.constraints.NotNull;
 import java.time.Instant;
-import java.util.HashSet;
-import java.util.Set;
 
 public class KlavUserDTO {
 
@@ -34,15 +32,6 @@ public class KlavUserDTO {
     @NotNull
     private UserDTO person;
 
-
-    private Set<Long> profilePictures = new HashSet<>();
-
-
-    private Set<Long> bookings = new HashSet<>();
-
-    private Set<Long> reviews = new HashSet<>();
-
-    private Set<Long> chats = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -108,35 +97,5 @@ public class KlavUserDTO {
         this.person = person;
     }
 
-    public Set<Long> getProfilePictures() {
-        return profilePictures;
-    }
 
-    public void setProfilePictures(Set<Long> profilePictures) {
-        this.profilePictures = profilePictures;
-    }
-
-    public Set<Long> getBookings() {
-        return bookings;
-    }
-
-    public void setBookings(Set<Long> bookings) {
-        this.bookings = bookings;
-    }
-
-    public Set<Long> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(Set<Long> reviews) {
-        this.reviews = reviews;
-    }
-
-    public Set<Long> getChats() {
-        return chats;
-    }
-
-    public void setChats(Set<Long> chats) {
-        this.chats = chats;
-    }
 }
