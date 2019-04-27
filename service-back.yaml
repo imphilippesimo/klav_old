@@ -7,6 +7,10 @@ Parameters:
     Description: The VPC that the ECS cluster is deployed to
     Type: AWS::EC2::VPC::Id
 
+  SG:
+    Description: ECS Host security group to modify
+    Type: AWS::EC2::SecurityGroup::Id
+
   Cluster:
     Description: Please provide the ECS Cluster ID that this service should run on
     Type: String
@@ -49,6 +53,16 @@ Conditions:
   CreateProdRessources: !Equals [!Ref Size, prod]
 
 Resources:
+
+  RecIngress:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupID: !Ref SG
+      IpProtocol: tcp
+      FromPort: 80
+      ToPort: 80
+      CidrIp: 0.0.0.0/0
+
   Service:
     Type: AWS::ECS::Service
     DependsOn: ListenerRule
@@ -78,7 +92,7 @@ Resources:
     Properties:
       Family: klavbackreview
       Cpu: "512"
-      Memory: "800"
+      Memory: "1700"
       NetworkMode: "host"
       RequiresCompatibilities:
         - "EC2"
@@ -86,11 +100,12 @@ Resources:
         - Name: "klavback"
           Image: "155084925036.dkr.ecr.us-east-1.amazonaws.com/klav-back:latest"
           Cpu: 256
-          Memory: 512
-          MemoryReservation: 512
+          Memory: 1024
+          MemoryReservation: 1024
           Essential: true
           PortMappings:
             - ContainerPort: 8080
+              HostPort: 80
               Protocol: "tcp"
           LogConfiguration:
             LogDriver: awslogs
@@ -99,32 +114,32 @@ Resources:
               awslogs-region: !Ref AWS::Region
           Environment:
             - Name: "_JAVA_OPTIONS"
-              Value: "-Xms512m -Xmx512m"
+              Value: "-Xms1024m -Xmx1024m"
             - Name: PRODUCT_SERVICE_URL
               Value: !Ref ProductServiceUrl
             - Name: "SPRING_PROFILES_ACTIVE"
               Value: "prod,swagger"
             - Name: "SPRING_DATASOURCE_URL"
-#              Value: "jdbc:mysql://klav-mysql:3306/klav?useUnicode=true&characterEncoding=utf8&useSSL=false"
-              Value: "jdbc:mysql://localhost:3306/klav?useUnicode=true&characterEncoding=utf8&useSSL=false"
+             Value: "jdbc:mysql://klav-mysql:3306/klav?useUnicode=true&characterEncoding=utf8&useSSL=false"
+#              Value: "jdbc:mysql://localhost:3306/klav?useUnicode=true&characterEncoding=utf8&useSSL=false"
             - Name: "JHIPSTER_SLEEP"
               Value: "10"
           User: "jhipster"
           Hostname: "klavback.test"
-#          Links:
-#            - "klav-mysql"
+          Links:
+            - "klav-mysql"
           Privileged: false
           ReadonlyRootFilesystem: false
         - Name: "klav-mysql"
           Image: "mysql:5.7.20"
           Cpu: 256
-          Memory: 256
-          MemoryReservation: 256
+          Memory: 512
+          MemoryReservation: 512
           Essential: true
           PortMappings:
             - ContainerPort: 3306
               Protocol: "tcp"
-#              HostPort: 3306
+              HostPort: 3306
           LogConfiguration:
             LogDriver: awslogs
             Options:

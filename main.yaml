@@ -64,12 +64,12 @@ Resources:
       TemplateURL: https://s3.amazonaws.com/klav-cloudformation/ecs-cluster.yaml
       Parameters:
         EnvironmentName: !Ref AWS::StackName
-        InstanceType: !If [ CreateProdRessources, t2.small, t2.micro ]
+        InstanceType: !If [ CreateProdRessources, t2.medium, t2.small ]
         ClusterSize: !If [ CreateProdRessources , 3, 1 ]
         Size: !Ref Size
         VPC: !GetAtt VPC.Outputs.VPC
         SecurityGroup: !GetAtt SecurityGroups.Outputs.ECSHostSecurityGroup
-        Subnets: !GetAtt VPC.Outputs.PrivateSubnet1
+        Subnets: !GetAtt VPC.Outputs.PublicSubnet1
 
   WebsiteService:
     Type: AWS::CloudFormation::Stack
@@ -77,6 +77,7 @@ Resources:
       TemplateURL: https://s3.amazonaws.com/klav-cloudformation/service-back.yaml
       Parameters:
         VPC: !GetAtt VPC.Outputs.VPC
+        SG: !GetAtt SecurityGroups.Outputs.ECSHostSecurityGroup
         Cluster: !GetAtt ECS.Outputs.Cluster
         DesiredCount: 2
         ProductServiceUrl:

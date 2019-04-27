@@ -1,7 +1,7 @@
 #!/bin/sh
 
 CREATE=0
-
+sleep 60
 echo "creating AWS CloudFormation stacks..."
 
 for result in $(aws cloudformation list-stacks --stack-status-filter CREATE_COMPLETE | jq .StackSummaries[].StackName)
@@ -29,5 +29,8 @@ fi
 
 #aws cloudformation describe-stacks --stack-name $1 | jq '.Stacks[].Outputs'
 #mkdir tmp
-echo " this is the url of the service :"
+echo " Little insight about the service :"
+echo " ###### the load balancer url ######"
 aws cloudformation describe-stacks --stack-name review-${CI_COMMIT_SHORT_SHA} | jq '.Stacks[].Outputs[] | select( .OutputKey == "LoadBalancerUrl" ) | .OutputValue'
+echo " ###### the instance dns public name ######"
+aws ec2 describe-instances --filters "Name=tag:Name,Values=review-${CI_COMMIT_SHORT_SHA} ECS host" | jq '.Reservations[].Instances[0].PublicDnsName'
