@@ -112,9 +112,12 @@ docker_image:
         - cp target/*.war src/main/docker
     script:
         - docker build -f src/main/docker/Dockerfile -t "${registry_url}/${image_name}:${image_tag}" src/main/docker
-        - docker run -d --name test "${registry_url}/${image_name}:${image_tag}" && sleep 60
-        - docker logs test
-        - docker stop test && docker rm test
+        - docker-compose up -d -f src/main/docker/app.yml
+        - sleep 60 && docker-compose logs klav-app
+        - docker-compose rm -f -s klav-app && docker-compose rm -f -s klav-mysql
+#        - docker run -d --name test "${registry_url}/${image_name}:${image_tag}" && sleep 60
+#        - docker logs test
+#        - docker stop test && docker rm test
         - docker push "${registry_url}/${image_name}:${image_tag}"
     except:
       refs:
