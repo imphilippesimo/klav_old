@@ -106,6 +106,7 @@ docker_image:
     services:
         - docker:dind
     stage: docker
+    cache: {}
     dependencies:
         - maven_package
     before_script:
@@ -144,6 +145,7 @@ docker_image:
 docker_release_image:
   image: docker:latest
   stage: delivery
+  cache: {}
   before_script:
     - apk add --no-cache curl jq python py-pip
     - pip install awscli
@@ -166,6 +168,7 @@ docker_release_image:
 
 .deploy_ecs:
   image: docker:latest
+  cache: {}
   artifacts:
     paths:
       - task-definition-${CI_COMMIT_SHA}.json
@@ -186,6 +189,7 @@ docker_release_image:
 
 deploy_cloudformation_ecs:
   stage: deploy
+  cache: {}
   image: registry.gitlab.com/klav/klav-front/alpine
   variables:
     size: "test"
@@ -211,6 +215,7 @@ deploy_cloudformation_ecs:
   only:
     - tags
   except:
+    - feature/.*@klav/klav-back
     - master@klav/klav-back
 
 
@@ -248,6 +253,7 @@ stop_rec:
     - tags
   except:
     - master@klav/klav-back
+    - feature/.*@klav/klav-back
 
 deploy_ecs_prod:
   extends: .deploy_ecs
@@ -260,6 +266,5 @@ deploy_ecs_prod:
   only:
     - tags
   except:
-    - develop@klav/klav-back
-    - feature/.*@klav/klav-back
-  #  - /^(?!master).+@/
+    - branches
+#    - /^(?!master).+@/

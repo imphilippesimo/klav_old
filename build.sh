@@ -1,7 +1,7 @@
 #!/bin/sh
 
 CREATE=0
-sleep 60
+sleep 30
 echo "creating AWS CloudFormation stacks..."
 
 for result in $(aws cloudformation list-stacks --stack-status-filter CREATE_COMPLETE | jq .StackSummaries[].StackName)

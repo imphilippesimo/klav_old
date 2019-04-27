@@ -57,7 +57,7 @@ Resources:
   RecIngress:
     Type: AWS::EC2::SecurityGroupIngress
     Properties:
-      GroupID: !Ref SG
+      GroupId: !Ref SG
       IpProtocol: tcp
       FromPort: 80
       ToPort: 80
@@ -93,7 +93,7 @@ Resources:
       Family: klavbackreview
       Cpu: "512"
       Memory: "1700"
-      NetworkMode: "host"
+      NetworkMode: "bridge"
       RequiresCompatibilities:
         - "EC2"
       ContainerDefinitions:
@@ -120,7 +120,7 @@ Resources:
             - Name: "SPRING_PROFILES_ACTIVE"
               Value: "prod,swagger"
             - Name: "SPRING_DATASOURCE_URL"
-             Value: "jdbc:mysql://klav-mysql:3306/klav?useUnicode=true&characterEncoding=utf8&useSSL=false"
+              Value: "jdbc:mysql://klav-mysql:3306/klav?useUnicode=true&characterEncoding=utf8&useSSL=false"
 #              Value: "jdbc:mysql://localhost:3306/klav?useUnicode=true&characterEncoding=utf8&useSSL=false"
             - Name: "JHIPSTER_SLEEP"
               Value: "10"
