@@ -167,7 +167,7 @@ docker_release_image:
     - /^[^v][^0-9]+.*$/
 
 .deploy_ecs:
-  image: docker:latest
+  image: registry.gitlab.com/klav/klav-front/alpine
   artifacts:
     paths:
       - task-definition-${CI_COMMIT_SHA}.json
@@ -179,12 +179,11 @@ docker_release_image:
     - pip install awscli
     - IMAGE_TAG="$(echo ${CI_COMMIT_TAG/*v/})"
     - aws configure set default.region ${region}
-  services:
-    - docker:dind
   script:
     - sed -e "s;latest;${IMAGE_TAG};g" task-definition-${env}.json > task-definition-${CI_COMMIT_SHA}.json
     - aws ecs register-task-definition --family "${family}" --cli-input-json "file://task-definition-${CI_COMMIT_SHA}.json"
     - aws ecs update-service  --cluster "${cluster}" --service "${service}" --task-definition "${task}"
+    - ./check-service.sh "${cluster}" "${service}" "${task}"
 
 deploy_ecs_rec:
   extends: .deploy_ecs
