@@ -100,7 +100,7 @@ maven_package:
         - $CI_COMMIT_MESSAGE =~ /cicd-deploy/
         - $CI_COMMIT_MESSAGE =~ /update-service/
 
-docker_image:
+docker_image_test:
     image: docker:latest
     services:
         - docker:dind
@@ -108,23 +108,44 @@ docker_image:
     dependencies:
         - maven_package
     before_script:
+        - apk add --no-cache py-pip python-dev libffi-dev openssl-dev gcc libc-dev make
+        - pip install docker-compose
         - docker login -u "${registry_user}" -p "${registry_pass}" "${registry_url}"
         - cp target/*.war src/main/docker
     script:
         - docker build -f src/main/docker/Dockerfile -t "${registry_url}/${image_name}:${image_tag}" src/main/docker
-        - docker-compose up -d -f src/main/docker/app.yml
-        - sleep 60 && docker-compose logs klav-app
+        - docker-compose up -d
+        - sleep 120 && docker-compose ps && docker-compose logs klav-app && docker-compose logs klav-mysql
         - docker-compose rm -f -s klav-app && docker-compose rm -f -s klav-mysql
-#        - docker run -d --name test "${registry_url}/${image_name}:${image_tag}" && sleep 60
-#        - docker logs test
-#        - docker stop test && docker rm test
-        - docker push "${registry_url}/${image_name}:${image_tag}"
     except:
       refs:
         - tags
+        - master@klav/klav-back
+        - develop@klav/klav-back
       variables:
         - $CI_COMMIT_MESSAGE =~ /cicd-deploy/
         - $CI_COMMIT_MESSAGE =~ /update-service/
+
+docker_image_push:
+  image: docker:latest
+  services:
+    - docker:dind
+  stage: docker
+  dependencies:
+      - maven_package
+  before_script:
+      - docker login -u "${registry_user}" -p "${registry_pass}" "${registry_url}"
+      - cp target/*.war src/main/docker
+  script:
+      - docker build -f src/main/docker/Dockerfile -t "${registry_url}/${image_name}:${image_tag}" src/main/docker
+      - docker push "${registry_url}/${image_name}:${image_tag}"
+  only:
+    refs:
+      - master@klav/klav-back
+      - develop@klav/klav-back
+  except:
+    refs:
+      - tags
 
 .update_service:
   image: docker:latest
