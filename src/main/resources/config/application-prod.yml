@@ -50,10 +50,16 @@ spring:
     liquibase:
         contexts: prod
     mail:
-        host: localhost
-        port: 25
-        username:
-        password:
+        host: smtp.gmail.com
+        port: 587
+        username: kilosavendre@gmail.com  #Replace this field with your Gmail username.
+        password: 2KilosAvendre           #Replace this field with your Gmail password.
+        protocol: smtp
+        tls: true
+        properties.mail.smtp:
+            auth: true
+            starttls.enable: true
+            ssl.trust: smtp.gmail.com
     thymeleaf:
         cache: true
 
@@ -131,7 +137,18 @@ jhipster:
             host: localhost
             port: 5000
             queue-size: 512
-
+    # Swagger configuration
+    swagger:
+        default-include-pattern: /api/ext/.*
+        version: 0.0.1
+        terms-of-service-url:
+        contact-name:
+        contact-url:
+        contact-email:
+        license: Klav Inc.
+        license-url:
+        host:
+        protocols:
 # ===================================================================
 # Application specific properties
 # Add your own application properties here, see the ApplicationProperties class

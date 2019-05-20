@@ -2,6 +2,7 @@ package com.klav.service.mapper;
 
 import com.klav.domain.*;
 import com.klav.repository.ext.*;
+import org.mapstruct.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

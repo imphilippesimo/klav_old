@@ -1,7 +1,7 @@
 version: '2'
 services:
     klav-app:
-        image: klav
+        image: registry.gitlab.com/klav/klav-back:snapshot
         environment:
             - _JAVA_OPTIONS=-Xmx512m -Xms256m
             - SPRING_PROFILES_ACTIVE=prod,swagger
