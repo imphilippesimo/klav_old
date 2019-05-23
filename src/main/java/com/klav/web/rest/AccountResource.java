@@ -133,7 +133,7 @@ public class AccountResource {
     /**
      * POST  /account/change-password : changes the current user's password
      *
-     * @param passwordChangeDto current and new password
+     * @param passwordChangeDto current and new passwordreset
      * @throws InvalidPasswordException 400 (Bad Request) if the new password is incorrect
      */
     @PostMapping(path = "/account/change-password")

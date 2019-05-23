@@ -38,11 +38,35 @@ public class KlavUser implements Serializable {
     @Column(name = "nationality")
     private String nationality;
 
-    @OneToOne    @JoinColumn(unique = true)
-    private Address livesAt;
+    @Column(name = "login")
+    private String login;
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "activated")
+    private Boolean activated;
+
+    @Column(name = "activation_key")
+    private String activationKey;
+
+    @Column(name = "reset_key")
+    private String resetKey;
+
+    @Column(name = "reset_date")
+    private Instant resetDate;
+
+    @Column(name = "jhi_password")
+    private String password;
 
     @OneToOne    @JoinColumn(unique = true)
-    private User person;
+    private Address livesAt;
 
     @OneToMany(mappedBy = "klavUser")
     private Set<File> profilePictures = new HashSet<>();
@@ -130,6 +154,123 @@ public class KlavUser implements Serializable {
         this.nationality = nationality;
     }
 
+    public String getLogin() {
+        return login;
+    }
+
+    public KlavUser login(String login) {
+        this.login = login;
+        return this;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public KlavUser firstName(String firstName) {
+        this.firstName = firstName;
+        return this;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public KlavUser lastName(String lastName) {
+        this.lastName = lastName;
+        return this;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public KlavUser email(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Boolean isActivated() {
+        return activated;
+    }
+
+    public KlavUser activated(Boolean activated) {
+        this.activated = activated;
+        return this;
+    }
+
+    public void setActivated(Boolean activated) {
+        this.activated = activated;
+    }
+
+    public String getActivationKey() {
+        return activationKey;
+    }
+
+    public KlavUser activationKey(String activationKey) {
+        this.activationKey = activationKey;
+        return this;
+    }
+
+    public void setActivationKey(String activationKey) {
+        this.activationKey = activationKey;
+    }
+
+    public String getResetKey() {
+        return resetKey;
+    }
+
+    public KlavUser resetKey(String resetKey) {
+        this.resetKey = resetKey;
+        return this;
+    }
+
+    public void setResetKey(String resetKey) {
+        this.resetKey = resetKey;
+    }
+
+    public Instant getResetDate() {
+        return resetDate;
+    }
+
+    public KlavUser resetDate(Instant resetDate) {
+        this.resetDate = resetDate;
+        return this;
+    }
+
+    public void setResetDate(Instant resetDate) {
+        this.resetDate = resetDate;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public KlavUser password(String password) {
+        this.password = password;
+        return this;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public Address getLivesAt() {
         return livesAt;
     }
@@ -141,19 +282,6 @@ public class KlavUser implements Serializable {
 
     public void setLivesAt(Address address) {
         this.livesAt = address;
-    }
-
-    public User getPerson() {
-        return person;
-    }
-
-    public KlavUser person(User user) {
-        this.person = user;
-        return this;
-    }
-
-    public void setPerson(User user) {
-        this.person = user;
     }
 
     public Set<File> getProfilePictures() {
@@ -286,6 +414,15 @@ public class KlavUser implements Serializable {
             ", selfDescription='" + getSelfDescription() + "'" +
             ", gender='" + getGender() + "'" +
             ", nationality='" + getNationality() + "'" +
+            ", login='" + getLogin() + "'" +
+            ", firstName='" + getFirstName() + "'" +
+            ", lastName='" + getLastName() + "'" +
+            ", email='" + getEmail() + "'" +
+            ", activated='" + isActivated() + "'" +
+            ", activationKey='" + getActivationKey() + "'" +
+            ", resetKey='" + getResetKey() + "'" +
+            ", resetDate='" + getResetDate() + "'" +
+            ", password='" + getPassword() + "'" +
             "}";
     }
 }

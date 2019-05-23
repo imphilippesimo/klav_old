@@ -25,15 +25,47 @@
                 <dd>
                     <span>{{klavUser.nationality}}</span>
                 </dd>
+                <dt><span jhiTranslate="klavApp.klavUser.login">Login</span></dt>
+                <dd>
+                    <span>{{klavUser.login}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.klavUser.firstName">First Name</span></dt>
+                <dd>
+                    <span>{{klavUser.firstName}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.klavUser.lastName">Last Name</span></dt>
+                <dd>
+                    <span>{{klavUser.lastName}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.klavUser.email">Email</span></dt>
+                <dd>
+                    <span>{{klavUser.email}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.klavUser.activated">Activated</span></dt>
+                <dd>
+                    <span>{{klavUser.activated}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.klavUser.activationKey">Activation Key</span></dt>
+                <dd>
+                    <span>{{klavUser.activationKey}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.klavUser.resetKey">Reset Key</span></dt>
+                <dd>
+                    <span>{{klavUser.resetKey}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.klavUser.resetDate">Reset Date</span></dt>
+                <dd>
+                    <span>{{klavUser.resetDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="klavApp.klavUser.password">Password</span></dt>
+                <dd>
+                    <span>{{klavUser.password}}</span>
+                </dd>
                 <dt><span jhiTranslate="klavApp.klavUser.livesAt">Lives At</span></dt>
                 <dd>
                     <div *ngIf="klavUser.livesAt">
                         <a [routerLink]="['/address', klavUser.livesAt?.id, 'view']">{{klavUser.livesAt?.id}}</a>
                     </div>
-                </dd>
-                <dt><span jhiTranslate="klavApp.klavUser.person">Person</span></dt>
-                <dd>
-                    {{klavUser.person?.id}}
                 </dd>
                 <dt><span jhiTranslate="klavApp.klavUser.chat">Chat</span></dt>
                 <dd>

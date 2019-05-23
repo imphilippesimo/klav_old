@@ -2,7 +2,6 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { KlavSharedModule } from 'app/shared';
-import { KlavAdminModule } from 'app/admin/admin.module';
 import {
     KlavUserComponent,
     KlavUserDetailComponent,
@@ -16,7 +15,7 @@ import {
 const ENTITY_STATES = [...klavUserRoute, ...klavUserPopupRoute];
 
 @NgModule({
-    imports: [KlavSharedModule, KlavAdminModule, RouterModule.forChild(ENTITY_STATES)],
+    imports: [KlavSharedModule, RouterModule.forChild(ENTITY_STATES)],
     declarations: [
         KlavUserComponent,
         KlavUserDetailComponent,

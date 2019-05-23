@@ -20,6 +20,42 @@
         {
             "fieldName": "nationality",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "login",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "firstName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "lastName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "activated",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "activationKey",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "resetKey",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "resetDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "password",
+            "fieldType": "String"
         }
     ],
     "relationships": [
@@ -27,14 +63,6 @@
             "relationshipType": "one-to-one",
             "relationshipName": "livesAt",
             "otherEntityName": "address",
-            "otherEntityField": "id",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "klavUser"
-        },
-        {
-            "relationshipType": "one-to-one",
-            "relationshipName": "person",
-            "otherEntityName": "user",
             "otherEntityField": "id",
             "ownerSide": true,
             "otherEntityRelationshipName": "klavUser"

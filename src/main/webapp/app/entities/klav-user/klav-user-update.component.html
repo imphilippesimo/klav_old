@@ -36,19 +36,59 @@
                     <input type="text" class="form-control" name="nationality" id="field_nationality"
                         [(ngModel)]="klavUser.nationality" />
                 </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.klavUser.login" for="field_login">Login</label>
+                    <input type="text" class="form-control" name="login" id="field_login"
+                        [(ngModel)]="klavUser.login" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.klavUser.firstName" for="field_firstName">First Name</label>
+                    <input type="text" class="form-control" name="firstName" id="field_firstName"
+                        [(ngModel)]="klavUser.firstName" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.klavUser.lastName" for="field_lastName">Last Name</label>
+                    <input type="text" class="form-control" name="lastName" id="field_lastName"
+                        [(ngModel)]="klavUser.lastName" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.klavUser.email" for="field_email">Email</label>
+                    <input type="text" class="form-control" name="email" id="field_email"
+                        [(ngModel)]="klavUser.email" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.klavUser.activated" for="field_activated">Activated</label>
+                    <input type="checkbox" class="form-control" name="activated" id="field_activated"
+                        [(ngModel)]="klavUser.activated" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.klavUser.activationKey" for="field_activationKey">Activation Key</label>
+                    <input type="text" class="form-control" name="activationKey" id="field_activationKey"
+                        [(ngModel)]="klavUser.activationKey" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.klavUser.resetKey" for="field_resetKey">Reset Key</label>
+                    <input type="text" class="form-control" name="resetKey" id="field_resetKey"
+                        [(ngModel)]="klavUser.resetKey" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.klavUser.resetDate" for="field_resetDate">Reset Date</label>
+                    <div class="d-flex">
+                        <input id="field_resetDate" type="datetime-local" class="form-control" name="resetDate" [(ngModel)]="resetDate"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="klavApp.klavUser.password" for="field_password">Password</label>
+                    <input type="text" class="form-control" name="password" id="field_password"
+                        [(ngModel)]="klavUser.password" />
+                </div>
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="klavApp.klavUser.livesAt" for="field_livesAt">Lives At</label>
                     <select class="form-control" id="field_livesAt" name="livesAt" [(ngModel)]="klavUser.livesAt">
                         <option [ngValue]="null"></option>
                         <option [ngValue]="addressOption.id === klavUser.livesAt?.id ? klavUser.livesAt : addressOption" *ngFor="let addressOption of livesats; trackBy: trackAddressById">{{addressOption.id}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="klavApp.klavUser.person" for="field_person">Person</label>
-                    <select class="form-control" id="field_person" name="person" [(ngModel)]="klavUser.person" >
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="userOption.id === klavUser.person?.id ? klavUser.person : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
                     </select>
                 </div>
                 <div class="form-group">

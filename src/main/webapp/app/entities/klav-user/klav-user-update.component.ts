@@ -10,7 +10,6 @@ import { IKlavUser } from 'app/shared/model/klav-user.model';
 import { KlavUserService } from './klav-user.service';
 import { IAddress } from 'app/shared/model/address.model';
 import { AddressService } from 'app/entities/address';
-import { IUser, UserService } from 'app/core';
 import { IChat } from 'app/shared/model/chat.model';
 import { ChatService } from 'app/entities/chat';
 
@@ -24,16 +23,14 @@ export class KlavUserUpdateComponent implements OnInit {
 
     livesats: IAddress[];
 
-    users: IUser[];
-
     chats: IChat[];
     birthdate: string;
+    resetDate: string;
 
     constructor(
         private jhiAlertService: JhiAlertService,
         private klavUserService: KlavUserService,
         private addressService: AddressService,
-        private userService: UserService,
         private chatService: ChatService,
         private activatedRoute: ActivatedRoute
     ) {}
@@ -43,6 +40,7 @@ export class KlavUserUpdateComponent implements OnInit {
         this.activatedRoute.data.subscribe(({ klavUser }) => {
             this.klavUser = klavUser;
             this.birthdate = this.klavUser.birthdate != null ? this.klavUser.birthdate.format(DATE_TIME_FORMAT) : null;
+            this.resetDate = this.klavUser.resetDate != null ? this.klavUser.resetDate.format(DATE_TIME_FORMAT) : null;
         });
         this.addressService.query({ filter: 'klavuser-is-null' }).subscribe(
             (res: HttpResponse<IAddress[]>) => {
@@ -56,12 +54,6 @@ export class KlavUserUpdateComponent implements OnInit {
                         (subRes: HttpErrorResponse) => this.onError(subRes.message)
                     );
                 }
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
-        this.userService.query().subscribe(
-            (res: HttpResponse<IUser[]>) => {
-                this.users = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
@@ -80,6 +72,7 @@ export class KlavUserUpdateComponent implements OnInit {
     save() {
         this.isSaving = true;
         this.klavUser.birthdate = this.birthdate != null ? moment(this.birthdate, DATE_TIME_FORMAT) : null;
+        this.klavUser.resetDate = this.resetDate != null ? moment(this.resetDate, DATE_TIME_FORMAT) : null;
         if (this.klavUser.id !== undefined) {
             this.subscribeToSaveResponse(this.klavUserService.update(this.klavUser));
         } else {
@@ -105,10 +98,6 @@ export class KlavUserUpdateComponent implements OnInit {
     }
 
     trackAddressById(index: number, item: IAddress) {
-        return item.id;
-    }
-
-    trackUserById(index: number, item: IUser) {
         return item.id;
     }
 
