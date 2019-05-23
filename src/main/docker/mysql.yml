@@ -5,7 +5,8 @@ services:
         # volumes:
         #     - ~/volumes/jhipster/klav/mysql/:/var/lib/mysql/
         environment:
-            - MYSQL_USER=root
+            - MYSQL_USER=klav
+            - MYSQL_PASSWORD=klav
             - MYSQL_ALLOW_EMPTY_PASSWORD=yes
             - MYSQL_DATABASE=klav
         ports:

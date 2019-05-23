@@ -22,6 +22,17 @@ entity KlavUser{
     selfDescription String,
     gender String,
     nationality String
+    //add user fields
+    login String
+    firstName String
+    lastName String
+    email String
+    activated Boolean
+    activationKey String
+    resetKey String
+    resetDate Instant
+    password String
+    
 
 }
 
@@ -116,7 +127,6 @@ relationship OneToOne {
      **/
     TravelPackage{destinationAddress} to Address
     TravelPackage{type} to PackageType
-    KlavUser{person} to User
 }
 
 relationship ManyToMany {

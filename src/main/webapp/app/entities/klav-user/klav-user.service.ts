@@ -51,19 +51,22 @@ export class KlavUserService {
 
     private convertDateFromClient(klavUser: IKlavUser): IKlavUser {
         const copy: IKlavUser = Object.assign({}, klavUser, {
-            birthdate: klavUser.birthdate != null && klavUser.birthdate.isValid() ? klavUser.birthdate.toJSON() : null
+            birthdate: klavUser.birthdate != null && klavUser.birthdate.isValid() ? klavUser.birthdate.toJSON() : null,
+            resetDate: klavUser.resetDate != null && klavUser.resetDate.isValid() ? klavUser.resetDate.toJSON() : null
         });
         return copy;
     }
 
     private convertDateFromServer(res: EntityResponseType): EntityResponseType {
         res.body.birthdate = res.body.birthdate != null ? moment(res.body.birthdate) : null;
+        res.body.resetDate = res.body.resetDate != null ? moment(res.body.resetDate) : null;
         return res;
     }
 
     private convertDateArrayFromServer(res: EntityArrayResponseType): EntityArrayResponseType {
         res.body.forEach((klavUser: IKlavUser) => {
             klavUser.birthdate = klavUser.birthdate != null ? moment(klavUser.birthdate) : null;
+            klavUser.resetDate = klavUser.resetDate != null ? moment(klavUser.resetDate) : null;
         });
         return res;
     }

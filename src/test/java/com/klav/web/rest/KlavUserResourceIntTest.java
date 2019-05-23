@@ -61,6 +61,33 @@ public class KlavUserResourceIntTest {
     private static final String DEFAULT_NATIONALITY = "AAAAAAAAAA";
     private static final String UPDATED_NATIONALITY = "BBBBBBBBBB";
 
+    private static final String DEFAULT_LOGIN = "AAAAAAAAAA";
+    private static final String UPDATED_LOGIN = "BBBBBBBBBB";
+
+    private static final String DEFAULT_FIRST_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_FIRST_NAME = "BBBBBBBBBB";
+
+    private static final String DEFAULT_LAST_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_LAST_NAME = "BBBBBBBBBB";
+
+    private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
+    private static final String UPDATED_EMAIL = "BBBBBBBBBB";
+
+    private static final Boolean DEFAULT_ACTIVATED = false;
+    private static final Boolean UPDATED_ACTIVATED = true;
+
+    private static final String DEFAULT_ACTIVATION_KEY = "AAAAAAAAAA";
+    private static final String UPDATED_ACTIVATION_KEY = "BBBBBBBBBB";
+
+    private static final String DEFAULT_RESET_KEY = "AAAAAAAAAA";
+    private static final String UPDATED_RESET_KEY = "BBBBBBBBBB";
+
+    private static final Instant DEFAULT_RESET_DATE = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_RESET_DATE = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+
+    private static final String DEFAULT_PASSWORD = "AAAAAAAAAA";
+    private static final String UPDATED_PASSWORD = "BBBBBBBBBB";
+
     @Autowired
     private KlavUserRepository klavUserRepository;
 
@@ -106,7 +133,16 @@ public class KlavUserResourceIntTest {
             .birthdate(DEFAULT_BIRTHDATE)
             .selfDescription(DEFAULT_SELF_DESCRIPTION)
             .gender(DEFAULT_GENDER)
-            .nationality(DEFAULT_NATIONALITY);
+            .nationality(DEFAULT_NATIONALITY)
+            .login(DEFAULT_LOGIN)
+            .firstName(DEFAULT_FIRST_NAME)
+            .lastName(DEFAULT_LAST_NAME)
+            .email(DEFAULT_EMAIL)
+            .activated(DEFAULT_ACTIVATED)
+            .activationKey(DEFAULT_ACTIVATION_KEY)
+            .resetKey(DEFAULT_RESET_KEY)
+            .resetDate(DEFAULT_RESET_DATE)
+            .password(DEFAULT_PASSWORD);
         return klavUser;
     }
 
@@ -135,6 +171,15 @@ public class KlavUserResourceIntTest {
         assertThat(testKlavUser.getSelfDescription()).isEqualTo(DEFAULT_SELF_DESCRIPTION);
         assertThat(testKlavUser.getGender()).isEqualTo(DEFAULT_GENDER);
         assertThat(testKlavUser.getNationality()).isEqualTo(DEFAULT_NATIONALITY);
+        assertThat(testKlavUser.getLogin()).isEqualTo(DEFAULT_LOGIN);
+        assertThat(testKlavUser.getFirstName()).isEqualTo(DEFAULT_FIRST_NAME);
+        assertThat(testKlavUser.getLastName()).isEqualTo(DEFAULT_LAST_NAME);
+        assertThat(testKlavUser.getEmail()).isEqualTo(DEFAULT_EMAIL);
+        assertThat(testKlavUser.isActivated()).isEqualTo(DEFAULT_ACTIVATED);
+        assertThat(testKlavUser.getActivationKey()).isEqualTo(DEFAULT_ACTIVATION_KEY);
+        assertThat(testKlavUser.getResetKey()).isEqualTo(DEFAULT_RESET_KEY);
+        assertThat(testKlavUser.getResetDate()).isEqualTo(DEFAULT_RESET_DATE);
+        assertThat(testKlavUser.getPassword()).isEqualTo(DEFAULT_PASSWORD);
     }
 
     @Test
@@ -171,7 +216,16 @@ public class KlavUserResourceIntTest {
             .andExpect(jsonPath("$.[*].birthdate").value(hasItem(DEFAULT_BIRTHDATE.toString())))
             .andExpect(jsonPath("$.[*].selfDescription").value(hasItem(DEFAULT_SELF_DESCRIPTION.toString())))
             .andExpect(jsonPath("$.[*].gender").value(hasItem(DEFAULT_GENDER.toString())))
-            .andExpect(jsonPath("$.[*].nationality").value(hasItem(DEFAULT_NATIONALITY.toString())));
+            .andExpect(jsonPath("$.[*].nationality").value(hasItem(DEFAULT_NATIONALITY.toString())))
+            .andExpect(jsonPath("$.[*].login").value(hasItem(DEFAULT_LOGIN.toString())))
+            .andExpect(jsonPath("$.[*].firstName").value(hasItem(DEFAULT_FIRST_NAME.toString())))
+            .andExpect(jsonPath("$.[*].lastName").value(hasItem(DEFAULT_LAST_NAME.toString())))
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
+            .andExpect(jsonPath("$.[*].activated").value(hasItem(DEFAULT_ACTIVATED.booleanValue())))
+            .andExpect(jsonPath("$.[*].activationKey").value(hasItem(DEFAULT_ACTIVATION_KEY.toString())))
+            .andExpect(jsonPath("$.[*].resetKey").value(hasItem(DEFAULT_RESET_KEY.toString())))
+            .andExpect(jsonPath("$.[*].resetDate").value(hasItem(DEFAULT_RESET_DATE.toString())))
+            .andExpect(jsonPath("$.[*].password").value(hasItem(DEFAULT_PASSWORD.toString())));
     }
     
     public void getAllKlavUsersWithEagerRelationshipsIsEnabled() throws Exception {
@@ -220,7 +274,16 @@ public class KlavUserResourceIntTest {
             .andExpect(jsonPath("$.birthdate").value(DEFAULT_BIRTHDATE.toString()))
             .andExpect(jsonPath("$.selfDescription").value(DEFAULT_SELF_DESCRIPTION.toString()))
             .andExpect(jsonPath("$.gender").value(DEFAULT_GENDER.toString()))
-            .andExpect(jsonPath("$.nationality").value(DEFAULT_NATIONALITY.toString()));
+            .andExpect(jsonPath("$.nationality").value(DEFAULT_NATIONALITY.toString()))
+            .andExpect(jsonPath("$.login").value(DEFAULT_LOGIN.toString()))
+            .andExpect(jsonPath("$.firstName").value(DEFAULT_FIRST_NAME.toString()))
+            .andExpect(jsonPath("$.lastName").value(DEFAULT_LAST_NAME.toString()))
+            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
+            .andExpect(jsonPath("$.activated").value(DEFAULT_ACTIVATED.booleanValue()))
+            .andExpect(jsonPath("$.activationKey").value(DEFAULT_ACTIVATION_KEY.toString()))
+            .andExpect(jsonPath("$.resetKey").value(DEFAULT_RESET_KEY.toString()))
+            .andExpect(jsonPath("$.resetDate").value(DEFAULT_RESET_DATE.toString()))
+            .andExpect(jsonPath("$.password").value(DEFAULT_PASSWORD.toString()));
     }
 
     @Test
@@ -248,7 +311,16 @@ public class KlavUserResourceIntTest {
             .birthdate(UPDATED_BIRTHDATE)
             .selfDescription(UPDATED_SELF_DESCRIPTION)
             .gender(UPDATED_GENDER)
-            .nationality(UPDATED_NATIONALITY);
+            .nationality(UPDATED_NATIONALITY)
+            .login(UPDATED_LOGIN)
+            .firstName(UPDATED_FIRST_NAME)
+            .lastName(UPDATED_LAST_NAME)
+            .email(UPDATED_EMAIL)
+            .activated(UPDATED_ACTIVATED)
+            .activationKey(UPDATED_ACTIVATION_KEY)
+            .resetKey(UPDATED_RESET_KEY)
+            .resetDate(UPDATED_RESET_DATE)
+            .password(UPDATED_PASSWORD);
 
         restKlavUserMockMvc.perform(put("/api/klav-users")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -264,6 +336,15 @@ public class KlavUserResourceIntTest {
         assertThat(testKlavUser.getSelfDescription()).isEqualTo(UPDATED_SELF_DESCRIPTION);
         assertThat(testKlavUser.getGender()).isEqualTo(UPDATED_GENDER);
         assertThat(testKlavUser.getNationality()).isEqualTo(UPDATED_NATIONALITY);
+        assertThat(testKlavUser.getLogin()).isEqualTo(UPDATED_LOGIN);
+        assertThat(testKlavUser.getFirstName()).isEqualTo(UPDATED_FIRST_NAME);
+        assertThat(testKlavUser.getLastName()).isEqualTo(UPDATED_LAST_NAME);
+        assertThat(testKlavUser.getEmail()).isEqualTo(UPDATED_EMAIL);
+        assertThat(testKlavUser.isActivated()).isEqualTo(UPDATED_ACTIVATED);
+        assertThat(testKlavUser.getActivationKey()).isEqualTo(UPDATED_ACTIVATION_KEY);
+        assertThat(testKlavUser.getResetKey()).isEqualTo(UPDATED_RESET_KEY);
+        assertThat(testKlavUser.getResetDate()).isEqualTo(UPDATED_RESET_DATE);
+        assertThat(testKlavUser.getPassword()).isEqualTo(UPDATED_PASSWORD);
     }
 
     @Test

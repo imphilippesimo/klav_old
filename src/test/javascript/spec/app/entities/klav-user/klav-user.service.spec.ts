@@ -25,14 +25,31 @@ describe('Service Tests', () => {
             httpMock = injector.get(HttpTestingController);
             currentDate = moment();
 
-            elemDefault = new KlavUser(0, 'AAAAAAA', currentDate, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
+            elemDefault = new KlavUser(
+                0,
+                'AAAAAAA',
+                currentDate,
+                'AAAAAAA',
+                'AAAAAAA',
+                'AAAAAAA',
+                'AAAAAAA',
+                'AAAAAAA',
+                'AAAAAAA',
+                'AAAAAAA',
+                false,
+                'AAAAAAA',
+                'AAAAAAA',
+                currentDate,
+                'AAAAAAA'
+            );
         });
 
         describe('Service methods', async () => {
             it('should find an element', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        birthdate: currentDate.format(DATE_TIME_FORMAT)
+                        birthdate: currentDate.format(DATE_TIME_FORMAT),
+                        resetDate: currentDate.format(DATE_TIME_FORMAT)
                     },
                     elemDefault
                 );
@@ -49,13 +66,15 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         id: 0,
-                        birthdate: currentDate.format(DATE_TIME_FORMAT)
+                        birthdate: currentDate.format(DATE_TIME_FORMAT),
+                        resetDate: currentDate.format(DATE_TIME_FORMAT)
                     },
                     elemDefault
                 );
                 const expected = Object.assign(
                     {
-                        birthdate: currentDate
+                        birthdate: currentDate,
+                        resetDate: currentDate
                     },
                     returnedFromService
                 );
@@ -74,14 +93,24 @@ describe('Service Tests', () => {
                         birthdate: currentDate.format(DATE_TIME_FORMAT),
                         selfDescription: 'BBBBBB',
                         gender: 'BBBBBB',
-                        nationality: 'BBBBBB'
+                        nationality: 'BBBBBB',
+                        login: 'BBBBBB',
+                        firstName: 'BBBBBB',
+                        lastName: 'BBBBBB',
+                        email: 'BBBBBB',
+                        activated: true,
+                        activationKey: 'BBBBBB',
+                        resetKey: 'BBBBBB',
+                        resetDate: currentDate.format(DATE_TIME_FORMAT),
+                        password: 'BBBBBB'
                     },
                     elemDefault
                 );
 
                 const expected = Object.assign(
                     {
-                        birthdate: currentDate
+                        birthdate: currentDate,
+                        resetDate: currentDate
                     },
                     returnedFromService
                 );
@@ -100,13 +129,23 @@ describe('Service Tests', () => {
                         birthdate: currentDate.format(DATE_TIME_FORMAT),
                         selfDescription: 'BBBBBB',
                         gender: 'BBBBBB',
-                        nationality: 'BBBBBB'
+                        nationality: 'BBBBBB',
+                        login: 'BBBBBB',
+                        firstName: 'BBBBBB',
+                        lastName: 'BBBBBB',
+                        email: 'BBBBBB',
+                        activated: true,
+                        activationKey: 'BBBBBB',
+                        resetKey: 'BBBBBB',
+                        resetDate: currentDate.format(DATE_TIME_FORMAT),
+                        password: 'BBBBBB'
                     },
                     elemDefault
                 );
                 const expected = Object.assign(
                     {
-                        birthdate: currentDate
+                        birthdate: currentDate,
+                        resetDate: currentDate
                     },
                     returnedFromService
                 );

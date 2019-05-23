@@ -1,7 +1,12 @@
 package com.klav.service.dto;
 
-import javax.validation.constraints.NotNull;
+import com.klav.domain.Address;
+
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 public class KlavUserDTO {
 
@@ -22,16 +27,41 @@ public class KlavUserDTO {
 
     private String gender;
 
-
     private String nationality;
-
 
     private Long livesAt;
 
+    private String login;
 
-    @NotNull
-    private UserDTO person;
+    private String firstName;
 
+
+    private String lastName;
+
+
+    private String email;
+
+
+    private Boolean activated;
+
+
+    private String activationKey;
+
+
+    private String resetKey;
+
+
+    private Instant resetDate;
+
+    private String password;
+
+    private Set<Long> profilePictures = new HashSet<>();
+
+    private Set<Long> bookings = new HashSet<>();
+
+    private Set<Long> reviews = new HashSet<>();
+
+    private Set<Long> chats = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -89,13 +119,107 @@ public class KlavUserDTO {
         this.livesAt = livesAt;
     }
 
-    public UserDTO getPerson() {
-        return person;
+    public Set<Long> getProfilePictures() {
+        return profilePictures;
     }
 
-    public void setPerson(UserDTO person) {
-        this.person = person;
+    public void setProfilePictures(Set<Long> profilePictures) {
+        this.profilePictures = profilePictures;
     }
 
+    public Set<Long> getBookings() {
+        return bookings;
+    }
 
+    public void setBookings(Set<Long> bookings) {
+        this.bookings = bookings;
+    }
+
+    public Set<Long> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Set<Long> reviews) {
+        this.reviews = reviews;
+    }
+
+    public Set<Long> getChats() {
+        return chats;
+    }
+
+    public void setChats(Set<Long> chats) {
+        this.chats = chats;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Boolean getActivated() {
+        return activated;
+    }
+
+    public void setActivated(Boolean activated) {
+        this.activated = activated;
+    }
+
+    public String getActivationKey() {
+        return activationKey;
+    }
+
+    public void setActivationKey(String activationKey) {
+        this.activationKey = activationKey;
+    }
+
+    public String getResetKey() {
+        return resetKey;
+    }
+
+    public void setResetKey(String resetKey) {
+        this.resetKey = resetKey;
+    }
+
+    public Instant getResetDate() {
+        return resetDate;
+    }
+
+    public void setResetDate(Instant resetDate) {
+        this.resetDate = resetDate;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
