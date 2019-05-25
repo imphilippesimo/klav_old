@@ -52,10 +52,7 @@ public class KlavAccountResource {
 
         try {
             klavUser = klavUserService.createKlavUser(createAccountMapper.vmToDto(createAccountVM));
-            NotificationContext<KlavUser> notificationContext = new NotificationContext<>();
-            notificationContext.setTo(createAccountVM.getEmail());
-            notificationContext.setBoundedContext(klavUser);
-            notificationService.pushAccountCreation(notificationContext);
+
         } catch (PhoneNumberAlreadyUsedException e) {
             throw new AccountAlreadyExistsException(
                 ErrorConstants.EMAIL_ALREADY_USED_TYPE, "Phone number is already in use!", "", "phone-number-exists");
@@ -66,5 +63,10 @@ public class KlavAccountResource {
             throw new AccountAlreadyExistsException(
                 ErrorConstants.EMAIL_ALREADY_USED_TYPE, "Email is already in use!", "", "email-exists");
         }
+
+        NotificationContext<KlavUser> notificationContext = new NotificationContext<>();
+        notificationContext.setTo(createAccountVM.getEmail());
+        notificationContext.setBoundedContext(klavUser);
+        notificationService.pushAccountValidation(notificationContext);
     }
 }
