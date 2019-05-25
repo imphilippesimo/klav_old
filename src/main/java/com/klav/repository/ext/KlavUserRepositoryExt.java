@@ -1,7 +1,6 @@
 package com.klav.repository.ext;
 
 import com.klav.domain.KlavUser;
-import com.klav.repository.KlavUserRepository;
 
 import java.time.Instant;
 import java.util.Optional;
@@ -14,9 +13,13 @@ public interface KlavUserRepositoryExt {
 
     Optional<KlavUser> createUser(final KlavUser klavUser);
 
+    Optional<KlavUser> updateUser(final KlavUser klavUser);
+
     Optional<KlavUser> findOneByPhoneNumber(String phoneNumber);
 
     Optional<KlavUser> findOneByEmailIgnoreCase(String email);
+
+    Optional<KlavUser> findOneByActivationKey(String activationKey);
 
     void delete(KlavUser klavUser);
 

@@ -6,6 +6,8 @@ import com.klav.service.errors.KlavUserEmailAlreadyUsedException;
 import com.klav.service.errors.KlavUserNotActivatedException;
 import com.klav.service.errors.PhoneNumberAlreadyUsedException;
 
+import java.util.Optional;
+
 public interface IKlavUserService {
 
     /**
@@ -18,4 +20,11 @@ public interface IKlavUserService {
      */
     KlavUser createKlavUser(final KlavUserDTO klavUserDTO)
         throws PhoneNumberAlreadyUsedException, KlavUserNotActivatedException, KlavUserEmailAlreadyUsedException;
+
+    /**
+     *
+     * @param key activation key
+     * @return the user activated
+     */
+    Optional<KlavUser> activateRegistration(String key);
 }
