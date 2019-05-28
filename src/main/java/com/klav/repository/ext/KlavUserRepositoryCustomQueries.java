@@ -12,4 +12,6 @@ public interface KlavUserRepositoryCustomQueries extends KlavUserRepository {
     Optional<KlavUser> findOneByPhoneNumber(String phoneNumber);
 
     Optional<KlavUser> findOneByEmailIgnoreCase(String email);
+
+    Optional<KlavUser> findOneByActivationKey(String activationKey);
 }

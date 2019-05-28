@@ -9,6 +9,7 @@ import com.klav.service.ext.IKlavUserService;
 import com.klav.service.ext.NotificationContext;
 import com.klav.service.ext.NotificationService;
 import com.klav.web.rest.errors.AccountAlreadyExistsException;
+import com.klav.web.rest.errors.ActivationKeyNotFoundException;
 import com.klav.web.rest.errors.ErrorConstants;
 import com.klav.web.rest.vm.CreateAccountVM;
 import com.klav.web.rest.vm.mapper.CreateAccountMapper;
@@ -18,6 +19,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/ext")
@@ -52,10 +54,7 @@ public class KlavAccountResource {
 
         try {
             klavUser = klavUserService.createKlavUser(createAccountMapper.vmToDto(createAccountVM));
-            NotificationContext<KlavUser> notificationContext = new NotificationContext<>();
-            notificationContext.setTo(createAccountVM.getEmail());
-            notificationContext.setBoundedContext(klavUser);
-            notificationService.pushAccountCreation(notificationContext);
+
         } catch (PhoneNumberAlreadyUsedException e) {
             throw new AccountAlreadyExistsException(
                 ErrorConstants.EMAIL_ALREADY_USED_TYPE, "Phone number is already in use!", "", "phone-number-exists");
@@ -65,6 +64,26 @@ public class KlavAccountResource {
         } catch (KlavUserEmailAlreadyUsedException e) {
             throw new AccountAlreadyExistsException(
                 ErrorConstants.EMAIL_ALREADY_USED_TYPE, "Email is already in use!", "", "email-exists");
+        }
+
+        NotificationContext<KlavUser> notificationContext = new NotificationContext<>();
+        notificationContext.setTo(createAccountVM.getEmail());
+        notificationContext.setBoundedContext(klavUser);
+        notificationService.pushAccountValidation(notificationContext);
+    }
+
+    /**
+     * GET  /activate : activate the registered user.
+     *
+     * @param key the activation key
+     * @throws ActivationKeyNotFoundException 404 if no user could be activated
+     */
+    @GetMapping("/activate")
+    @Timed
+    public void activateAccount(@RequestParam(value = "key") String key) {
+        Optional<KlavUser> user = klavUserService.activateRegistration(key);
+        if (!user.isPresent()) {
+            throw new ActivationKeyNotFoundException();
         }
     }
 }

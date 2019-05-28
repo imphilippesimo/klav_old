@@ -18,9 +18,13 @@ public class JPAKlavUserRepository implements KlavUserRepositoryExt {
         this.klavUserRepository = klavUserRepository;
     }
 
-
     @Override
     public Optional<KlavUser> createUser(KlavUser klavUser) {
+        return Optional.of(klavUserRepository.save(klavUser));
+    }
+
+    @Override
+    public Optional<KlavUser> updateUser(KlavUser klavUser) {
         return Optional.of(klavUserRepository.save(klavUser));
     }
 
@@ -32,6 +36,11 @@ public class JPAKlavUserRepository implements KlavUserRepositoryExt {
     @Override
     public Optional<KlavUser> findOneByEmailIgnoreCase(String email) {
         return klavUserRepository.findOneByEmailIgnoreCase(email);
+    }
+
+    @Override
+    public Optional<KlavUser> findOneByActivationKey(String activationKey) {
+        return klavUserRepository.findOneByActivationKey(activationKey);
     }
 
     @Override

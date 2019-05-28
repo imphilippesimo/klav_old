@@ -51,6 +51,16 @@ public class MailNotificationService implements NotificationService {
         sendEmailFromTemplate(notificationContext, "mail/accountCreationEmail", "email.creation.text1");
     }
 
+    @Override
+    public void pushAccountValidation(NotificationContext notificationContext) {
+        log.debug("Sending validation email to '{}'", notificationContext.getTo());
+        sendEmailFromTemplate(
+            notificationContext,
+            "mail/klavActivationEmail",
+            "klav.email.activation.title"
+        );
+    }
+
     private void sendEmailFromTemplate(NotificationContext notificationContext, String templateName, String titleKey) {
         Locale locale = Locale.forLanguageTag(Constants.DEFAULT_LANGUAGE);
         Context context = new Context(locale);

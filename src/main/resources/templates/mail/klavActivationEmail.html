@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:text="#{klav.email.activation.title}">JHipster creation</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="shortcut icon" th:href="@{|${baseUrl}/favicon.ico|}" />
+    </head>
+    <body>
+        <p th:text="#{klav.email.activation.greeting(${user.lastName}, ${user.firstName})}"></p>
+
+        <p th:text="#{klav.email.activation.text1}"></p>
+
+        <p>
+            <span th:text="#{klav.email.activation.text2}"></span>
+            <a th:with="url=(@{|${baseUrl}/#/activate?key=${user.activationKey}|})"
+               th:href="${url}"
+               th:text="#{klav.email.activation.text3}"></a>
+        </p>
+
+        <p th:text="#{klav.email.activation.text4}"></p>
+
+        <p th:text="#{klav.email.activation.text5}"></p>
+
+        <p th:text="#{klav.email.activation.text6}"></p>
+
+        <p>
+            <span th:text="#{klav.email.signature1}"></span>
+            <br/>
+            <span th:text="#{klav.email.signature2}">JHipster.</span>
+        </p>
+    </body>
+</html>

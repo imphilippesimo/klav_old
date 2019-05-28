@@ -55,6 +55,19 @@ public class KlavUserServiceImpl implements IKlavUserService {
         return klavUser;
     }
 
+    @Override
+    public Optional<KlavUser> activateRegistration(String key) {
+        log.debug("Activating user for activation key {}", key);
+        return klavUserRepository.findOneByActivationKey(key)
+            .map(user -> {
+                user.setActivated(true);
+                user.setActivationKey(null);
+                klavUserRepository.updateUser(user);
+                log.debug("Activated user: {}", user);
+                return user;
+            });
+    }
+
     private void checkDuplicatedUserByPhoneNumber(String phoneNumber)
         throws KlavUserNotActivatedException, PhoneNumberAlreadyUsedException {
         Optional<KlavUser> user = klavUserRepository.findOneByPhoneNumber(phoneNumber);
